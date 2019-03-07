@@ -1,5 +1,6 @@
 <!DOCTYPE html> 
 <html> 
+<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 <head> 
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
     
@@ -68,6 +69,18 @@
 
 </head> 
 <body> 
+<body>
+<amp-analytics type="segment">
+<script type="application/json">
+  {
+    "vars": {
+      "writeKey": "30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4",
+      "name": "My Page Name"
+    }
+  }
+</script>
+</amp-analytics>
+</body>
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  
 <form name="travel" onsubmit="identify(event)">

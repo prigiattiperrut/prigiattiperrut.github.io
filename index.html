@@ -143,14 +143,17 @@ clientId = tracker.get('clientId');
             email: email, 
             name: fullname, 
             destination: destination, 
-            details: details
+            details: details,
         };
         analytics.identify('1234', {
             email: email, 
             name: fullname
+	   clientId: clientId
         });
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
+	    window.clientId: clientId;
+	    console.log.clientId = "";
         });
       }
 </script>

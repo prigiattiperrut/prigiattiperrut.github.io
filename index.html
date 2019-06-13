@@ -123,6 +123,14 @@ hideDefaultLauncher: false,
 	    window.clientId: clientId;
 	    windows.console.log.clientId = "";
         });
+	      analytics.ready(function() {
+  window.intercomSettings = {
+  app_id: 'abc123',
+  alignment: 'left',
+  horizontal_padding: 20,
+  vertical_padding: 20
+};;
+});
 	 
       }
 </script>

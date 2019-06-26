@@ -12,6 +12,42 @@
 hideDefaultLauncher: false, 
 } });
   }}();
+
+		    <script type="text/javascript">
+      function identify(e){
+        e.preventDefault();
+        var form = e.target;
+        var email = form["email"].value;
+        var fullname = form["fullname"].value;
+        var destination = form["destination"].value;
+        var details = form["details"].value;
+        var user = {
+            email: email, 
+            name: fullname, 
+            destination: destination, 
+            details: details,
+        };
+        analytics.identify('1234', {
+            email: email, 
+            name: fullname
+        });
+        analytics.track('destination submitted', user, function() {
+            window.location.href = "";
+	    window.clientId: clientId;
+	    windows.console.log.clientId = "";
+        });
+	      analytics.ready(function() {
+  window.intercomSettings = {
+  app_id: '896jf8ja',
+  alignment: 'right',
+  horizontal_padding: 20,
+  vertical_padding: 20
+};;
+});
+	 
+      }
+</script>
+		
 </script>
 	
 <!-- Hotjar Tracking Code for https://prigiattiperrut.github.io/ -->
@@ -105,39 +141,6 @@ hideDefaultLauncher: false,
     <br><br>
     <input name="submit" type="submit" value="submit"/>
 </form> 
-    <script type="text/javascript">
-      function identify(e){
-        e.preventDefault();
-        var form = e.target;
-        var email = form["email"].value;
-        var fullname = form["fullname"].value;
-        var destination = form["destination"].value;
-        var details = form["details"].value;
-        var user = {
-            email: email, 
-            name: fullname, 
-            destination: destination, 
-            details: details,
-        };
-        analytics.identify('1234', {
-            email: email, 
-            name: fullname
-        });
-        analytics.track('destination submitted', user, function() {
-            window.location.href = "";
-	    window.clientId: clientId;
-	    windows.console.log.clientId = "";
-        });
-	      analytics.ready(function() {
-  window.intercomSettings = {
-  app_id: '896jf8ja',
-  alignment: 'right',
-  horizontal_padding: 20,
-  vertical_padding: 20
-};;
-});
-	 
-      }
-</script>
+
 </body> 
 </html>

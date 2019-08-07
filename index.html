@@ -148,16 +148,16 @@
             email: email, 
             name: fullname
         });
-        analytics.track('Carousel Clicked', user, function() 
-		{
-  context: {
-    protocols: {
-      event_version: 2
-    }
-  }
-});	
-{window.location.href = ""};
+
+analytics.track("test", {},  {
+ context: {
+   protocols: {
+     event_version: 2
+   }
  }
+});
+	      
+		  
 </script>
 </body> 
 </html>

@@ -150,14 +150,15 @@
         });
       }
 
-analytics.track({
+analytics.track('test event', user, function()         {
  context: {
    protocols: {
      event_version: 2
    }
  }
 });
-	  	  
+	    
+{window.location.href = ""};	  
 </script>
 </body> 
 </html>

@@ -15,19 +15,6 @@
 	
 <!-- Youtube plugin-->
 <script src="https://cdn.jsdelivr.net/npm/@segment/youtube-analytics.js-plugin@1.0.1/dist/youtube.min.js"></script>
-
-<script>	
-var player;
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'CHVNRWqVgw0'
-    });
-    var ytAnalytics = new window.analyticsPlugins.YoutubeAnalytics(player)
-    ytAnalytics.initialize()
-}
-</script>
 	
 	
 <!-- Hotjar Tracking Code for https://prigiattiperrut.github.io/ -->
@@ -142,6 +129,24 @@ function onYouTubeIframeAPIReady() {
 
 
 </body>
+
+<!-- Youtube plugin-->
+
+<script>	
+var player;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+    height: '390',
+    width: '640',
+    videoId: 'CHVNRWqVgw0'
+    });
+    var ytAnalytics = new window.analyticsPlugins.YoutubeAnalytics(player)
+    ytAnalytics.initialize()
+}
+</script>
+
+<!-- PAGE BODY-->
+
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  
 <form name="travel" onsubmit="identify(event)">

@@ -38,7 +38,10 @@
           height: '390',
           width: '640',
           videoId: 'CHVNRWqVgw0'
-
+events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
         });
         var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player,'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
     ytAnalytics.initialize()

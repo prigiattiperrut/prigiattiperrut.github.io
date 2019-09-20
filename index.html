@@ -15,7 +15,23 @@
 	
 <!-- Youtube plugin-->
 <script src="https://cdn.jsdelivr.net/npm/@segment/youtube-analytics.js-plugin@1.0.1/dist/youtube.min.js"></script>
-	
+
+<body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player"></div>
+    <script>
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'CHVNRWqVgw0'
+        });
+        var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
+    ytAnalytics.initialize()
+      }
+    </script>
+  </body>
 	
 <!-- Hotjar Tracking Code for https://prigiattiperrut.github.io/ -->
 <script>
@@ -129,21 +145,6 @@
 
 
 </body>
-
-<!-- Youtube plugin-->
-
-<script>	
-var player;
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'CHVNRWqVgw0'
-    });
-    var ytAnalytics = new window.analyticsPlugins.YoutubeAnalytics(player)
-    ytAnalytics.initialize()
-}
-</script>
 
 <!-- PAGE BODY-->
 

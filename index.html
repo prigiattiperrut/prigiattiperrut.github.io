@@ -206,10 +206,6 @@ events: {
     <script type="text/javascript">
       function identify(e){
         e.preventDefault();
-	var clientId; 
-ga(function (tracker) { 
-clientId = tracker.get('clientId'); 
-}); 
         var form = e.target;
         var email = form["email"].value;
         var fullname = form["fullname"].value;
@@ -224,11 +220,11 @@ clientId = tracker.get('clientId');
         analytics.identify( {
             email: email, 
             name: fullname,
-	    clientId = tracker.get('clientId')
+	    clientId : tracker.get('clientId')
         });
      
 
-analytics.track('test event', user, function(){
+analytics.track('test event', user,clientId : tracker.get('clientId'), function(){
  context: {
    protocols: {
      event_version: 2

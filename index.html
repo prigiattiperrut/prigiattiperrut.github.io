@@ -206,6 +206,7 @@ events: {
     <script type="text/javascript">
       function identify(e){
         e.preventDefault();
+	      var clientId: clientId
         var form = e.target;
         var email = form["email"].value;
         var fullname = form["fullname"].value;
@@ -220,6 +221,7 @@ events: {
         analytics.identify( {
             email: email, 
             name: fullname
+	    clientId: clientId
         });
      
 

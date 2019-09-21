@@ -1,39 +1,6 @@
 <!DOCTYPE html> 
 <html> 
-
-<head>
-
-<!-- SEGMENT --> 
-
-<script>
-  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.0.0";
-  analytics.load("30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4");
-  analytics.page();
-  analytics.ready(function(){ 
-var clientId; 
-ga(function (tracker) { 
-clientId = tracker.get('clientId'); 
-}); 
-});
-  }}();
-</script>
-
-<!-- Optimizely-->
-<script src="https://cdn.optimizely.com/js/15303960539.js"></script>
-  
-
-<!-- Hotjar Tracking Code for https://prigiattiperrut.github.io/ -->
-<script>
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:1338315,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
-	
+<head> 
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
     
     <!-- Begin Mailchimp Signup Form -->
@@ -92,12 +59,20 @@ clientId = tracker.get('clientId');
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
 <!--End mc_embed_signup-->
 
+<!-- SEGMENT-->
+   <script>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+  analytics.load("30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4");
+  analytics.page();
+  }}();
+</script>
+	
+	
+<!-- Optimizely-->
+<script src="https://cdn.optimizely.com/js/15303960539.js"></script>
 
 </head> 
-
-
-</body>
-	
+<body> 
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  
 <form name="travel" onsubmit="identify(event)">
@@ -127,17 +102,14 @@ clientId = tracker.get('clientId');
             email: email, 
             name: fullname, 
             destination: destination, 
-            details: details,
+            details: details
         };
         analytics.identify('1234', {
             email: email, 
             name: fullname
-	   clientId: clientId
         });
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
-	    window.clientId: clientId;
-	    console.log.clientId = "";
         });
       }
 </script>

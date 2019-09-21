@@ -104,7 +104,7 @@ events: {
     <script type="text/javascript">
       function identify(e){
         e.preventDefault();
-	var clientId;
+	var clientId = tracker.get('clientId');
         var form = e.target;
         var email = form["email"].value;
         var fullname = form["fullname"].value;
@@ -115,21 +115,19 @@ events: {
             name: fullname, 
             destination: destination, 
             details: details,
-            ga(function (tracker) {
-    var clientId = tracker.get('clientId');
-    clientId: clientId,
+            clientId: clientId,
 });,
 	   
         };
         analytics.identify('1234', {
             email: email, 
             name: fullname,
-	    clientId: clientId,
+	    clientId:'clientId',
 	    
         });
         analytics.track('destination submitted', user, function() {
             window.location.href = ""
-	    window.clientId = ""
+	    
         });
 }
      

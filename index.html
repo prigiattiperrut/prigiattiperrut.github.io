@@ -12,7 +12,7 @@
   analytics.ready(function(){ 
 var clientId; 
 ga(function (tracker) { 
-clientId = tracker.get('clientId'); 
+clientId : tracker.get('clientId'); 
 }); 
 });
   }}();
@@ -105,6 +105,7 @@ events: {
     <script type="text/javascript">
       function identify(e){
         e.preventDefault();
+	var clientId : tracker.get('clientId');
         var form = e.target;
         var email = form["email"].value;
         var fullname = form["fullname"].value;
@@ -114,16 +115,17 @@ events: {
             email: email, 
             name: fullname, 
             destination: destination, 
-            details: details
+            details: details,
+	    clientid: clientid
         };
         analytics.identify('1234', {
             email: email, 
-            name: fullname
+            name: fullname,
+	    clientId: clientId
         });
         analytics.track('destination submitted', user, function() {
-            window.location.href = "";
+            window.location.href = "",
 	    window.clientId= "";
-	    console.log.clientId = "";
         });
       }
 </script>

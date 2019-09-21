@@ -206,7 +206,10 @@ events: {
     <script type="text/javascript">
       function identify(e){
         e.preventDefault();
-	      var clientId: clientId
+	var clientId; 
+ga(function (tracker) { 
+clientId = tracker.get('clientId'); 
+}); 
         var form = e.target;
         var email = form["email"].value;
         var fullname = form["fullname"].value;
@@ -221,7 +224,7 @@ events: {
         analytics.identify( {
             email: email, 
             name: fullname
-	    clientId: clientId
+	    clientId = tracker.get('clientId');
         });
      
 

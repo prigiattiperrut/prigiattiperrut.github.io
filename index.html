@@ -105,7 +105,7 @@ events: {
     <script type="text/javascript">
       function identify(e){
         e.preventDefault();
-	var clientId = window["clientId"];
+	var clientId;
         var form = e.target;
         var email = form["email"].value;
         var fullname = form["fullname"].value;
@@ -116,7 +116,7 @@ events: {
             name: fullname, 
             destination: destination, 
             details: details,
-	    clientid: clientid
+	   
         };
         analytics.identify('1234', {
             email: email, 
@@ -125,7 +125,7 @@ events: {
         });
         analytics.track('destination submitted', user, function() {
             window.location.href = "",
-	    window.clientId= "";
+	    clientId:"window.clientId";
         });
       }
 </script>

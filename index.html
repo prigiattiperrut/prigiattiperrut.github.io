@@ -22,6 +22,21 @@
 <script src="https://cdn.optimizely.com/js/15303960539.js"></script>
 <!-- Youtube plugin-->
 <body>
+	
+	<script type="text/javascript">
+          analytics.track("Ad block check", {
+            category: "Adblock",
+            label: aBYlWqkNZsgA,
+            adBlockDetected: adBlockDetected,
+            nonInteraction: 1,
+          }, {
+            integrations: {
+              'All': false,
+              'Google Analytics': true,
+            }
+          });
+        </script>
+	
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div>
 
@@ -126,7 +141,12 @@ events: {
 	    
         });
         analytics.track('destination submitted', user, function() {
-            window.location.href = ""
+            window.location.href = ""},
+			{
+            integrations: {
+              'All': false,
+              'Google Analytics': true,
+            }
 	    
         });
 }

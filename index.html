@@ -117,18 +117,20 @@ events: {
         analytics.identify('1234', {
             email: email, 
             name: fullname,
-	    clientId:'clientId',
+	
 	    
         });
-        analytics.track('destination submitted', user, function() {
-            window.location.href = ""},
-			{
-            integrations: {
-              'All': false,
-              'Google Analytics': true
-            }
 	    
-        });
+	      
+    analytics.track('destination submitted', user, {
+  integrations: {
+    'All': false,
+    'Intercom': true,
+    'Google Analytics': true
+  }
+});
+	      
+	      
 }
      
 </script>

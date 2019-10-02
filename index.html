@@ -59,9 +59,10 @@ var clientId = tracker.get('clientId');
     <input name="submit" type="submit" value="submit"/>
 </form> 
     <script type="text/javascript">
-	    
+	    analytics.ready(function(){
 	ga(function (tracker) {
     var clientId = tracker.get('clientId');
+});
 });
 	    
       function identify(e){

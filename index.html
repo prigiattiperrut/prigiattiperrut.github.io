@@ -10,7 +10,10 @@
   analytics.load("30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4");
   analytics.page();
   analytics.ready(function(){
-    var anonId = mixpanel.get_distinct_id();
+var clientId;
+ga(function (tracker) {
+clientId = tracker.get('clientId');
+});
 });
   }}();
 </script>
@@ -20,54 +23,17 @@
 <script src="https://cdn.optimizely.com/js/15303960539.js"></script>
 <!-- Youtube plugin-->
 <body>
-
 	
-    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-    <div id="player"></div>
-
-    <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: 'CHVNRWqVgw0',
-events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-        var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player,'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
+<script>
+var player;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+    height: '390',
+    width: '640',
+    videoId: 'M7lc1UVf-VE'
+    });
+    var ytAnalytics = new window.analytics.plugins.YoutubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
     ytAnalytics.initialize()
-      }
-
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        event.target.playVideo();
-      }
-
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-      var done = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
-          done = true;
-        }
-      }
-      function stopVideo() {
-        player.stopVideo();
-      }
     </script>
   </body>
   
@@ -102,6 +68,13 @@ events: {
     <input name="submit" type="submit" value="submit"/>
 </form> 
     <script type="text/javascript">
+	    
+analytics.ready(function(){
+var clientId;
+ga(function (tracker) {
+clientId = tracker.get('clientId');
+});
+});
       function identify(e){
         e.preventDefault();
         var form = e.target;
@@ -109,6 +82,7 @@ events: {
         var fullname = form["fullname"].value;
         var destination = form["destination"].value;
         var details = form["details"].value;
+	var clientid = clientid;
         var user = {
             email: email, 
             name: fullname, 
@@ -125,7 +99,7 @@ events: {
         });
 	    
 	      
-    analytics.track('destination submitted', user, {
+    analytics.track('destination submitted', user, clientId, {
   integrations: {
     'All': false,
     'Intercom': true,

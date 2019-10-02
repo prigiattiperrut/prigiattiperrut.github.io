@@ -31,9 +31,13 @@ var clientId;
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
 
-
-	
-
+<script>
+analytics.ready(function(){
+ga(function (tracker) {
+var clientId = tracker.get('clientId');
+});
+});
+</script>
 	
 </head> 
 <body> 
@@ -56,11 +60,6 @@ var clientId;
 </form> 
     <script type="text/javascript">
 	    
-analytics.ready(function(){
-ga(function (tracker) {
-var clientId = tracker.get('clientId');
-});
-});
 	    
       function identify(e){
         e.preventDefault();

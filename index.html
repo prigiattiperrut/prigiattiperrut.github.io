@@ -76,7 +76,7 @@ function onYouTubeIframeAPIReady() {
         var fullname = form["fullname"].value;
         var destination = form["destination"].value;
         var details = form["details"].value;
-	var clientid = clientid;
+	var clientId = clientId;
         var user = {
             email: email, 
             name: fullname, 
@@ -93,7 +93,7 @@ function onYouTubeIframeAPIReady() {
         });
 	    
 	      
-    analytics.track('destination submitted', user, clientId, {
+    analytics.track('destination submitted', user,clientId, {
   integrations: {
     'All': false,
     'Intercom': true,

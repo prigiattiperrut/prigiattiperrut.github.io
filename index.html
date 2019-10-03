@@ -66,11 +66,21 @@ analytics.ready(function() {
 	
 </form> 
     <script type="text/javascript">
-	    
+
+var clientId = 'clientId';
+
+analytics.ready(function() {
+    ga(function (tracker) {
+      var clientId = tracker.get('clientId');
+    });
+});
+    
+     analytics.page('Page with clientId','null',{clientId:clientId});
+    
 	    
       function identify(e){
         e.preventDefault();
-	var clientId = clientId;
+
         var form = e.target;
         var email = form["email"].value;
         var fullname = form["fullname"].value;
@@ -87,18 +97,15 @@ analytics.ready(function() {
    
         analytics.identify('1234', {
             email: email, 
-            name: fullname,
-	clientId: clientId,
-	
-	    
+            name: fullname, 
+	    clientId: clientId,
         });
 	    
 	      
     analytics.track('destination submitted', user, {
   integrations: {
-    'All': false,
-    'Intercom': true,
-    'Google Analytics': true
+    'All': true,
+    'Intercom': true
   }
 });
 	      

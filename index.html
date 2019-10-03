@@ -63,7 +63,7 @@ var clientId = 'clientId';
 
 analytics.ready(function() {
     ga(function (tracker) {
-      var clientId = tracker.get('clientId');
+      var clientId = tracker.get('clientId').value;
     });
 });
     

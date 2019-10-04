@@ -57,7 +57,10 @@
 	
 </form> 
     <script type="text/javascript">
-
+ 
+ga(function (tracker) {
+      var clientId = tracker.get('clientId');
+    });
 
 analytics.ready(function() {
     ga(function (tracker) {
@@ -66,7 +69,7 @@ analytics.ready(function() {
 });
 	    
     
-     analytics.page('Page with clientId','null',{clientId:clientId});
+     analytics.page('Page with clientId','null',{clientId});
     
 	    
       function identify(e){

@@ -17,7 +17,7 @@
 	
 	
 <!-- Optimizely-->
-<script src="https://cdn.optimizely.com/js/15303960539.js"></script>
+<!--<script src="https://cdn.optimizely.com/js/15303960539.js"></script>-->
 
   
 <!-- Hotjar Tracking Code for https://prigiattiperrut.github.io/ -->
@@ -65,11 +65,12 @@ ga(function (tracker) {
 analytics.ready(function() {
     ga(function (tracker) {
       var clientId = tracker.get('clientId');
+analytics.page('Page with clientId','null',{'clientId'});
     });
 });
 	    
     
-     analytics.page('Page with clientId','null',{clientId});
+
     
 	    
       function identify(e){

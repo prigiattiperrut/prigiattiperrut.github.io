@@ -16,10 +16,13 @@
 analytics.ready(function() {
 ga(function (tracker) {
 var clientId = tracker.get('clientId');
-analytics.page('Page with clientId','null','clientId');
     });
 });
-</script>	
+</script>
+	
+<script>
+	analytics.page('Page with clientId','null','clientId');
+</script>
 	
 <!-- Optimizely-->
 <!--<script src="https://cdn.optimizely.com/js/15303960539.js"></script>-->

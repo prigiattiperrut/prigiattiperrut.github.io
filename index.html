@@ -57,15 +57,11 @@
 	
 </form> 
     <script type="text/javascript">
- 
-ga(function (tracker) {
-      var clientId = tracker.get('clientId');
-    });
 
 analytics.ready(function() {
     ga(function (tracker) {
       var clientId = tracker.get('clientId');
-analytics.page('Page with clientId','null',{'clientId'});
+analytics.page('Page with clientId','null','clientId');
     });
 });
 	    

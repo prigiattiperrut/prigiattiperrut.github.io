@@ -12,19 +12,6 @@
   }}();
 </script>
 	
-<script>
-analytics.ready(function() {
-ga(function(tracker) {
-var clientId = tracker.get('clientId');
-    });
-});
-</script>
-	
-
-
-<script>
-analytics.page('Page with clientId','null','clientId');	
-</script>
 	
 	
 <!-- Optimizely-->
@@ -62,7 +49,19 @@ analytics.page('Page with clientId','null','clientId');
     <br><br>
     <input name="submit" type="submit" value="submit"/>
 	
-   
+<script>
+analytics.ready(function() {
+ga(function(tracker) {
+var clientId = tracker.get('clientId');
+    });
+});
+</script>
+	
+
+
+<script>
+analytics.page('Page with clientId','Category A','clientId',);	
+</script>
 
 
 	

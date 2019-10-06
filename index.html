@@ -68,8 +68,10 @@
     <script type="text/javascript">
 
 
+      ga(function (tracker) {
       var clientId = tracker.get('clientId');
-      $('#clientID').attr('value', clientId);    
+      $('#clientID').attr('value', clientId);
+    }); 
     
 	    
       function identify(e){

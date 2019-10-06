@@ -66,7 +66,8 @@
 analytics.ready(function() {
     ga('create', 'UA-134464067-1', 'auto');
     ga(function(tracker) {
-    var clientId = ga.getAll()[0].get('clientId');
+  var clientId = tracker.get('clientId');
+  return clientId;
 });
     });    
 	    

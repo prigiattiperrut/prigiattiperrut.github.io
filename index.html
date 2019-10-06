@@ -12,7 +12,9 @@
   analytics.page();
   
     analytics.ready(function() {
-      console.log('Segment is Ready!');
+      ga(function (tracker) {
+      var clientId = tracker.get('clientId');
+      $('#clientID').attr('value', clientId);
     });
   }}();
 </script>
@@ -90,19 +92,20 @@
         var fullname = form["fullname"].value;
         var destination = form["destination"].value;
         var details = form["details"].value;
+	var clientId
         var user = {
             email: email, 
             name: fullname, 
             destination: destination, 
             details: details,
-	    //clientId: clientId,
+	    ga_clientId: clientId,
 };
 	   
    
         analytics.identify('1234', {
             email: email, 
             name: fullname, 
-	    //clientId: clientId,
+	    ga_clientId: clientId,
         });
 
  analytics.track('destination submitted', user,);

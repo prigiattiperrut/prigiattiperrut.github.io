@@ -12,13 +12,14 @@
   analytics.page();
   
     analytics.ready(function() {
-      ga(function (tracker) {
-      var clientId = tracker.get('clientId');
-      $('#clientID').attr('value', clientId);
-    });
+      ga function(){
+  var clientId = ga.getAll()[0].get('clientId');
+  return clientId;
+}
     });    
   }}();
 </script>
+	
 	
 //<!-- Optimizely-->
 //<!--<script src="https://cdn.optimizely.com/js/15303960539.js"></script>-->
@@ -67,17 +68,11 @@
 </form> 
     <script type="text/javascript">
 
-analytics.ready(function() {
-      ga(function (tracker) {
-      var clientId = tracker.get('clientId');
-      $('#clientID').attr('value', clientId);
-    });
-    });
     
 	    
       function identify(e){
         e.preventDefault();
-
+var clientId = 5;
         var form = e.target;
         var email = form["email"].value;
         var fullname = form["fullname"].value;

@@ -68,7 +68,8 @@
     <script type="text/javascript">
 
 
-	    
+      var clientId = tracker.get('clientId');
+      $('#clientID').attr('value', clientId);    
     
 	    
       function identify(e){
@@ -79,7 +80,6 @@
         var fullname = form["fullname"].value;
         var destination = form["destination"].value;
         var details = form["details"].value;
-	var clientId
         var user = {
             email: email, 
             name: fullname, 

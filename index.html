@@ -11,12 +11,7 @@
   analytics.load("30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4");
   analytics.page();
   
-    analytics.ready(function() {
-    ga('create', 'UA-134464067-1', 'auto');
-    ga(function(tracker) {
-    var clientId = ga.getAll()[0].get('clientId');
-});
-    });    
+    
   }}();
 </script>
 	
@@ -68,7 +63,12 @@
 </form> 
     <script type="text/javascript">
 
-
+analytics.ready(function() {
+    ga('create', 'UA-134464067-1', 'auto');
+    ga(function(tracker) {
+    var clientId = ga.getAll()[0].get('clientId');
+});
+    });    
 	    
 	    
       function identify(e){

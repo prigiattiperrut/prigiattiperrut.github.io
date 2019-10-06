@@ -15,7 +15,6 @@
     ga('create', 'UA-134464067-1', 'auto');
     ga(function(tracker) {
     var clientId = ga.getAll()[0].get('clientId');
-    return clientId;
 });
     });    
   }}();
@@ -69,11 +68,12 @@
 </form> 
     <script type="text/javascript">
 
-    
+
+	    
 	    
       function identify(e){
         e.preventDefault();
-var clientId = {event.data}; 
+	var clientId = e.data;
         var form = e.target;
         var email = form["email"].value;
         var fullname = form["fullname"].value;

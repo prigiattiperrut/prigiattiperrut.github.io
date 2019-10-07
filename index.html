@@ -17,7 +17,6 @@
  analytics.ready(function() {
   ga(function(tracker) {
   var clientId = tracker.get('clientId');
-  return clientId;
 });
 });  
 	
@@ -70,6 +69,7 @@ analytics.ready(function() {
 	    
       function identify(e){
         e.preventDefault();
+        var clientId: clientId.options;
         var form = e.target;
         var email = form["email"].value;
         var fullname = form["fullname"].value;
@@ -80,7 +80,7 @@ analytics.ready(function() {
             name: fullname, 
             destination: destination, 
             details: details,
-	    ClientId: ["clientId"].value,
+	    clientId: clientId 
 };
 	   
    

@@ -71,12 +71,12 @@ ClientId =5;
         analytics.identify('1234', {
             email: email, 
             name: fullname, 
-  context(traits: email)	    
+  context(traits:'email')	    
         });
 	    
 	      
-    analytics.track('destination submitted', user, {
-  context(traits: email)
+    analytics.track('destination submitted', user,
+  context(traits: 'email')
 });
 	      
 	      

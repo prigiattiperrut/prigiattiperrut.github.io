@@ -72,7 +72,7 @@ analytics.ready(function() {
 	    
       function identify(e){
         e.preventDefault();
-	var clientId = e.value;
+	var clientId = this.getclientId();
         var form = e.target;
         var email = form["email"].value;
         var fullname = form["fullname"].value;
@@ -90,10 +90,14 @@ analytics.ready(function() {
         analytics.identify('1234', {
             email: email, 
             name: fullname, 
-	    clientId: clientId,
+	    clientId: clientId,{ 
+	context: {
+		traits{
+		ip: "0.0.0.0" }
+    }}
         });
 
- analytics.track('destination submitted', user,);
+ analytics.track('destination submitted', user, traits: {ip});
 	      
     //analytics.track('destination submitted', user,{
   //integrations: {

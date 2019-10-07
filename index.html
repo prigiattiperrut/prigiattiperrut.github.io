@@ -70,11 +70,10 @@ ClientId =5;
    
         analytics.identify('1234', {
             email: email, 
-            name: fullname,
-  context: {
+            name: fullname,    
+        } context: {
     traits: {
-      email: email } }    
-        });
+      email: email } });
 	    
 	      
     analytics.track('Form Submitted', user,{

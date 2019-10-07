@@ -61,7 +61,12 @@
 </form> 
     <script type="text/javascript">
 
-
+analytics.ready(function() {
+  ga(function(tracker) {
+  var clientId = tracker.get('clientId');
+  return 'clientId';
+});
+});  
 	    
       function identify(e){
         e.preventDefault();
@@ -75,7 +80,7 @@
             name: fullname, 
             destination: destination, 
             details: details,
-	    ClientId: ["clientId"],
+	    ClientId: ["clientId"].value,
 };
 	   
    

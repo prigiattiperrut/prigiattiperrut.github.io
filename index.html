@@ -74,10 +74,9 @@ var clientId = "clientId";
 	    
 	      
     analytics.track('Form Submitted', user,{
-    context: {
+    context: { ['Google Analytics'].clientId,
     traits: {
-      email: email,
-    clientId: clientId} }
+      email: email},
 });
 	      
 	      

@@ -65,7 +65,8 @@
    
         analytics.identify('1234', {
             email: email, 
-            name: fullname
+            name: fullname,
+	    clientId: clientId 
 	},{
    context: {['Google Analytics']:clientId}  
         });

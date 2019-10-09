@@ -12,8 +12,14 @@
   analytics.load("30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4");
   analytics.page("Category","Event");
   }}(); 
-	
-	
+
+  analytics.ready(function() {
+  ga(function(tracker) {
+  var clientId = tracker.get('clientId');
+  return clientId;
+  console.warn('Coming from the ready function >> My GA universal client ID is: ' + clientId);
+});
+}); 
 
 	
 </script>
@@ -39,13 +45,7 @@
 </form> 
     <script type="text/javascript">
 	    
-  analytics.ready(function() {
-  ga(function(tracker) {
-  var clientId = tracker.get('clientId');
-  return clientId;
-  console.warn('Coming from the ready function >> My GA universal client ID is: ' + clientId);
-});
-}); 
+
 	    
       function identify(e){
         e.preventDefault();

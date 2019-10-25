@@ -16,6 +16,7 @@
   ga(function(tracker) {
   	clientId = tracker.get('clientId');
   	console.warn('Coming from the ready function >> My GA universal client ID is: ' + clientId);
+	console.log(amplitude.getInstance().options.deviceId);
   });
 }); 
 </script>

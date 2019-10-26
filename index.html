@@ -27,7 +27,7 @@
 <body> 
 
 <iframe id="player" type="text/html" width="640" height="390"
-  src="https://www.youtube.com/embed/nDFZyW9Ew3w?enablejsapi=1"
+  src="https://www.youtube.com/embed/nDFZyW9Ew3w"
   frameborder="0"></iframe>
 
 <script>	
@@ -36,7 +36,7 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
     height: '390',
     width: '640',
-    videoId: 'M7lc1UVf-VE'
+    videoId: 'nDFZyW9Ew3w'
     });
     var ytAnalytics = new window.analytics.plugins.YoutubeAnalytics(player, 'AIzaSyA6oajkLWeUf-BGX0qacuDFEZ0tOV5KJqE')
     ytAnalytics.initialize()

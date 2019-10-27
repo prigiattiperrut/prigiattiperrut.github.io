@@ -28,7 +28,6 @@
 <body> 
 
 		<!-- Youtube plugin-->
-<body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div>
 
@@ -42,23 +41,17 @@
 
       // 3. This function creates an <iframe> (and YouTube player)
       //    after the API code downloads.
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: 'CHVNRWqVgw0',
-events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-        var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player,'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
-    ytAnalytics.initialize()
-      }
-
+      var player;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+    height: '390',
+    width: '640',
+    videoId: 'CHVNRWqVgw0'
+    });
+    var ytAnalytics = new window.analytics.plugins.YoutubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
+    ytAnalytics.initialize()
+} 
     </script>
-  </body>
 	
 <!-- VIMEO PLUGIN
 <iframe src="https://player.vimeo.com/video/366985582" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>

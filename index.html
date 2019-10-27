@@ -30,7 +30,6 @@
 		<!-- Youtube plugin-->
 		
     <div id="player"></div>
-
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
@@ -42,11 +41,7 @@ var player;
         player = new YT.Player('player', {
           height: '390',
           width: '640',
-          videoId: 'CHVNRWqVgw0',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
+          videoId: 'CHVNRWqVgw0'
         });
     var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
    ytAnalytics.initialize()

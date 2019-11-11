@@ -34,13 +34,23 @@ settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.creat
 	console.log(amplitude.getInstance().options.deviceId);
   });
 }); 
+
+  analytics.ready(function() {
+  // only fire the Purchase event for Pixel A
+  fbq('trackSingle', '110061346404259', 'Purchase', {
+        value: 4,
+        currency: 'GBP',
+  });
+}); 
+	  
+	  
 </script>
 <!-- SEGMENT-->
 
 </head> 
 <body> 
 	
-<!-- Youtube plugin-->	
+<!-- Youtube plugin--	
      <script>
       var tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";

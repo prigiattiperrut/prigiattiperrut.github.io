@@ -58,19 +58,20 @@ settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.creat
       tag.src = "https://www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
 var player;
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'CHVNRWqVgw0'
-    })};
-	
-  analytics.ready(function () {	
-    var ytAnalytics = new window.analytics.plugins.YoutubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
-    ytAnalytics.initialize()
-})	      
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'CHVNRWqVgw0',
+events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+        var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player,'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
+    ytAnalytics.initialize()
+      }	     
 </script>	
 <!-- Youtube plugin-->
 

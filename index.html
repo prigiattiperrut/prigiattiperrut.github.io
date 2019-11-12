@@ -59,7 +59,9 @@ settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.creat
       var firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
-      function onYouTubeIframeAPIReady() {
+	     
+	analytics.ready(function () {	
+ function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
           height: '390',
           width: '640',

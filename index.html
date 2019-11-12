@@ -74,9 +74,11 @@ events: {
             'onStateChange': onPlayerStateChange
           }
         });
+	      analytics.ready(function () {
         var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player,'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
     ytAnalytics.initialize()
       }
+			      });
 
       // 4. The API will call this function when the video player is ready.
       function onPlayerReady(event) {

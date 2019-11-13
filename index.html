@@ -70,11 +70,11 @@ settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.creat
         player = new YT.Player('player', {
           height: '390',
           width: '640',
-          videoId: 'CHVNRWqVgw0',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
+          videoId: 'CHVNRWqVgw0'
+          //events: {
+            //'onReady': onPlayerReady,
+            //'onStateChange': onPlayerStateChange
+          //}
         });
 	var ytAnalytics = new window.analytics.plugins.YoutubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
     ytAnalytics.initialize()

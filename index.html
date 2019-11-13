@@ -63,7 +63,11 @@ settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.creat
   analytics.ready(function() { 
   var player;
   function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {videoId: 'CHVNRWqVgw0'});
+    player = new YT.Player('player', {videoId: 'CHVNRWqVgw0',
+	 events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }});
     var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyA6oajkLWeUf-BGX0qacuDFEZ0tOV5KJqE')
     ytAnalytics.initialize()
   }

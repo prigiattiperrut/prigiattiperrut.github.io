@@ -66,9 +66,10 @@ var player;
           width: '640',
           videoId: 'CHVNRWqVgw0'
         });
+	      analytics.ready(function () {
     var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
    ytAnalytics.initialize()
-      }
+      }}
   function onPlayerReady(event) {
         event.target.playVideo();
       }

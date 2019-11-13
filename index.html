@@ -74,6 +74,8 @@ settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.creat
             'onStateChange': onPlayerStateChange
           }
         });
+	var ytAnalytics = new window.analytics.plugins.YoutubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
+    ytAnalytics.initialize()
       }
 
       // 4. The API will call this function when the video player is ready.

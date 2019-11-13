@@ -50,14 +50,9 @@ settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.creat
 </head> 
 <body> 
 	
-<!-- Youtube plugin-->
-		
+<!-- Youtube plugin-->	
     <div id="player"></div>
     <script>
-      //var tag = document.createElement('script');
-      //tag.src = "https://www.youtube.com/iframe_api";
-      //var firstScriptTag = document.getElementsByTagName('script')[0];
-      //firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
@@ -69,19 +64,6 @@ var player;
     var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
    ytAnalytics.initialize()
       })}
-  //function onPlayerReady(event) {
-        //event.target.playVideo();
-     // }
-	    //var done = false;
-      //function onPlayerStateChange(event) {
-        //if (event.data == YT.PlayerState.PLAYING && !done) {
-          //setTimeout(stopVideo, 6000);
-          //done = true;
-        //}
-      //}
-      //function stopVideo() {
-        //player.stopVideo();
-      //}
     </script>
 <!-- Youtube plugin-->
 	

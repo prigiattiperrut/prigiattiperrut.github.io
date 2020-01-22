@@ -29,13 +29,13 @@ settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.creat
   //analytics.page("Category","Event");
   }}(); 
 
-  analytics.ready(function() {
-  ga(function(tracker) {
-  	clientId = tracker.get('clientId');
-  	console.warn('Coming from the ready function >> My GA universal client ID is: ' + clientId);
-	console.log(amplitude.getInstance().options.deviceId);
-  });
-}); 
+  //analytics.ready(function() {
+  //ga(function(tracker) {
+  	//clientId = tracker.get('clientId');
+  	//console.warn('Coming from the ready function >> My GA universal client ID is: ' + clientId);
+	//console.log(amplitude.getInstance().options.deviceId);
+  //});
+//}); 
 
   //analytics.ready(function() {
   //fbq('init', '243142183098065');
@@ -44,6 +44,10 @@ settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.creat
         //currency: 'GBP',
   //});
 //}); 
+	analytics.ready(function() {
+      ga('create', 'UA-134464067-4', 'auto', { name: 'combined' });
+      ga('combined.send', 'pageview');
+    });
 	  	  
 </script>
 <!-- SEGMENT-->

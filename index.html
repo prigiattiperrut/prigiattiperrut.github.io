@@ -25,8 +25,18 @@ settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.creat
 <script>
   var clientId = "clientId";
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
-  //analytics.load("30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4");
-  //analytics.page("Category","Event");
+  analytics.load("30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4");
+  analytics.page();
+  analytics.identify('user-599560', {
+    firstName: '',
+    lastName: '',
+    email: 'enduser.perrut@gmail.com',
+    createdAt: '2020-02-05T11:57:38+00:00',
+    createdAtTstamp: '1580903858',
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    signUpMethod: 'Email',
+    });
+  analytics.identify('user-599560');
   }}(); 
 
   //analytics.ready(function() {
@@ -54,20 +64,10 @@ settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.creat
 
 <script src="https://www.youtube.com/iframe_api"></script>
 	
-<div id="target-container"></div>	
+	
 </head> 
 <body> 
-<script
-     src="https://unpkg.com/@segment/consent-manager@1.2.0/standalone/consent-manager.js"
-     data-container="#target-container"
-     data-writeKey="30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4"
-     data-bannerContent="We use cookies (and other similar technologies) to collect data to improve your experience on our site."
-     data-bannerSubContent="You can change your preferences at any time."
-     data-preferencesDialogTitle="Website Data Collection Preferences"
-     data-preferencesDialogContent="We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site."
-     data-cancelDialogTitle="Are you sure you want to cancel?"
-     data-cancelDialogContent="Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy."
-   ></script>	
+
 	
 	
 <!-- Youtube plugin--	

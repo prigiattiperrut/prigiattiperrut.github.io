@@ -87,6 +87,21 @@ var player;
       })}
     </script>
 <!-- Youtube plugin-->
+
+<!-- VIMEO plugin-->
+<iframe src="https://player.vimeo.com/video/366985582" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+    var iframe = document.querySelector('iframe');
+    var player = new Vimeo.Player(iframe);
+    
+    analytics.ready(function () {
+      var VimeoAnalytics = window.analytics.plugins.VimeoAnalytics
+      var vimeoAnalytics = new VimeoAnalytics(player, '541b65cede2418740fb91c176075d2db')
+      vimeoAnalytics.initialize()
+    })
+</script>
+<!-- VIMEO plugin-->
 	
 <!-- VIMEO plugin--	
 <iframe src="https://player.vimeo.com/video/366985582" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>

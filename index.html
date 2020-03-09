@@ -137,14 +137,16 @@ var player;
             name: fullname, 
             destination: destination, 
             details: details,
-	    clientId: clientId
+	    clientId: clientId,
+	    activeSocialAccountId:activeSocialAccountId
 };
 	   
    
         analytics.identify('1234', {
             email: email, 
             name: fullname,
-	    clientId: clientId 
+	    clientId: clientId,
+	    activeSocialAccountId: 4159263
 	},{
    context: {['Google Analytics']:clientId}  
         });

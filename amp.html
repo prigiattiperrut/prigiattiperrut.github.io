@@ -36,25 +36,7 @@
 </form> 
     <script type="text/javascript">
          
-         
-         
-         
- function identify(e){
-        e.preventDefault();
-	//var clientId = "clientId";
-        var form = e.target;
-        var email = form["email"].value;
-        var fullname = form["fullname"].value;
-        var destination = form["destination"].value;
-        var details = form["details"].value;
-        var user = {
-            email: email, 
-            name: fullname, 
-            destination: destination, 
-            details: details,
-	    clientId: clientId,
-	    activeSocialAccountId:activeSocialAccountId
-};
+
 	 	 
 <amp-analytics type="segment">
 <script type="application/json">
@@ -62,7 +44,13 @@
     "vars": {
       "writeKey": "cN5V9esq84npFRiVBUYmAyPTWbJ6ngsY",
       "name": "My Page Name"
-    }
+    },
+"triggers": {
+"trackPageview": {
+"off": "visible",
+"request": "page"
+}
+}
   }
 </script>
 </amp-analytics>

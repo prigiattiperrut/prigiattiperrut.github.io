@@ -15,12 +15,54 @@
 <body>Hello, AMP world.
 
 <body>
+     
+     
+ <h1>What is your favorite place to travel?</h1> 
+<p>I am building a directory of the sweetest travel destinations.</p>  
+<form name="travel" onsubmit="identify(event)">
+     What is your favorite travel destination?
+    <input name="destination" required="" size="81" type="text"/> 
+    <br><br><br> 
+    Any recommendations (cool things to do, places to visit or restaurants to eat)? 
+    <br><br> 
+    <textarea cols="81" name="details" required="" rows="10">
+    </textarea> 
+    <br><br> 
+    Name: <input name="fullname" required="" size="75" type="text"/> 
+    <br><br> 
+    Email: <input name="email" required="" size="75" type="email"/> 
+    <br><br>
+    <input name="submit" type="submit" value="submit"/>
+</form> 
+    <script type="text/javascript">
+         
+         
+         
+         
+ function identify(e){
+        e.preventDefault();
+	//var clientId = "clientId";
+        var form = e.target;
+        var email = form["email"].value;
+        var fullname = form["fullname"].value;
+        var destination = form["destination"].value;
+        var details = form["details"].value;
+        var user = {
+            email: email, 
+            name: fullname, 
+            destination: destination, 
+            details: details,
+	    clientId: clientId,
+	    activeSocialAccountId:activeSocialAccountId
+};
+         
+         
 <amp-analytics type="segment">
 <script type="application/json">
   {
     "vars": {
-      "writeKey": "cN5V9esq84npFRiVBUYmAyPTWbJ6ngsY",
-      "name": "My Page Name"
+      "writeKey": "cN5V9esq84npFRiVBUYmAyPTWbJ6ngsY"
+      //"name": "My Page Name"
     }
   }
 </script>

@@ -1,0 +1,64 @@
+<!--
+     This is the minimum valid AMP HTML document. Type away
+     here and the AMP Validator will re-check your document on the fly.
+-->
+<!doctype html>
+<html ⚡>
+<head>
+  <meta charset="utf-8">
+  <link rel="canonical" href="self.html" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+   <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+</head>
+<body>Hello, AMP world.
+
+<!-- ## Form -->
+  <!-- You can track events triggered by `amp-form`. Find a list of supported event [here](/content/amp-dev/documentation/components/reference/amp-form.md#analytics-triggers)-->
+  <div>
+<amp-analytics type="segment">
+<script type="application/json">
+  {
+    "vars": {
+      "writeKey": "cN5V9esq84npFRiVBUYmAyPTWbJ6ngsY"
+          "requests": {
+            "event": "https://amp.dev/documentation/examples/components/amp-analytics/ping?user=2436b77e-24bd-49ed-a520-69be93f1aead&account=ampdev&event=${eventId}"
+          },
+          "triggers": {
+            "formSubmit": {
+              "on": "amp-form-submit",
+              "request": "event",
+              "selector":"#testForm",
+              "vars": {
+                "eventId": "form-submit"
+              }
+            },
+            "formSubmitSuccess": {
+              "on": "amp-form-submit-success",
+              "request": "event",
+              "selector":"#testForm",
+              "vars": {
+                "eventId": "form-submit-success"
+              }
+            },
+            "formSubmitError": {
+              "on": "amp-form-submit-error",
+              "request": "event",
+              "selector":"#testForm",
+              "vars": {
+                "eventId": "form-submit-error"
+              }
+            }
+          }
+        }
+      </script>
+    </amp-analytics>
+    <p>Try to insert any name as a name input in the form to see the <code>amp-form-submit-success</code> event.</p>
+    <p>Try to insert the word "error" as a name input in the form to see the <code>amp-form-submit-error</code> event.</p>
+    <form id="testForm" method="post" action-xhr="/documentation/examples/api/submit-form-input-text-xhr" target="_top">
+      <input type="text" name="name" placeholder="Name..." required>
+    <input type="submit" value="Subscribe">
+  </form>
+  </div>
+</body>

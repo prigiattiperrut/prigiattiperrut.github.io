@@ -127,13 +127,10 @@ var player;
         analytics.identify('1234', {
             email: email, 
             name: fullname,
-	    clientId: clientId,
-	    activeSocialAccountId: 4159263
+	    clientId: clientId
 	},{
    context: {['Google Analytics']:clientId}  
         });
-	 window.fs_identify('462718483');
-	    
 	      
     analytics.track('Join Waitlist', user,{
     context: {['Google Analytics']:clientId}

@@ -121,8 +121,7 @@ var player;
         };
         analytics.identify('1234', {
             email: email, 
-            name: fullname,
-	    clientId: clientId
+            name: fullname
         });
         analytics.track('destination submitted', user, function() {
             window.location.href = "";

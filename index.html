@@ -2,90 +2,21 @@
 <html> 
 <head> 
 	
-
-	<script src="https://cdn.optimizely.com/js/14803270007.js"></script>
-    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
- 	
+    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 	
 	
 	
 <!-- SEGMENT-->
 <script>
-  var clientId = "clientId";
-  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="3.1.0";
-  analytics.load("30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4");
-  analytics.page("Home");
-  //analytics.identify('user-599560', {
-    //firstName: '',
-    //lastName: '',
-    //email: 'enduser.perrut@gmail.com',
-    //createdAt: '2020-02-05T11:57:38+00:00',
-    //createdAtTstamp: '1580903858',
-    //timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    //signUpMethod: 'Email',
-    //});
-  }}(); 
-
-  //analytics.ready(function() {
-  //ga(function(tracker) {
-  	//clientId = tracker.get('clientId');
-  	//console.warn('Coming from the ready function >> My GA universal client ID is: ' + clientId);
-	//console.log(amplitude.getInstance().options.deviceId);
-  //});
-//}); 
-
-  //analytics.ready(function() {
-  //fbq('init', '243142183098065');
-  //fbq('trackSingle', '243142183098065', 'Purchase', {
-       //value: 4,
-        //currency: 'GBP',
-  //});
-//}); 
-	analytics.ready(function() {
-      ga('create', 'UA-134464067-4', 'auto', { name: 'combined' });
-      ga('combined.send', 'pageview');
-    });
-	  	  
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+  analytics.load("30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4");
+  analytics.page();
+  }}();
 </script>
 <!-- SEGMENT-->
-
-<script src="https://www.youtube.com/iframe_api"></script>
 	
 	
 </head> 
 <body> 
-	
-<!-- Youtube plugin--	
-    <div id="player"></div>
-    <script>
-var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: 'CHVNRWqVgw0'
-        });
-	      analytics.ready(function () {
-    var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
-   ytAnalytics.initialize()
-      })}
-    </script>
-<!-- Youtube plugin-->
-
-<!-- VIMEO plugin--
-<iframe src="https://player.vimeo.com/video/366985582" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-<script src="https://player.vimeo.com/api/player.js"></script>
-<script>
-    var iframe = document.querySelector('iframe');
-    var player = new Vimeo.Player(iframe);
-    
-    analytics.ready(function () {
-      var VimeoAnalytics = window.analytics.plugins.VimeoAnalytics
-      var vimeoAnalytics = new VimeoAnalytics(player, '541b65cede2418740fb91c176075d2db')
-      vimeoAnalytics.initialize()
-    })
-</script>
-<!-- VIMEO plugin-->
-
 	
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  
@@ -104,7 +35,7 @@ var player;
     <br><br>
     <input name="submit" type="submit" value="submit"/>
 </form> 
-	<script type="text/javascript">
+<script type="text/javascript">
       function identify(e){
         e.preventDefault();
         var form = e.target;
@@ -116,8 +47,7 @@ var player;
             email: email, 
             name: fullname, 
             destination: destination, 
-            details: details,
-	    clientId: clientId,
+            details: details
         };
         analytics.identify('1234', {
             email: email, 
@@ -126,6 +56,8 @@ var player;
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
         });
-      }    
+      }
+</script>
+
 </body> 
 </html>

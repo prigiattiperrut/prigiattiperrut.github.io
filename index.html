@@ -104,46 +104,31 @@ var player;
     <br><br>
     <input name="submit" type="submit" value="submit"/>
 </form> 
-    <script type="text/javascript">
-
-      function identify(e){
-        e.preventDefault();
-	//var clientId = "clientId";
-        var form = e.target;
-        var email = form["email"].value;
-        var fullname = form["fullname"].value;
-        var destination = form["destination"].value;
-        var details = form["details"].value;
-        var user = {
-            email: email, 
-            name: fullname, 
-            destination: destination, 
-            details: details,
-	    clientId: clientId,
-	    activeSocialAccountId:activeSocialAccountId
-};
-	   
-   
-        analytics.identify('1234', {
-            email: email, 
-            name: fullname,
+	<script type="text/javascript">
+      function identify(e){
+        e.preventDefault();
+        var form = e.target;
+        var email = form["email"].value;
+        var fullname = form["fullname"].value;
+        var destination = form["destination"].value;
+        var details = form["details"].value;
+        var user = {
+            email: email, 
+            name: fullname, 
+            destination: destination, 
+            details: details,
+	    clientId: clientId,
+        };
+        analytics.identify('1234', {
+            email: email, 
+            name: fullname,
 	    clientId: clientId
-	},{
+        },,{
    context: {['Google Analytics']:clientId}  
         });
-	      
-    analytics.track('Join Waitlist', user,{
-    context: {['Google Analytics']:clientId}
-	    
-});
-	      for (var i = 0; i < links.length; i++) {
-                                analytics.trackLink(links[i], 'job_spec_viewed', {
-                                    job_title: links[i].textContent
-                                }, {context: {ip: "0.0.0.0" }}
-);
-	      	      
-}
-</script>
-     
+        analytics.track('destination submitted', user, function() {
+            window.location.href = "";
+        });
+      }    
 </body> 
 </html>

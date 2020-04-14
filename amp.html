@@ -34,17 +34,26 @@
     <br><br>
     <input name="submit" type="submit" value="submit"/>
 </form> 
-         	 	 
+
 <amp-analytics type="segment">
 <script type="application/json">
   {
     "vars": {
-      "writeKey": "cN5V9esq84npFRiVBUYmAyPTWbJ6ngsY",
-      "name": "My Page Name"
+      "writeKey": "WRITE_KEY",
+      "name": "My AMP Page"
+    },
+    "extraUrlParams": {
+      "properties.type": "article",
+      "properties.published_at": "2016-06-28",
+      "properties.author": "John Doe",
+      "properties.button_type": "read-more",
+      "properties.article_id": "my-article-id",
+      "properties.non_interaction":1,
     }
   }
 </script>
-</amp-analytics>
+</amp-analytics>	
+		
 	 
 </body>
 

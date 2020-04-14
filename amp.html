@@ -34,25 +34,19 @@
     <br><br>
     <input name="submit" type="submit" value="submit"/>
 </form> 
-
-<amp-analytics type="segment">
-<script type="application/json">
-  {
-    "vars": {
-      "writeKey": "cN5V9esq84npFRiVBUYmAyPTWbJ6ngsY",
-      "name": "My AMP Page"
-    },
-    "extraUrlParams": {
-      "properties.type": "article",
-      "properties.published_at": "2016-06-28",
-      "properties.author": "John Doe",
-      "properties.button_type": "read-more",
-      "properties.article_id": "my-article-id",
-      "properties.non_interaction":'1',
-    }
-  }
-</script>
-</amp-analytics>	
+	
+<amp-analytics type="segment" config="/api/v1/geo/amp/analytics">
+    <script type="application/json">
+        {"vars":{"writeKey":"cN5V9esq84npFRiVBUYmAyPTWbJ6ngsY",
+        "name":"AMP Page"},"linkers":{"enabled":true},
+        "extraUrlParams":{
+        "properties.source":"direct",
+        "properties.event":"AMP Page",
+        "properties.language":"en-US",
+        "properties.non_interaction":'1'}}
+    </script>
+</amp-analytics>
+	
 		
 	 
 </body>

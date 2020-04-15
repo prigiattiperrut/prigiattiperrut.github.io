@@ -44,10 +44,14 @@
     },
     "extraUrlParams":{
         "properties.source":"${sourceUrl}",
-        "properties.event":"${AMP Page}",
+        "properties.event":"${"AMP Page"}",
         "properties.language":"${en-US}",
-        "properties.non_interaction":"int{1}"
-	}
+        "properties.non_interaction":"int{1}",
+	"time1": "${timestamp}",
+        "doesntUpdate": {
+          "time2": "${timestamp}",
+          }
+	}   
   }
 </script>
 </amp-analytics>

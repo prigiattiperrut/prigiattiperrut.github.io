@@ -58,9 +58,8 @@
         });
       }
 </script>
-
+<div id="consent-manager"><div></div></div>
 <script>
-
   window.consentManagerConfig = function (exports) {
     var React = exports.React
     var inCA = exports.inRegions(['CA'])
@@ -170,8 +169,9 @@
       initialPreferences: initialPreferences,
     }
   }
-
-</script>	
+	</script>
+	<script src="https://unpkg.com/@segment/consent-manager@4.2.2/standalone/consent-manager.js" defer="">
+</script>
 
 </body> 
 </html>

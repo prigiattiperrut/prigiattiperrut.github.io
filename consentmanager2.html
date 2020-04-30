@@ -1,102 +1,107 @@
-<html lang="en">
+<!DOCTYPE html> 
+<html> 
+<head> 
+	
+  <div id="target-container"></div>
   
-  TEST 3,2,1..
+    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 	
+	
+	
+<!-- SEGMENT-->
+<script>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+  analytics.page();
+  }}();
+</script>
+<!-- SEGMENT-->
+	
+ <script>
+  window.consentManagerConfig = function(exports) {
+    var React = exports.React
+    var inEU = exports.inEU
 
-<body>
-  <script type="application/javascript">
-    window.consentManagerConfig = function (exports) {
-      exports.preferences.onPreferencesSaved(function (prefs) {
-        // could be used to store consent server side, or send it into an API
-      })
+    var bannerContent = React.createElement(
+      'span',
+      null,
+      'We use cookies (and other similar technologies) to collect data to improve your experience on our site. By using our website, you՚re agreeing to the collection of data as described in our',
+      ' ',
+      React.createElement(
+        'a',
+        { href: '/docs/legal/website-data-collection-policy/', target: '_blank' },
+        'Website Data Collection Policy'
+      ),
+      '.'
+    )
+    var bannerSubContent = 'You can change your preferences at any time.'
+    var preferencesDialogTitle = 'Website Data Collection Preferences'
+    var preferencesDialogContent =
+      'We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site.'
+    var cancelDialogTitle = 'Are you sure you want to cancel?'
+    var cancelDialogContent =
+      'Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy.'
 
-      return {
-        container: '#consent-manager',
-        writeKey: '30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4',
-        /* initialPreferences allows for customizing which categories already pre-loaded */
-        initialPreferences: {
-          marketingAndAnalytics: false,
-          // functional: true will automatically record consent for functional cookies
-          functional: true
-        },
-        /*
-          The consent manager ships with a lightweight version of 
-          React (preact) that you can use to customize the consent manager further
-        */
-        bannerContent: exports.React.createElement('span', null, '🍪We like cookies 🍪'),
-        bannerSubContent: 'Change your preferences 👻',
-        preferencesDialogTitle: 'Website Data Collection',
-        preferencesDialogContent: 'We use data collected by cookies and JavaScript libraries.',
-        cancelDialogTitle: '🤔Are you sure you want to cancel?',
-        cancelDialogContent: 'Your preferences have not been saved.'
-      }
+    return {
+      container: '#target-container',
+      writeKey: '30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4',
+      shouldRequireConsent: inEU,
+      bannerContent: bannerContent,
+      bannerSubContent: bannerSubContent,
+      preferencesDialogTitle: preferencesDialogTitle,
+      preferencesDialogContent: preferencesDialogContent,
+      cancelDialogTitle: cancelDialogTitle,
+      cancelDialogContent: cancelDialogContent
     }
-  </script>
+  }
+</script>
 
-  <div id="consent-manager"></div>
+<script
+  src="https://unpkg.com/@segment/consent-manager@4.3.0/standalone/consent-manager.js"
+  defer
+></script>
+	
+</head> 
+<body> 
+	
+<h1>What is your favorite place to travel?</h1> 
+<p>I am building a directory of the sweetest travel destinations.</p>  
+<form name="travel" onsubmit="identify(event)">
+     What is your favorite travel destination?
+    <input name="destination" required="" size="81" type="text"/> 
+    <br><br><br> 
+    Any recommendations (cool things to do, places to visit or restaurants to eat)? 
+    <br><br> 
+    <textarea cols="81" name="details" required="" rows="10">
+    </textarea> 
+    <br><br> 
+    Name: <input name="fullname" required="" size="75" type="text"/> 
+    <br><br> 
+    Email: <input name="email" required="" size="75" type="email"/> 
+    <br><br>
+    <input name="submit" type="submit" value="submit"/>
+</form> 
+<script type="text/javascript">
+      function identify(e){
+        e.preventDefault();
+        var form = e.target;
+        var email = form["email"].value;
+        var fullname = form["fullname"].value;
+        var destination = form["destination"].value;
+        var details = form["details"].value;
+        var user = {
+            email: email, 
+            name: fullname, 
+            destination: destination, 
+            details: details
+        };
+        analytics.identify('1234', {
+            email: email, 
+            name: fullname
+        });
+        analytics.track('destination submitted', user, function() {
+            window.location.href = "";
+        });
+      }
+</script>
 
-  <button type="button" onclick="event.stopPropagation(); window.consentManager.openConsentManager()">
-    Data Collection and Cookie Preferences
-  </button>
-
-  <script src="./standalone/consent-manager.js" defer></script>
-
-  <!-- Load analytics.js -->
-  <script>
-    !(function () {
-      var analytics = (window.analytics = window.analytics || [])
-      if (!analytics.initialize)
-        if (analytics.invoked)
-          window.console && console.error && console.error('Segment snippet included twice.')
-        else {
-          analytics.invoked = !0
-          analytics.methods = [
-            'trackSubmit',
-            'trackClick',
-            'trackLink',
-            'trackForm',
-            'pageview',
-            'identify',
-            'reset',
-            'group',
-            'track',
-            'ready',
-            'alias',
-            'debug',
-            'page',
-            'once',
-            'off',
-            'on'
-          ]
-          analytics.factory = function (t) {
-            return function () {
-              var e = Array.prototype.slice.call(arguments)
-              e.unshift(t)
-              analytics.push(e)
-              return analytics
-            }
-          }
-          for (var t = 0; t < analytics.methods.length; t++) {
-            var e = analytics.methods[t]
-            analytics[e] = analytics.factory(e)
-          }
-          analytics.load = function (t, e) {
-            var n = document.createElement('script')
-            n.type = 'text/javascript'
-            n.async = !0
-            n.src =
-              ('https:' === document.location.protocol ? 'https://' : 'http://') +
-              'cdn.segment.com/analytics.js/v1/' +
-              t +
-              '/analytics.min.js'
-            var o = document.getElementsByTagName('script')[0]
-            o.parentNode.insertBefore(n, o)
-            analytics._loadOptions = e
-          }
-          analytics.SNIPPET_VERSION = '4.1.0'
-          analytics.page()
-        }
-    })()
-  </script>
-</body>
-
+</body> 
 </html>

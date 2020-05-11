@@ -67,10 +67,10 @@
 
           analytics.on('page', function(event, properties, options) {
           console.log("event:" + event);
-          console.log("props:" + properties);
+          console.log("properties:" + properties);
           console.log("options:" + options);
          });
-	    analytics.page('2nd Page', user, function() {
+	    analytics.page('Page category','2nd Page', user, function() {
             window.location.href = "";
         });
       }

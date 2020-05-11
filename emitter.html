@@ -67,8 +67,8 @@
 	   analytics.page('2nd Page', user, function() {
             window.location.href = "";
         });
-	      analytics.on('page', function(category, name, properties,options) {
-	      console.log(category, name, properties,options)
+	      analytics.on('page', function(event, properties,options) {
+	      console.log(event, properties)
               });
       }
 </script>

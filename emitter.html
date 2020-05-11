@@ -60,14 +60,14 @@
             window.location.href = "";
         });
 	      	analytics.on('identify', function(userid, traits, options) {
-		 console.log('Emitter:'userid, traits, options)
+		 console.log('Emitter:', userid, traits, options)
 });
 	      	      	analytics.on('track', function(event, properties, options) {
-		 console.log('Emitter:'event, properties, options)
+		 console.log('Emitter:', event, properties, options)
 });
 
 	      	analytics.on('page', function(event, properties, options) {
-		 console.log('Emitter:'event, properties, options)
+		 console.log('Emitter:', event, properties, options)
 });
       }
 </script>

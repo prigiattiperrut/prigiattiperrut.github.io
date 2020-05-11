@@ -64,12 +64,15 @@
 	     //console.log(event, properties, options)
               //});
 	      
-	   analytics.page('2nd Page', user, function() {
+
+          analytics.on('page', function(event, properties, options) {
+          console.log("event:" + event);
+          console.log("props:" + properties);
+          console.log("options:" + options);
+         });
+	    analytics.page('2nd Page', user, function() {
             window.location.href = "";
         });
-	      analytics.on('page', function(event, properties, options) {
-	      console.log(event, properties, options)
-              });
       }
 </script>
 

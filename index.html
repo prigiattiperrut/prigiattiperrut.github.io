@@ -133,6 +133,16 @@ input:checked + .slider:before {
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
         });
+	      	analytics.on('track', function(event, properties, options) {
+		 console.log(event, properties, options)
+});
+
+	analytics.on('identify', function(userid, traits, options) {
+		 console.log(userid, traits, options)
+});
+	      	analytics.on('page', function(event, properties, options) {
+		 console.log(event, properties, options)
+});
       }
 </script>
 

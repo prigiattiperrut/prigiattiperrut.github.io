@@ -59,16 +59,16 @@
 	   analytics.page('2nd Page', user, function() {
             window.location.href = "";
         });
-	      	analytics.on('identify', function(userid, traits, options) {
-		 console.log(userid, traits, options)
-});
-	      	      	analytics.on('track', function(event, properties, options) {
-		 console.log(event, properties, options)
-});
+	      	//analytics.on('identify', function(userid, traits, options) {
+		 //console.log(userid, traits, options)
+                  //});
+	      	      	//analytics.on('track', function(event, properties, options) {
+		 //console.log(event, properties, options)
+                 //});
 
-	      	analytics.on('page', function(event, properties, options) {
-		 console.log(event, properties, options)
-});
+	      	analytics.on('page', function(category, name, properties,options) {
+		 console.log(category, name, properties,options)
+                  });
       }
 </script>
 

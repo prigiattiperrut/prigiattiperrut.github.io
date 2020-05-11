@@ -136,17 +136,17 @@ input:checked + .slider:before {
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
         });
-	      	//analytics.on('track', function(event, properties, options) {
-		//console.log(event, properties, options)
-//});
+	      	analytics.on('track', function(event, properties, options) {
+		console.log(event, properties, options)
+});
 
 	      	   analytics.page('2nd Page', user, function() {
             window.location.href = "";
         });
 
-	      	analytics.on('page', function(properties, options) {
-		 console.log(properties, options)
-});
+	      	//analytics.on('page', function(properties, options) {
+		 //console.log(properties, options)
+//});
       }
 </script>
 

@@ -17,6 +17,12 @@
 	
  <script>
   window.consentManagerConfig = function(exports) {
+	     //creating our custome category object
+   var customCategories = { 'Do Not Sell': {
+             integrations: [ 'AdWords'], 
+             purpose:'To give the right to opt out of the sale of personal data.'
+          }
+			  },
     var React = exports.React
     var inEU = exports.inEU
 
@@ -40,6 +46,7 @@
     var cancelDialogContent =
       'Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy.'
    var closeBehavior = 'accept'
+
     
     
     
@@ -53,7 +60,8 @@
       preferencesDialogContent: preferencesDialogContent,
       cancelDialogTitle: cancelDialogTitle,
       cancelDialogContent: cancelDialogContent,
-      closeBehavior: closeBehavior
+      closeBehavior: closeBehavior,
+      customCategories: customCategories
     }
   }
 </script>

@@ -16,40 +16,7 @@
 	
 
 </head> 
-<body> 
-	
-	
-<div class="form-group">
-<div class="select-wrapper">
-<select class="select-create form-control" id="createInkind" name="SelectedSetupPageFor" required="" aria-required="true" aria-describedby="createInkind-error" aria-invalid="false"><option value="">Choose one</option>
-<option value="me">Myself</option>
-<option value="another">Someone Else</option>
-<option value="family">A Family</option>
-<option value="child">A Child</option>
-<option value="senior">A Senior</option>
-<option value="organization">Organization</option>
-</select>
-<i class="inkind-icon icon-arrow-down-small"></i>
-<input type="submit">
-</div>
-</div>
-	
-	
-	
-<h2>The select Element</h2>
-
-<p>The select element defines a drop-down list:</p>
-
-<form action="/">
-  <label for="cars">Choose a car:</label>
-  <select id="cars" name="cars">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="fiat">Fiat</option>
-    <option value="audi">Audi</option>
-  </select>
-  <input type="submit">
-</form>
+<body>
 	
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  
@@ -87,9 +54,6 @@
             email: email, 
             name: fullname
         });
-	      	//analytics.on('identify', function(userid, traits, options) {
-		 //console.log(userid, traits, options)
-//});
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
         });

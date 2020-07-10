@@ -17,6 +17,7 @@
 <!-- SEGMENT-->
 	
 <!-- DESTINATION MIDDLEWARE-->
+	<script>
 window.addMiddlewares = () => {
   window.analytics.addDestinationMiddleware(mw);
 };
@@ -28,7 +29,7 @@ var mw = function({ payload, next, integrations }) {
   }
   next(payload);
 };
-	
+</script>		
 <!-- DESTINATION MIDDLEWARE-->
 	
 	<!-- BRAZE-->

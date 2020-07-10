@@ -1,0 +1,106 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	
+    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 	
+	
+	
+<!-- SEGMENT-->
+<script>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var t=analytics.methods[e];analytics[t]=analytics.factory(t)}analytics.load=function(e,t){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+e+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=t};analytics.SNIPPET_VERSION="4.1.0";
+  analytics.load("oAMzc9grAwms5rMuUt9spmUH0jMwaCpT");
+  analytics.page();
+  }}();
+</script>
+<!-- SEGMENT-->
+	
+
+</head> 
+<body> 
+	
+	
+<div class="form-group">
+<div class="select-wrapper">
+<select class="select-create form-control" id="createInkind" name="SelectedSetupPageFor" required="" aria-required="true" aria-describedby="createInkind-error" aria-invalid="false"><option value="">Choose one</option>
+<option value="me">Myself</option>
+<option value="another">Someone Else</option>
+<option value="family">A Family</option>
+<option value="child">A Child</option>
+<option value="senior">A Senior</option>
+<option value="organization">Organization</option>
+</select>
+<i class="inkind-icon icon-arrow-down-small"></i>
+<input type="submit">
+</div>
+</div>
+	
+	
+	
+<h2>The select Element</h2>
+
+<p>The select element defines a drop-down list:</p>
+
+<form action="/">
+  <label for="cars">Choose a car:</label>
+  <select id="cars" name="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi">Audi</option>
+  </select>
+  <input type="submit">
+</form>
+	
+<h1>What is your favorite place to travel?</h1> 
+<p>I am building a directory of the sweetest travel destinations.</p>  
+<form name="travel" onsubmit="identify(event)">
+     What is your favorite travel destination?
+    <input name="destination" required="" size="81" type="text"/> 
+    <br><br><br> 
+    Any recommendations (cool things to do, places to visit or restaurants to eat)? 
+    <br><br> 
+    <textarea cols="81" name="details" required="" rows="10">
+    </textarea> 
+    <br><br> 
+    Name: <input name="fullname" required="" size="75" type="text"/> 
+    <br><br> 
+    Email: <input name="email" required="" size="75" type="email"/> 
+    <br><br>
+    <input name="submit" type="submit" value="submit"/>
+	 <input type="hidden" id="custId" name="custId" value="3487"> 
+</form> 
+<script type="text/javascript">
+      function identify(e){
+        e.preventDefault();
+        var form = e.target;
+        var email = form["email"].value;
+        var fullname = form["fullname"].value;
+        var destination = form["destination"].value;
+        var details = form["details"].value;
+        var user = {
+            email: email, 
+            name: fullname, 
+            destination: destination, 
+            details: details
+        };
+        analytics.identify({
+            email: email, 
+            name: fullname
+        });
+	      	//analytics.on('identify', function(userid, traits, options) {
+		 //console.log(userid, traits, options)
+//});
+        analytics.track('destination submitted', user, function() {
+            window.location.href = "";
+        });
+	      	analytics.on('track', function(event, properties, options) {
+		console.log(event, properties, options)
+});
+
+      }
+	
+	
+</script>
+
+</body> 
+</html>

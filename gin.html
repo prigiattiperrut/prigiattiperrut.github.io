@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gin Lovers 🥛</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <script>
+        !function () {
+            var analytics = window.analytics = window.analytics || []; if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
+                analytics.invoked = !0; analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"]; analytics.factory = function (e) { return function () { var t = Array.prototype.slice.call(arguments); t.unshift(e); analytics.push(t); return analytics } }; for (var e = 0; e < analytics.methods.length; e++) { var t = analytics.methods[e]; analytics[t] = analytics.factory(t) } analytics.load = function (e, t) { var n = document.createElement("script"); n.type = "text/javascript"; n.async = !0; n.src = "https://cdn.segment.com/analytics.js/v1/" + e + "/analytics.min.js"; var a = document.getElementsByTagName("script")[0]; a.parentNode.insertBefore(n, a); analytics._loadOptions = t }; analytics.SNIPPET_VERSION = "4.1.0";
+                analytics.load("QEIUywDMJFxSuzr5hVXqRIIowjDvhvil");
+                analytics.page("Gin Lovers Homepage");
+            }
+        }();
+    </script>
+    <style>
+        h1 {
+            text-align: left;
+            color: black;
+            font-family: 'Dancing Script', cursive;
+            font-size: 55px;
+        }
+
+        h2 {
+            text-align: left;
+            font-size: 30px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        p {
+            line-height: 1.5;
+            font-size: 18px;
+            margin: 20px 0 10px;
+            text-align: left;
+            padding: 10px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            background: transparent;
+            color: whitesmoke;
+            font-size: 18px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 6px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+            transition: all 200ms ease-in-out;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px 60px;
+            text-align: left;
+        }
+
+        .learn-more {
+            color: black;
+            text-decoration: none;
+            font-size: 25px;
+            font-family: 'Dancing Script', cursive;
+
+
+
+        }
+
+        .learn-more:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        body {
+            background-image: url('https://s3.amazonaws.com/shecodesio-production/uploads/files/000/001/416/original/pink-gin-hero.jpg?1593798400');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            Gin Lovers
+        </h1>
+        <h2>
+            "Trust me, you can dance" -Gin
+        </h2>
+
+        <p>
+            Roses are red
+            </br>
+            violets are blue
+            </br>
+            Gin costs less
+            </br>
+            than dinner for two
+        </p>
+        <a href="https://www.bbcgoodfood.com/howto/guide/gin-cocktails" target="_blank" class="learn-more">
+            Click here for 10 gin cocktails you can make in minutes!
+        </a>
+        <button class="fun-button">
+            🍸 LET'S GIN UP
+        </button>
+        <p class="footer">
+            This page was built by
+            <a href="https://www.linkedin.com/in/prigiatti/?originalSubdomain=ie" target="_blank">
+                Pris
+            </a>
+        </p>
+    </div>
+    <script>
+        function fun() {
+            let name = prompt("What is your name?");
+            let email = prompt("What is your email address?");
+            let age = prompt("You have the legal age to consume alcoholic beverages?");
+
+            alert(
+                "Thank you, " +
+                name +
+                "! We'll be in touch by email, meanwhile let the fun be-gin! "
+            );
+        }
+
+        let funButton = document.querySelector(".fun-button");
+        funButton.addEventListener("click", fun);
+    </script>
+</body>
+
+</html>

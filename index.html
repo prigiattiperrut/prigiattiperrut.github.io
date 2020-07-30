@@ -78,7 +78,68 @@ var mw = function({ payload, next, integrations }) {
 </div>
 </div>
 	
-	
+<form action="/website_form/" method="post" class="s_website_form container-fluid mt64 pb64 o_fake_not_editable" enctype="multipart/form-data" data-name="Form Builder" data-model_name="mail.mail" data-success_page="/contactus-thank-you">
+        <div class="container">
+          <h1 class="o_fake_editable o_form_heading" spellcheck="false">Price Request</h1>
+          <h4 class="o_fake_editable o_form_heading">
+            <span style="font-weight: normal;">
+              <font style="" class="text-gamma">CNC MACHINE</font>
+              <font style="" class="text-gamma">
+                <br>
+              </font>
+            </span>
+            <br>
+          </h4>
+          <div class="row form-group form-field d-none">
+            <div class="col-lg-3 col-md-4">
+              <label class="col-form-label o_fake_editable" for="email_to">
+                    
+                </label>
+            </div>
+            <div class="col-lg-7 col-md-8">
+              <input type="text" class="form-control o_website_form_input" name="email_to" value="info@mekanika.io">
+            </div>
+          </div>
+          <div class="form-group row form-field o_website_form_required_custom o_fake_not_editable">
+            <div class="col-lg-3 col-md-4">
+              <label class="col-form-label o_fake_editable" for="email_from">E-mail</label>
+            </div>
+            <div class="col-lg-7 col-md-8">
+              <input type="email" class="form-control o_website_form_input" name="email_from" required="">
+            </div>
+          </div>
+          <div class="form-group row form-field o_website_form_custom o_fake_not_editable o_website_form_required_custom">
+            <div class="col-lg-3 col-md-4">
+              <label class="col-form-label o_fake_editable" for="Your Company">Your Company</label>
+            </div>
+            <div class="col-lg-7 col-md-8">
+              <input type="text" class="form-control o_website_form_input" name="Your Company" required="">
+            </div>
+          </div>
+          <div class="row form-group form-field o_website_form_custom o_fake_not_editable o_website_form_required_custom">
+            <div class="col-lg-3 col-md-4">
+              <label class="col-form-label o_fake_editable" for="Your Position">Your Position</label>
+            </div>
+            <div class="col-lg-7 col-md-8">
+              <input type="text" class="form-control o_website_form_input" name="Your Position" required="">
+            </div>
+          </div>
+          <div class="form-group row form-field o_website_form_required_custom o_fake_not_editable d-none">
+            <div class="col-lg-3 col-md-4">
+              <label class="col-form-label o_fake_editable" for="subject">Subject</label>
+            </div>
+            <div class="col-lg-7 col-md-8">
+              <input type="text" class="form-control o_website_form_input" value="CNC Price Request" name="subject" required="">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-lg-3 offset-md-4 col-md-8 col-lg-7 pt16">
+              <button class="btn btn-gamma flat btn-lg o_website_form_send">Send</button>
+              <span id="o_website_form_result"></span>
+            </div>
+          </div>
+        </div>
+      </form>	
 	
 <h2>The select Element</h2>
 

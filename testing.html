@@ -1,22 +1,30 @@
 <!DOCTYPE html> 
 <html> 
-<head> 
+<head>
 	
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 	
 	
 	
 <!-- SEGMENT-->
 <script>
-  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var t=analytics.methods[e];analytics[t]=analytics.factory(t)}analytics.load=function(e,t){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+e+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=t};analytics.SNIPPET_VERSION="4.1.0";
-  analytics.load("oAMzc9grAwms5rMuUt9spmUH0jMwaCpT");
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.13.1";
+  analytics.load("30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4");
+  analytics.user().traits({});
   analytics.page();
+analytics.identify('1234', {
+            newTrait: "new"
+        });
+ 
   }}();
-</script>
+</script>	
 <!-- SEGMENT-->
-	
 
+	
 </head> 
-<body>
+
+<body> 
+
+	
 	
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  
@@ -50,10 +58,13 @@
             destination: destination, 
             details: details
         };
-        analytics.identify({
+        analytics.identify('1234', {
             email: email, 
             name: fullname
         });
+	      	//analytics.on('identify', function(userid, traits, options) {
+		 //console.log(userid, traits, options)
+//});
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
         });
@@ -61,10 +72,13 @@
 		console.log(event, properties, options)
 });
 
+	      	   analytics.page('2nd Page', user, function() {
+            window.location.href = "";
+        });
+
       }
 	
 	
-</script>
 
 </body> 
 </html>

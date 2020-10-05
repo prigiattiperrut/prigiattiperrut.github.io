@@ -8,6 +8,7 @@
 <!-- SEGMENT-->
 <script>
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.13.1";
+  //Remove analytics.load call from your code snippet
   //analytics.load("30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4");
   analytics.page();
   }}();
@@ -60,18 +61,30 @@
       }
 </script>
 	
+	
 <script>
-     src="https://unpkg.com/@segment/consent-manager@5.0.0/standalone/consent-manager.js"
-     data-container="target-container"
-     data-writeKey="30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4"
-     data-bannerContent="We use cookies (and other similar technologies) to collect data to improve your experience on our site."
-     data-bannerSubContent="You can change your preferences at any time."
-     data-preferencesDialogTitle="Website Data Collection Preferences"
-     data-preferencesDialogContent="We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site."
-     data-cancelDialogTitle="Are you sure you want to cancel?"
-     data-cancelDialogContent="Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy."
-     data-closeBehavior="accept"
-   ></script>
+window.consentManagerConfig = function(exports) {
+      return {
+        container: '#target-container',
+        writeKey: '30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4',
+        bannerContent:
+          'We use cookies (and other similar technologies) to collect data to improve your experience on our site. Also, Segment is Awesome',
+        bannerSubContent: 'You can change your preferences at any time.',
+        preferencesDialogTitle: 'Website Data Collection Preferences',
+        preferencesDialogContent:
+          'We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site.',
+        cancelDialogTitle: 'Are you sure you want to cancel?',
+        cancelDialogContent:
+          "Your preferences have not been saved. By continuing to use our website, you're agreeing to our Website Data Collection Policy",
+        closeBehavior: 'accept',
+        shouldRequireConsent: exports.inEU      }
+}
+</script>
+	
+<script
+src="https://unpkg.com/@segment/consent-manager@5.0.0/standalone/consent-manager.js"
+defer
+></script>
 
 </body> 
 </html>

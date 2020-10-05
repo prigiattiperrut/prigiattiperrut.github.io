@@ -54,11 +54,17 @@
             details: details
         };
 	      
-	analytics.user().traits({});
-analytics.identify('1234', {
+//Clear traits	      
+analytics.ready(function() {
+  var user = analytics.user().traits({});
+});      
+      
+//Set default trait		      
+analytics.identify( {
             newTrait: "new"
         });
-	      
+	
+//Continue with the normal tracking code
         analytics.identify('1234', {
             email: email, 
             name: fullname

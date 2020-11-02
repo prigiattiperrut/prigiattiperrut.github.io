@@ -1,0 +1,69 @@
+javascript:
+  !function() {
+    // Segment Consent Manager snippet sourced from
+    // https://github.com/segmentio/consent-manager#callback-function
+    window.consentManagerConfig = function(exports) {
+      var React = exports.React;
+      var inEU = exports.inEU;
+
+      const e = React.createElement;
+
+      var weUseCookies = 'Blue Bottle Coffee and our vendors use cookies and JavaScript libraries to automatically collect certain information about you and your use of our site. ';
+      var continueToUse = 'By continuing to use our website, you՚re agreeing to the collection of data as described in our Website Data Collection Policy. '
+
+      var bannerContent = e('span', null, weUseCookies, continueToUse);
+      var bannerSubContent = 'You may change your preferences at any time.';
+      var preferencesDialogTitle = 'Website Data Collection Preferences';
+      var preferencesDialogContent = e('span', null, weUseCookies, 'As our ', e('a', {href: "#{privacy_path}", target: '_blank'}, 'Privacy Policy'), ' explains, we use these tools and collect this information to improve your browsing experience, analyze site traffic, deliver personalized advertisements on our website and across the internet, and increase the overall performance of our site.', e('br'), e('br'), 'The table below outlines how we use this data information by category. To opt out of a category of data collection, select "No" and save your preferences.', e('br'), e('br'), 'CALIFORNIA RESIDENTS: To opt out of the sale of your personal information, select "No" for the "Marketing and Analytics" and "Advertising" categories and save your preferences.');
+      var cancelDialogTitle = 'Are you sure you want to cancel?';
+      var cancelDialogContent = e('span', null, 'Your preferences have not been saved. ', continueToUse);
+      var initialPreferences = {
+        advertising: true,
+        functional: true,
+        marketingAndAnalytics: true
+      };
+
+      return {
+        container: '#segment-consent-manager-container',
+        writeKey: "#{ENV['SEGMENT_ECOMMERCE_JS_WRITE_KEY']}",
+        otherWriteKeys: ["#{ENV['SEGMENT_ECOMMERCE_WRITE_KEY']}"],
+        shouldRequireConsent: inEU,
+        closeBehavior: () => 'accept',
+        implyConsentOnInteraction: false,
+        defaultDestinationBehavior: 'imply',
+        bannerContent: bannerContent,
+        bannerSubContent: bannerSubContent,
+        preferencesDialogTitle: preferencesDialogTitle,
+        preferencesDialogContent: preferencesDialogContent,
+        cancelDialogTitle: cancelDialogTitle,
+        cancelDialogContent: cancelDialogContent,
+        initialPreferences: initialPreferences,
+      }
+    }
+  }();
+
+- if current_user
+  javascript:
+    const restorePrefCookie = "#{SegmentTrackingPreference::RESTORE_PREF_COOKIE_NAME}";
+
+    function restoreAndIdentify () {
+      // Restore user's previous data collection settings from the database
+      let c = Cookies.get(restorePrefCookie);
+      if (c !== undefined) {
+        try {
+          consentManager.preferences.savePreferences(JSON.parse(c));
+        } catch {
+          console.log('Previous preferences could not be restored')
+        } finally {
+          Cookies.remove(restorePrefCookie);
+        }
+      }
+
+      // Identify the user if known server-side but not client-side
+      let userCookie = Cookies.get('ajs_user_id');
+      if (("#{current_user.id}" !== '') && (parseInt(userCookie) === NaN)) {
+        analytics.identify("#{current_user.id}", {email: "#{current_user.email}"});
+      }
+    }
+
+script src='https://unpkg.com/@segment/consent-manager@5.0.0/standalone/consent-manager.js' defer=true onLoad="#{current_user ? 'restoreAndIdentify()' : '' }"

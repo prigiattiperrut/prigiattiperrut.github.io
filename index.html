@@ -34,9 +34,11 @@ var mw = function({ payload, next, integrations }) {
 };
 </script>		
 <!-- DESTINATION MIDDLEWARE-->
-	
 
-	
+<ELEMENT onbeforeunload="handler">
+		<script>
+window.onbeforeunload = function (event) {analytics.track('destination submitted')};
+	</script>
 </head> 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -95,7 +97,7 @@ var mw = function({ payload, next, integrations }) {
 	      	   analytics.page('2nd Page', user, function() {
             window.location.href = "";
         });
-	      window.onbeforeunload = function (event) {analytics.track('onbeforeunload')};
+
 
 	      	//analytics.on('page', function(properties, options) {
 		 //console.log(properties, options)

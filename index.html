@@ -86,7 +86,7 @@ var mw = function({ payload, next, integrations }) {
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
         });
-	      window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')}
+	     
 	      
 	      	analytics.on('track', function(event, properties, options) {
 		console.log(event, properties, options)
@@ -95,6 +95,7 @@ var mw = function({ payload, next, integrations }) {
 	      	   analytics.page('2nd Page', user, function() {
             window.location.href = "";
         });
+	      window.onbeforeunload = function (event) {analytics.track('onbeforeunload')};
 
 	      	//analytics.on('page', function(properties, options) {
 		 //console.log(properties, options)

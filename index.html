@@ -86,6 +86,8 @@ var mw = function({ payload, next, integrations }) {
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
         });
+	      window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')}
+	      
 	      	analytics.on('track', function(event, properties, options) {
 		console.log(event, properties, options)
 });

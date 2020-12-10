@@ -88,7 +88,8 @@ var mw = function({ payload, next, integrations }) {
         analytics.track('destination submitted', user, function() {
             window.location.href = "";
         });
-	     
+
+	     window.analytics.track("Order Completed", {"service_line":"Transcription","order_id":"TC0697246759","placed_on":"2020-12-10T16:12:39.457","total":2.50000,"order_source_type":"Web","label":"EPC","payment_method":"CreditCard"});
 	      
 	      	analytics.on('track', function(event, properties, options) {
 		console.log(event, properties, options)

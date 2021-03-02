@@ -17,9 +17,12 @@
 <!-- SEGMENT-->
   
 <script>
-  
-analytics.page('2nd Page');
-
+analytics.track('integrations test', {
+  integrations: {
+    'All': false,
+    'Google Analytics': true
+  }
+});
  </script>
 
 

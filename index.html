@@ -12,7 +12,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 	
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 	
-	
+
+<!-- YOUTUBE PLUGIN-->
+<script src="https://www.youtube.com/iframe_api"></script>
+<!-- YOUTUBE PLUGIN-->
 	
 <!-- SEGMENT-->
 <script>
@@ -138,5 +141,23 @@ function myFunction() {
 </script>
 <br>
 <br>
+
+    <!-- Youtube plugin-->	
+    <div id="player"></div>
+    <script>
+var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'CHVNRWqVgw0'
+        });
+	      analytics.ready(function () {
+    var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
+   ytAnalytics.initialize()
+      })}
+    </script>
+<!-- Youtube plugin-->
+	
 </body> 
 </html>

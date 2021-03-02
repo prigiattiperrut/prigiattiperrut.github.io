@@ -1,8 +1,8 @@
+
 <!DOCTYPE html> 
 <html> 
-<head>
-
-    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 	
+<head> 
+    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
 
 <!-- YOUTUBE PLUGIN-->
 <script src="https://www.youtube.com/iframe_api"></script>
@@ -28,18 +28,9 @@ analytics.track('integrations test', {
 });
  </script>
 
-
-<ELEMENT onbeforeunload="handler">
-		<script>
-//window.onbeforeunload = function (event) {analytics.track('destination submitted')};
-	</script>
 </head> 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 <body> 
-
-
-	
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  
 <form name="travel" onsubmit="identify(event)">
@@ -56,7 +47,32 @@ analytics.track('integrations test', {
     Email: <input name="email" required="" size="75" type="email"/> 
     <br><br>
     <input name="submit" type="submit" value="submit"/>
-	 <input type="hidden" id="custId" name="custId" value="3487">
+</form> 
+
+    
+<script type="text/javascript">
+      function identify(e){
+        e.preventDefault();
+        var form = e.target;
+        var email = form["email"].value;
+        var fullname = form["fullname"].value;
+        var destination = form["destination"].value;
+        var details = form["details"].value;
+        var user = {
+            email: email, 
+            name: fullname, 
+            destination: destination, 
+            details: details
+        };
+        analytics.identify('1234next', {
+            email: email, 
+            name: fullname
+        });
+        analytics.track('destination submitted', user, function() {
+            window.location.href = "";
+        });
+      }
+</script>
 	
 <!-- Youtube plugin-->	
     <div id="player"></div>
@@ -74,52 +90,6 @@ var player;
       })}
     </script>
 <!-- Youtube plugin-->
-
-	
-</form> 
-<script type="text/javascript">
-      function identify(e){
-        e.preventDefault();
-        var form = e.target;
-        var email = form["email"].value;
-        var fullname = form["fullname"].value;
-        var destination = form["destination"].value;
-        var details = form["details"].value;
-        var user = {
-            email: email, 
-            name: fullname, 
-            destination: destination, 
-            details: details
-        };
-        analytics.identify('1234', {
-            email: email, 
-            name: fullname
-        });
-	      	//analytics.on('identify', function(userid, traits, options) {
-		 //console.log(userid, traits, options)
-//});
-        analytics.track('destination submitted', user, function() {
-            window.location.href = "";
-        });
-
-	     window.analytics.track("Order Completed", {"service_line":"Transcription","order_id":"TC0697246759","placed_on":"2020-12-10T16:12:39.457","total":2.50000,"order_source_type":"Web","label":"EPC","payment_method":"CreditCard"});
-	      
-	      	analytics.on('track', function(event, properties, options) {
-		console.log(event, properties, options)
-});
-
-	      	   analytics.page('2nd Page', user, function() {
-            window.location.href = "";
-        });
-
-
-	      	//analytics.on('page', function(properties, options) {
-		 //console.log(properties, options)
-//});
-      }
-	
-	
-</script>
 
 <br>
 <br>

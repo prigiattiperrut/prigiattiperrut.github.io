@@ -3,7 +3,10 @@
 <head>
 
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 	
-	
+
+<!-- YOUTUBE PLUGIN-->
+<script src="https://www.youtube.com/iframe_api"></script>
+<!-- YOUTUBE PLUGIN-->
 	
 <!-- SEGMENT-->
 	
@@ -53,7 +56,26 @@ analytics.track('integrations test', {
     Email: <input name="email" required="" size="75" type="email"/> 
     <br><br>
     <input name="submit" type="submit" value="submit"/>
-	 <input type="hidden" id="custId" name="custId" value="3487"> 
+	 <input type="hidden" id="custId" name="custId" value="3487">
+	
+<!-- Youtube plugin-->	
+    <div id="player"></div>
+    <script>
+var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'CHVNRWqVgw0'
+        });
+	      analytics.ready(function () {
+    var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
+   ytAnalytics.initialize()
+      })}
+    </script>
+<!-- Youtube plugin-->
+
+	
 </form> 
 <script type="text/javascript">
       function identify(e){

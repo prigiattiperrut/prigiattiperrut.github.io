@@ -18,15 +18,22 @@
 </script>
 
 <!-- SEGMENT-->
-  
-//script>
-analytics.track('integrations test', {
-  integrations: {
-    'All': false,
-    'Google Analytics': true
-  }
-});
- ///script>
+
+<!-- SEGMENT Middleware-->
+<script>
+window.addMiddlewares = () => {
+  window.analytics.addDestinationMiddleware("Amplitude", [mw]);
+};
+	
+// Destination middleware
+var mw = function({ payload, next, integrations }) {
+  if (payload.obj.event === "test") {
+    payload.obj.event += " Middleware tested";
+  }
+  next(payload);
+};
+</script>
+<!-- SEGMENT Middleware-->
 
 </head> 
 

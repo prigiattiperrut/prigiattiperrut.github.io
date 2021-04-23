@@ -18,7 +18,7 @@
             <div class="container">
                 <div>
                     <h2>Vimeo Player 1</h2>
-                    <iframe src="https://player.vimeo.com/video/540612037" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <iframe src="https://player.vimeo.com/video/540615810" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script>
     var iframe = document.querySelector('iframe');
@@ -26,7 +26,7 @@
  
     analytics.ready(function () {
       var VimeoAnalytics = window.analytics.plugins.VimeoAnalytics
-      var vimeoAnalytics = new VimeoAnalytics(player, '540612037')
+      var vimeoAnalytics = new VimeoAnalytics(player, 'XXXXXXX') //WITHOUT THE ACCESS TOKEN THE EVENTS WILL NOT HAVE VIDEO CONTENT INFO (description, title..)
       vimeoAnalytics.initialize()
     })
 </script>

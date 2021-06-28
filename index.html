@@ -132,12 +132,10 @@ function myFunction() {
 <!-- SEGMENT TRACKLINK-->
 <h1>TrackLink</h1>
 
-<a href="https://segment.com/docs/connections/sources/catalog/libraries/website/javascript/#track-link">Visit segment.com!</a>
-	
 <a href="">click-me</a>
 	
 <script>
-var link = document.getElementById('click-me');
+var link = document.getElementById('<a href="">click-me</a>');
 analytics.trackLink(link, 'Clicked Me Link', {
   plan: 'Enterprise'
 });

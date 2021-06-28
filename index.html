@@ -44,9 +44,17 @@ var mw = function({ payload, next, integrations }) {
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <body> 
 
-	<!-- SEGMENT TRACKLINK-->
+<!-- SEGMENT TRACKLINK-->
+	
 <p><a id="free-trial-link" href="https://segment.com/">TrackLink Test</a></p>
-	<!-- SEGMENT TRACKLINK-->
+
+<script>
+var link = document.getElementById('free-trial-link');
+analytics.trackLink(link, 'Clicked Free-Trial Link', {
+  plan: 'Enterprise'
+});
+</script>	
+<!-- SEGMENT TRACKLINK-->
 	
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  
@@ -124,15 +132,8 @@ function myFunction() {
 <div class="pv-payment-item-small-text text-right flip"><input type="checkbox" id="pv-savecc-cb" name="set-name" class="pv-switch-input"><label for="pv-savecc-cb" class="pv-switch-label"></label></div>
 </script>
 <br>
-<!-- SEGMENT TRACKLINK-->
-<script>
-var link = document.getElementById('free-trial-link');
-analytics.trackLink(link, 'Clicked Free-Trial Link', {
-  plan: 'Enterprise'
-});
-</script>	
+	
 
-<!-- SEGMENT TRACKLINK-->
 	
 </body> 
 </html>

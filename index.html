@@ -105,11 +105,6 @@ var mw = function({ payload, next, integrations }) {
       }
 
 	</script>
-	
-	
-
-
-<br>
 <br>
 <button id="myBtn">My Button</button>
 <br>
@@ -122,23 +117,23 @@ function myFunction() {
   document.getElementById("myBtn").disabled = true;
 }
 </script>
-<br>
 <br>	
 <div class="pv-payment-item-small-text text-right flip"><input type="checkbox" id="pv-savecc-cb" name="set-name" class="pv-switch-input"><label for="pv-savecc-cb" class="pv-switch-label"></label></div>
 </script>
 <br>
-<br>
-
 <!-- SEGMENT TRACKLINK-->
 <h1>TrackLink</h1>
-
-<a href="">click-me</a>
+<br>
 	
+<a href="">free-trial-link!</a>
+
 <script>
-var link = document.getElementById('<a href="">click-me</a>');
-analytics.trackLink(link, 'Clicked Me Link', {
+var link = document.getElementById('free-trial-link');
+
+analytics.trackLink(link, 'Clicked Free-Trial Link', {
   plan: 'Enterprise'
 });
+
 </script>	
 
 <!-- SEGMENT TRACKLINK-->

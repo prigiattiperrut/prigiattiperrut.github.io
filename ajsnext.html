@@ -19,6 +19,19 @@
 </head> 
 
 <body> 
+	
+<!-- SEGMENT TRACKLINK-->
+	
+<p><a id="free-trial-link" href="https://segment.com/">TrackLink Test</a></p>
+
+<script>
+var link = document.getElementById('free-trial-link');
+analytics.trackLink(link, 'Clicked Free-Trial Link', {
+  plan: 'Enterprise'
+});
+</script>	
+<!-- SEGMENT TRACKLINK-->
+	
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  
 <form name="travel" onsubmit="identify(event)">
@@ -69,6 +82,9 @@
 <br>
 <br>
 <br>
+	
+
+<!-- SEGMENT TRACKLINK-->
     
     
 </body> 

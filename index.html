@@ -14,26 +14,31 @@
   }}();
 </script>
 <!-- SEGMENT SNIPPET-->
-	
-<!-- TRACKING BROWSER ACTIVITIES Page Hidden | Form Drop-Off--
-<script>
-analytics.ready(function() {
-window.onpagehide = function (e) {analytics.track('Page Hidden')};
-window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
-});
-</script>
-<!-- TRACKING BROWSER ACTIVITIES Page Hidden | Form Drop-Off-->
 
-	
+
 	
 </head> 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <body>
+	
+<!-- TRACKING BROWSER ACTIVITIES Form Drop-Off-->
+<script>
+window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
+</script>
+<!-- TRACKING BROWSER ACTIVITIES Form Drop-Off-->	
 
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
 <script>
-window.onpagehide = function (e) {analytics.track('Page Hidden')};
+const timeStart = new Date().getTime();
+window.addEventListener('pagehide', () => {
+const timeEnd = new Date().getTime();
+const timeDiff = (timeEnd - timeStart) / 1000; // calculate difference in seconds
+const trackingData = {
+timeOnPage: timeDiff,
+};
+window.analytics.track('Page Left', trackingData);
+});
 </script>
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
 	

@@ -23,13 +23,7 @@ window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
 });
 </script>
 <!-- TRACKING BROWSER ACTIVITIES Page Hidden | Form Drop-Off-->
-	
-<!-- TRACKING BROWSER ACTIVITIES Page Left-->
-<script>
-window.addEventListener('pagehide', function(e) {analytics.track('pagehide')}
-});
-</script>
-<!-- TRACKING BROWSER ACTIVITIES Page Left-->
+
 	
 	
 </head> 
@@ -37,7 +31,12 @@ window.addEventListener('pagehide', function(e) {analytics.track('pagehide')}
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <body>
 
-
+<!-- TRACKING BROWSER ACTIVITIES Page Left-->
+<script>
+window.onpagehide = function (e) {analytics.track('Page Hidden')};
+</script>
+<!-- TRACKING BROWSER ACTIVITIES Page Left-->
+	
 <!-- SEGMENT TRACKLINK-->	
 <p><a id="free-trial-link" href="">TrackLink Test</a></p>
 

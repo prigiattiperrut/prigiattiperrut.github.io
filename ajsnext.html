@@ -26,6 +26,20 @@
 </script>
 <!-- TRACKING BROWSER ACTIVITIES Page Hidden | Form Drop-Off-->
 
+</head> 
+
+<body>
+	
+<!-- SEGMENT TRACKLINK-->	
+<p><a id="free-trial-link" href="">TrackLink Test</a></p>
+<script>
+var link = document.getElementById('free-trial-link');
+analytics.trackLink(link, 'Clicked Free-Trial Link', {
+  plan: 'Enterprise'
+});
+</script>	
+<!-- SEGMENT TRACKLINK-->
+	
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
 <script>
 const timeStart = new Date().getTime();
@@ -36,25 +50,10 @@ const trackingData = {
 timeOnPage: timeDiff,
 };
 analytics.track('Page Left', trackingData);
+console.log('Page Left');
 });
 </script>
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
-
-</head> 
-
-<body>
-	
-<!-- SEGMENT TRACKLINK-->
-	
-<p><a id="free-trial-link" href="">TrackLink Test</a></p>
-
-<script>
-var link = document.getElementById('free-trial-link');
-analytics.trackLink(link, 'Clicked Free-Trial Link', {
-  plan: 'Enterprise'
-});
-</script>	
-<!-- SEGMENT TRACKLINK-->
 	
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  

@@ -47,8 +47,7 @@ window.onbeforeunload = function (e) {analytics.track('Form Drop-Off',{ window:"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <body> 
 
-<!-- SEGMENT TRACKLINK-->
-	
+<!-- SEGMENT TRACKLINK-->	
 <p><a id="free-trial-link" href="">TrackLink Test</a></p>
 
 <script>
@@ -58,6 +57,18 @@ analytics.trackLink(link, 'Clicked Free-Trial Link', {
 });
 </script>	
 <!-- SEGMENT TRACKLINK-->
+	
+<script>	
+const timeStart = new Date().getTime();
+window.addEventListener('pagehide', () => {
+const timeEnd = new Date().getTime();
+const timeDiff = (timeEnd - timeStart) / 1000; // calculate difference in seconds
+const trackingData = {
+timeOnPage: timeDiff,
+};
+analytics.track('Page Left', trackingData);
+});	
+</script>
 	
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  

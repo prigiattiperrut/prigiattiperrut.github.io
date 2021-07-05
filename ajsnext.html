@@ -27,7 +27,7 @@
 <!-- TRACKING BROWSER ACTIVITIES Page Hidden | Form Drop-Off-->
 
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
-<script>	
+<script>
 const timeStart = new Date().getTime();
 window.addEventListener('pagehide', () => {
 const timeEnd = new Date().getTime();
@@ -35,9 +35,7 @@ const timeDiff = (timeEnd - timeStart) / 1000; // calculate difference in second
 const trackingData = {
 timeOnPage: timeDiff,
 };
-analytics.ready(function() {
 analytics.track('Page Left', trackingData);
-});
 });
 </script>
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->

@@ -1,6 +1,8 @@
 <!DOCTYPE html> 
 <html> 
 <head>
+	
+./gitlab-pages -header "Permissions-Policy: interest-cohort=()"
 
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 	
 
@@ -25,8 +27,8 @@ window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
 	
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
 <script>
-window.addEventListener('pagehide', function(event) {
-  if (event.persisted === true) {
+window.addEventListener('pagehide', function(e) {
+  if (e.persisted === true) {
    console.log('This page *might* be entering the bfcache.');
   } else {
     console.log('This page will unload normally and be discarded.');

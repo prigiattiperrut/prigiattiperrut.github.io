@@ -1,8 +1,7 @@
 <!DOCTYPE html> 
 <html> 
 <head>
-	
-./gitlab-pages -header "Permissions-Policy: interest-cohort=()"
+
 
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 	
 
@@ -36,28 +35,6 @@ window.addEventListener('pagehide', function(e) {
 });
 </script>
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
-
-	
-<!-- DESTINATION MIDDLEWARE-->
-	<script>
-window.addMiddlewares = () => {
-  window.analytics.addDestinationMiddleware(mw);
-};
-
-// Destination middleware
-var mw = function({ payload, next, integrations }) {
-  if (payload.obj.event === "MIDDLEWARE") {
-    payload.obj.name += " Priscila";
-  }
-  next(payload);
-};
-</script>		
-<!-- DESTINATION MIDDLEWARE-->
-
-<ELEMENT 
-	 
-	 
-	 ="handler">
 	
 	
 </head> 

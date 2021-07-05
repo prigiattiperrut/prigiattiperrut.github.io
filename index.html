@@ -4,7 +4,6 @@
 
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 	
 
-
 	
 <!-- SEGMENT-->
 <script>
@@ -35,9 +34,13 @@ var mw = function({ payload, next, integrations }) {
 </script>		
 <!-- DESTINATION MIDDLEWARE-->
 
-<ELEMENT onbeforeunload="handler">
+<ELEMENT 
+	 
+	 
+	 ="handler">
 		<script>
-//window.onbeforeunload = function (event) {analytics.track('destination submitted')};
+window.onbeforeunload = function (event) {analytics.track('Form Drop-Off')};
+window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
 	</script>
 </head> 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"

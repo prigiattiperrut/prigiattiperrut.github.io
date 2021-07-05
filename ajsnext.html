@@ -17,24 +17,15 @@
 
 <!-- SEGMENT-->
 
-
-
-</head> 
-
-<body>
-
-<!-- TRACKING BROWSER ACTIVITIES Page Hidden-->
+<!-- TRACKING BROWSER ACTIVITIES Page Hidden | Form Drop-Off-->
 <script>
-window.onpagehide = function (e) {analytics.track('Page Hidden',{ window:"window.onpagehide"})};
+analytics.ready(function() {
+window.onpagehide = function (e) {analytics.track('Page Hidden')};
+window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
+});
 </script>
-<!-- TRACKING BROWSER ACTIVITIES Page Hidden-->
-	
-<!-- TRACKING BROWSER ACTIVITIES Form Drop-Off-->
-<script>
-window.onbeforeunload = function (e) {analytics.track('Form Drop-Off',{ window:"window.onbeforeunload"})};
-</script>
-<!-- TRACKING BROWSER ACTIVITIES Form Drop-Off-->
-	
+<!-- TRACKING BROWSER ACTIVITIES Page Hidden | Form Drop-Off-->
+
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
 <script>	
 const timeStart = new Date().getTime();
@@ -44,10 +35,16 @@ const timeDiff = (timeEnd - timeStart) / 1000; // calculate difference in second
 const trackingData = {
 timeOnPage: timeDiff,
 };
+analytics.ready(function() {
 analytics.track('Page Left', trackingData);
-});	
+});
+});
 </script>
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
+
+</head> 
+
+<body>
 	
 <!-- SEGMENT TRACKLINK-->
 	

@@ -17,18 +17,31 @@
 
 <!-- SEGMENT-->
 
-<!-- TRACKING BROWSER ACTIVITIES Page Hidden | Form Drop-Off-->
-<script>
-//analytics.ready(function() {
-//window.onpagehide = function (e) {analytics.track('Page Hidden')};
-//window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
-//});
-</script>
-<!-- TRACKING BROWSER ACTIVITIES Page Hidden | Form Drop-Off-->
 
 </head> 
 
 <body>
+
+<!-- TRACKING BROWSER ACTIVITIES Form Drop-Off-->
+<script>
+window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
+</script>
+<!-- TRACKING BROWSER ACTIVITIES Form Drop-Off-->	
+
+<!-- TRACKING BROWSER ACTIVITIES Page Left-->
+<script>
+const timeStart = new Date().getTime();
+window.addEventListener('pagehide', () => {
+const timeEnd = new Date().getTime();
+const timeDiff = (timeEnd - timeStart) / 1000; // calculate difference in seconds
+const trackingData = {
+timeOnPage: timeDiff,
+};
+window.analytics.track('Page Left', trackingData);
+});
+</script>
+<!-- TRACKING BROWSER ACTIVITIES Page Left-->	
+	
 	
 <!-- SEGMENT TRACKLINK-->	
 <p><a id="free-trial-link" href="">TrackLink Test</a></p>
@@ -40,20 +53,7 @@ analytics.trackLink(link, 'Clicked Free-Trial Link', {
 </script>	
 <!-- SEGMENT TRACKLINK-->
 	
-<!-- TRACKING BROWSER ACTIVITIES Page Left-->
-<script>
-const timeStart = new Date().getTime();
-window.addEventListener('pagehide', () => {
-const timeEnd = new Date().getTime();
-const timeDiff = (timeEnd - timeStart) / 1000; // calculate difference in seconds
-const trackingData = {
-timeOnPage: timeDiff,
-};
-analytics.track('Page Left', trackingData);
-console.log('Page Left');
-});
-</script>
-<!-- TRACKING BROWSER ACTIVITIES Page Left-->
+
 	
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  

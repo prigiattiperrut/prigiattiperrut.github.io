@@ -26,12 +26,7 @@ window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
 	
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
 <script>
-window.addEventListener('pagehide', function(e) {
-  if (e.persisted === true) {
-   console.log('This page *might* be entering the bfcache.');
-  } else {
-    console.log('This page will unload normally and be discarded.');
-  }
+window.addEventListener('pagehide', function(e) {analytics.track('pagehide')}
 });
 </script>
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->

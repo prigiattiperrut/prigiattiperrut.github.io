@@ -17,6 +17,32 @@
 
 <!-- SEGMENT-->
 
+<!-- TRACKING BROWSER ACTIVITIES Page Hidden-->
+<script>
+window.onpagehide = function (e) {analytics.track('Page Hidden',{ window:"window.onpagehide"})};
+</script>
+<!-- TRACKING BROWSER ACTIVITIES Page Hidden-->
+	
+<!-- TRACKING BROWSER ACTIVITIES Form Drop-Off-->
+<script>
+window.onbeforeunload = function (e) {analytics.track('Form Drop-Off',{ window:"window.onbeforeunload"})};
+</script>
+<!-- TRACKING BROWSER ACTIVITIES Form Drop-Off-->
+	
+<!-- TRACKING BROWSER ACTIVITIES Page Left-->
+<script>	
+const timeStart = new Date().getTime();
+window.addEventListener('pagehide', () => {
+const timeEnd = new Date().getTime();
+const timeDiff = (timeEnd - timeStart) / 1000; // calculate difference in seconds
+const trackingData = {
+timeOnPage: timeDiff,
+};
+analytics.track('Page Left', trackingData);
+});	
+</script>
+<!-- TRACKING BROWSER ACTIVITIES Page Left-->
+
 </head> 
 
 <body> 

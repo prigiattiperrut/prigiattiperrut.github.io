@@ -25,14 +25,12 @@ window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
 	
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
 <script>
-const timeStart = new Date().getTime();
-window.addEventListener('pagehide', () => {
-const timeEnd = new Date().getTime();
-const timeDiff = (timeEnd - timeStart) / 1000; // calculate difference in seconds
-const trackingData = {
-timeOnPage: timeDiff,
-};
-analytics.track('Page Left', trackingData);
+window.addEventListener('pagehide', function(event) {
+  if (event.persisted === true) {
+   console.log('This page *might* be entering the bfcache.');
+  } else {
+    console.log('This page will unload normally and be discarded.');
+  }
 });
 </script>
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->

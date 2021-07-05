@@ -25,17 +25,6 @@ window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
 	
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
 <script>
-window.addEventListener("pagehide", event => {
-  if (event.persisted) {
-    analytics.track("Pagehide");
-    console.log('Pagehide should fire');
-  }
-}, false);
-</script>
-<!-- TRACKING BROWSER ACTIVITIES Page Left-->
-
-<!-- TRACKING BROWSER ACTIVITIES Page Left-
-<script>	
 const timeStart = new Date().getTime();
 window.addEventListener('pagehide', () => {
 const timeEnd = new Date().getTime();
@@ -43,12 +32,11 @@ const timeDiff = (timeEnd - timeStart) / 1000; // calculate difference in second
 const trackingData = {
 timeOnPage: timeDiff,
 };
-analytics.ready(function() {
 analytics.track('Page Left', trackingData);
-});
 });
 </script>
 <!-- TRACKING BROWSER ACTIVITIES Page Left-->
+
 	
 <!-- DESTINATION MIDDLEWARE-->
 	<script>

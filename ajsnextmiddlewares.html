@@ -20,7 +20,7 @@
  <!-- MIDDLEWARE-->
   <script>
       const mw = function({payload, next, integrations, context}) {
-        payload.obj.integrations.Amplitude = false;
+        payload.obj.integrations['Google Analytics'] = false;
         console.log('middleware fired', payload);
         next(payload);
     };

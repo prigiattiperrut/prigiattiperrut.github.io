@@ -21,8 +21,14 @@
 </head> 
 
 <body>
-	
-	
+
+<script>
+window.analytics.ready(function() {
+  window.mixpanel.set_config({ verbose: true });
+  console.log(amplitude.getInstance().options.deviceId);
+  console.log("READY!");	
+});
+</script>	
 	
 	
 <!-- SEGMENT TRACKLINK-->	

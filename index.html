@@ -40,10 +40,20 @@ for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
 e=(!e||e.length===0?"$default_instance":e).toLowerCase()
 ;if(!Object.prototype.hasOwnProperty.call(n._iq,e)){n._iq[e]={_q:[]};v(n._iq[e])
 }return n._iq[e]};e.amplitude=n})(window,document);
-
-amplitude.getInstance().init("42c16158d0bd7f3be2f8d11f78c9275b",{includeReferrer:true,includeUtm:true,saveParamsReferrerOncePerSession:true});
+amplitude.getInstance().init("42c16158d0bd7f3be2f8d11f78c9275b", null, {
+    saveEvents: true,
+    includeGclid: true,
+    includeReferrer: true,
+    includeUtm: true,
+    saveParamsReferrerOncePerSession:true
+});
+	
 </script>
 <!-- AMPLITUDE SNIPPET-->
+	
+
+	
+	
 
 	
 </head> 

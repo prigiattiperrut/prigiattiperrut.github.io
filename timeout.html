@@ -58,20 +58,19 @@ analytics.trackLink(link, 'Clicked Free-Trial Link', {
 <script>
 	
 analytics.ready(function () {
-analytics.timeout(1000)
+analytics.timeout(5000)
 });		
 
 analytics.identify('12091906-01011992', function(){
-  console.warn("Timeout Identify 500 ms")
+  console.warn("Timeout Identify 5000 ms")
 });
 		
 
 analytics.track('Timeout Test', function(){
-  console.warn("Timeout Track 500 ms")
+  console.warn("Timeout Track 5000 ms")
 });
 	
 </script>
-  
 <!-- SEGMENT TIMEOUT-->
     
 <script type="text/javascript">

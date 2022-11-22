@@ -72,7 +72,10 @@
 <br>
 <br>
 <br>
-    
+ 
+<h1>Video 1</h1> 
+<br>
+<br>
 <!-- Youtube plugin-->	
 <div id="player"></div>
  <script>
@@ -82,6 +85,48 @@ player = new YT.Player('player', {
    height: '390',
    width: '640',
 videoId: 'T01YklpEqiM'
+});
+analytics.ready(function () {
+var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
+ytAnalytics.initialize()
+})}
+</script>
+<!-- Youtube plugin-->	
+<br>
+<br>
+	<h1>Video 2</h1> 
+<br>
+<br>	
+<!-- Youtube plugin-->	
+<div id="player"></div>
+ <script>
+var player;
+function onYouTubeIframeAPIReady() {
+player = new YT.Player('player', {
+   height: '390',
+   width: '640',
+videoId: 'nhaKSvfpxIY'
+});
+analytics.ready(function () {
+var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')
+ytAnalytics.initialize()
+})}
+</script>
+<!-- Youtube plugin-->
+<br>
+<br>
+<h1>Video 3</h1> 
+<br>
+<br>	
+<!-- Youtube plugin-->	
+<div id="player"></div>
+ <script>
+var player;
+function onYouTubeIframeAPIReady() {
+player = new YT.Player('player', {
+   height: '390',
+   width: '640',
+videoId: 'mYqTeK0AIko'
 });
 analytics.ready(function () {
 var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO0')

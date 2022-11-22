@@ -51,7 +51,52 @@ ytAnalytics.initialize()
 </script>
 <!-- Youtube plugin-->	
 	
+<br>
+<br>
+<h1>Video 2</h1>
+<br>
+<br>
+<!-- Youtube plugin-->
+<div id="player"></div>
+ <script>
+var player;
+function onYouTubeIframeAPIReady() {
+player = new YT.Player('player', {
+   height: '250',
+   width: '500',
+videoId: 'nhaKSvfpxIY'
+});
+analytics.ready(function () {
+var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO02')
+ytAnalytics.initialize()
+})}
+</script>
+<!-- Youtube plugin-->
 
+
+
+
+<br>
+<br>
+<h1>Video 3</h1>
+<br>
+<br>
+<!-- Youtube plugin-->
+<div id="player"></div>
+ <script>
+var player;
+function onYouTubeIframeAPIReady() {
+player = new YT.Player('player', {
+   height: '150',
+   width: '350',
+videoId: 'mYqTeK0AIko'
+});
+analytics.ready(function () {
+var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO03')
+ytAnalytics.initialize()
+})}
+</script>
+<!-- Youtube plugin-->
     
 </body> 
 </html>

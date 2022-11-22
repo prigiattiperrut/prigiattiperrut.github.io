@@ -1,8 +1,13 @@
-<div id="player1"></div>
-<div id="player2"></div>
+<!DOCTYPE html> 
+<html> 
+<head> 
+	
+    <title>YouTube Plugins<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
 
+<!-- YOUTUBE PLUGIN-->
 <script src="https://www.youtube.com/iframe_api"></script>
-
+<!-- YOUTUBE PLUGIN-->
+	
 <!-- SEGMENT-->
 	
 <script>
@@ -14,33 +19,60 @@
 
 <!-- SEGMENT-->
 
-<script>
-    
-    // create youtube player 
-    var player1;
-     var player2;
-    function onYouTubePlayerAPIReady() {
-        player1 = new YT.Player('player1', {
-          height: '390',
-          width: '640',
-          videoId: 'kOdg9f5VAAU',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-        
-         player2 = new YT.Player('player2', {
-          height: '390',
-          width: '640',
-          videoId: 'CHVNRWqVgw0',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        })
+</head> 
 
-    // autoplay video
+<body> 
+<h1>Segment YouTube Plugins</h1> 
+<p></p>  
+<a href="https://segment.com/docs/connections/sources/catalog/libraries/website/plugins/youtube/">Documentation here</a>
+<p>
+<br>
+<br>
+<br>
+<!-- Youtube plugin-->
+	
+<p>
+	<h2>Video 1</h2>
+<p>
+<br>
+<div class="video-site">
+  <div class="first-video">
+    <div id="player1"></div>
+  </div>
+	<p>
+	<h2>Video 2</h2>
+<p>
+<br>
+  <div class="second-video">
+    <div id="player2"></div>
+  </div>
+</div>
+
+<script>
+  var player1;
+  var player2;
+	 
+function onYouTubeIframeAPIReady() {
+player1 = new YT.Player('player1', {
+   height: '250',
+   width: '500',
+videoId: 'kOdg9f5VAAU',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+});
+	
+player2 = new YT.Player('player2', {
+   height: '250',
+   width: '500',
+videoId: 'CHVNRWqVgw0',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+})
+	 // autoplay video
     function onPlayerReady(event) {
         event.target.playVideo();
     }
@@ -49,10 +81,18 @@
     function onPlayerStateChange(event) {        
         if(event.data === 0) {            
             alert('done');
-        };
-	    
-        
-    }
-    
+        } 
+    };
+analytics.ready(function () {
+var ytAnalytics1 = new window.analytics.plugins.YouTubeAnalytics(player1, 'AIzaSyCXMtrgMn78K8UTxRLjhzKjocdChshoWYs')
+ytAnalytics1.initialize();
+var ytAnalytics2 = new window.analytics.plugins.YouTubeAnalytics(player2, 'AIzaSyCXMtrgMn78K8UTxRLjhzKjocdChshoWYs')
+ytAnalytics2.initialize();	
+})}
 </script>
+<!-- Youtube plugin-->	
+	
 
+    
+</body> 
+</html>

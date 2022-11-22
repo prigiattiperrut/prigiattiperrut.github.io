@@ -57,8 +57,10 @@ player2 = new YT.Player('player2', {
 videoId: 'CHVNRWqVgw0'
 });
 analytics.ready(function () {
-var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyCXMtrgMn78K8UTxRLjhzKjocdChshoWYs')
-ytAnalytics.initialize()
+var ytAnalytics1 = new window.analytics.plugins.YouTubeAnalytics(player1, 'AIzaSyCXMtrgMn78K8UTxRLjhzKjocdChshoWYs')
+ytAnalytics1.initialize();
+var ytAnalytics2 = new window.analytics.plugins.YouTubeAnalytics(player2, 'AIzaSyCXMtrgMn78K8UTxRLjhzKjocdChshoWYs')
+ytAnalytics2.initialize();	
 })}
 </script>
 <!-- Youtube plugin-->	

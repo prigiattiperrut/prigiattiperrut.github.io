@@ -61,13 +61,13 @@ ytAnalytics.initialize()
  <script>
 var player1;
 function onYouTubeIframeAPIReady() {
-player = new YT.Player('player1', {
+player1 = new YT.Player('player1', {
    height: '250',
    width: '500',
 videoId: 'nhaKSvfpxIY'
 });
 analytics.ready(function () {
-var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO02')
+var ytAnalytics = new window.analytics.plugins.YouTubeAnalytics(player1, 'AIzaSyAbfWme2WEH30uEwPW0hO2IFb4_VlwNoO02')
 ytAnalytics.initialize()
 })}
 </script>

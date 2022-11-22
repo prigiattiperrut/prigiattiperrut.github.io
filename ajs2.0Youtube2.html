@@ -38,13 +38,13 @@
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
           }
-          analytics.ready(function () {
+        });
+	              analytics.ready(function () {
 var ytAnalytics1 = new window.analytics.plugins.YouTubeAnalytics(player1, 'AIzaSyCXMtrgMn78K8UTxRLjhzKjocdChshoWYs')
 ytAnalytics1.initialize();
 var ytAnalytics2 = new window.analytics.plugins.YouTubeAnalytics(player2, 'AIzaSyCXMtrgMn78K8UTxRLjhzKjocdChshoWYs')
 ytAnalytics2.initialize();	
 }
-        });
        
     }
 

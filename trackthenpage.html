@@ -1,20 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Weather and Jokes</title>
   <script>
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){if(window.analytics.initialized)return window.analytics[e].apply(window.analytics,arguments);var i=Array.prototype.slice.call(arguments);i.unshift(e);analytics.push(i);return analytics}};for(var i=0;i<analytics.methods.length;i++){var key=analytics.methods[i];analytics[key]=analytics.factory(key)}analytics.load=function(key,i){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=i};analytics._writeKey="G5BwWiwo7E5XCw85h43neqDn59j6KCTp";;analytics.SNIPPET_VERSION="4.16.1";
   analytics.load("G5BwWiwo7E5XCw85h43neqDn59j6KCTp");
-  analytics.track("Home");                                                                                                                                                                                                  
-  analytics.page("Dad Jokes App");
+  analytics.page();
   }}();
 </script>
+  <meta charset="UTF-8">
+  <title>My Jokes App</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 40px;
+      font-size: 2.5em;
+      color: #333;
+    }
+    #location, #joke {
+      margin: 20px;
+      padding: 20px;
+      font-size: 1.2em;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    #disclaimer {
+      font-size: 0.8em;
+      color: #777;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Dad Jokes App</h1>
+
+  <h1>My Jokes App</h1>
+
+  <div id="location"></div>
+  <div id="joke"></div>
+  <div id="disclaimer">Disclaimer: I cannot guarantee the quality of the jokes.</div>
 
   <script>
+    // Get current location
+    navigator.geolocation.getCurrentPosition(position => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      document.getElementById("location").innerHTML = `Your current location is Latitude: ${lat}, Longitude: ${lon}`;
+    });
 
     // Fetch a random dad joke
     fetch('https://icanhazdadjoke.com/', {
@@ -27,5 +65,6 @@
       document.getElementById("joke").innerHTML = `Random Dad Joke: ${data.joke}`;
     });
   </script>
+
 </body>
 </html>

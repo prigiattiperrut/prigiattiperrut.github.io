@@ -11,38 +11,28 @@
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="G5BwWiwo7E5XCw85h43neqDn59j6KCTp";;analytics.SNIPPET_VERSION="4.15.3";
   analytics.load("G5BwWiwo7E5XCw85h43neqDn59j6KCTp");
   analytics.page();
-                                                                                                                                                                                                     
-  export const utmFilter: Plugin = {
-  name: 'UTM Filter',
-  type: 'enrichment',
-  version: '1.0.0',
 
-  isLoaded: () => true,
-  load: () => Promise.resolve(),
+																								     var utmFilterMiddleware = function({ payload, next }) {
+  const url = new URL(window.location.href);
+  const params = url.searchParams;
+  const utmParams = ['utm_content', 'utm_medium', 'utm_source', 'utm_campaign', 'utm_term'];
+  let campaign = {};
 
-  track: (ctx) => {
-    const url = new URL(window.location.href);
-    const params = url.searchParams;
-    const utmParams = ['utm_content', 'utm_medium', 'utm_source', 'utm_campaign', 'utm_term'];
-    let campaign = {};
-
-    for (let param of utmParams) {
-      if (params.has(param)) {
-        campaign[param] = params.get(param);
-      }
+  for (let param of utmParams) {
+    if (params.has(param)) {
+      campaign[param] = params.get(param);
     }
-
-    if (Object.keys(campaign).length > 0) {
-      ctx.updateEvent('context.campaign', campaign);
-    }
-
-    return ctx;
   }
-}
 
-// Registers Segment's new plugin into Analytics.js
-await window.analytics.register(utmFilter);
-                                                                                                                                                                                                     
+  if (Object.keys(campaign).length > 0) {
+    payload.obj.context.campaign = campaign;
+  }
+
+  next(payload);
+};
+
+analytics.addSourceMiddleware(utmFilterMiddleware);
+																								     
   }}();
 </script>
 

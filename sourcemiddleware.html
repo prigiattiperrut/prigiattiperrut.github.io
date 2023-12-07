@@ -20,8 +20,8 @@ var utmFilterMiddleware = function({ payload, next }) {
 
   // Iterate over all query parameters
   for (let [key, value] of params.entries()) {
-    // If the parameter starts with "utm" but is not a valid UTM parameter, remove it
-    if (key.startsWith('utm') && !utmParams.includes(key)) {
+    // If the parameter contains "utm" but is not a valid UTM parameter, remove it
+    if (key.includes('utm') && !utmParams.includes(key)) {
       params.delete(key);
     } else if (utmParams.includes(key)) {
       // If the parameter is a valid UTM parameter, add it to the campaign object

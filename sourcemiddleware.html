@@ -18,11 +18,19 @@ var utmFilterMiddleware = function({ payload, next }) {
   const utmParams = ['utm_content', 'utm_medium', 'utm_source', 'utm_campaign', 'utm_term'];
   let campaign = {};
 
-  for (let param of utmParams) {
-    if (params.has(param)) {
-      campaign[param] = params.get(param);
+  // Iterate over all query parameters
+  for (let [key, value] of params.entries()) {
+    // If the parameter starts with "utm" but is not a valid UTM parameter, remove it
+    if (key.startsWith('utm') && !utmParams.includes(key)) {
+      params.delete(key);
+    } else if (utmParams.includes(key)) {
+      // If the parameter is a valid UTM parameter, add it to the campaign object
+      campaign[key] = value;
     }
   }
+
+  // Update the URL without the invalid UTM parameters
+  window.history.replaceState({}, '', url.toString());
 
   // Only update the context.campaign field if it contains UTM parameters
   if (Object.keys(campaign).length > 0) {

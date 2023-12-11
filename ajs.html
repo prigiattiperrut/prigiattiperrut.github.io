@@ -15,8 +15,8 @@
   analytics.load("ZsHvh9mEJuIS3Bx9yt4U5DphdWPAjyk0");
   analytics.page();
 analytics.ready(function() {
-if (typeof analytics !== "undefined") {
-            console.error("WORKS")
+if (typeof analytics !== "undefined" && analytics.hasOwnProperty('initialized')) {
+            console.error("WORKS?")
 }});
                                                                                                                                                                                                      
                                                                                                                                                                                                      

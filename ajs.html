@@ -17,8 +17,8 @@
 
 <script>
 analytics.ready(function() {
-if (typeof analytics != undefined && Object.hasOwn(analytics,'initialized')) {
-console.error("WORKS?")
+if (typeof analytics != undefined && Object.hasOwn(analytics,'initialized') && analytics.initialized == true) {
+console.error("WORKS")
 }})
 </script>
 	

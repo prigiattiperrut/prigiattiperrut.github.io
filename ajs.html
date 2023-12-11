@@ -2,9 +2,6 @@
 <html> 
 <head>
 
-<!-- SEGMENT Optimizely-->
-<script src="https://cdn.optimizely.com/js/15303960539.js"></script>
-<!-- SEGMENT Optimizely-->
 	
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 	
 
@@ -46,39 +43,8 @@ if (typeof analytics !== "undefined" && analytics.hasOwn( 'initialized')) {
 
   <!-- HTML button element -->
   <button id="my-button">Click Me</button>
-	
-<!-- TRACKING BROWSER ACTIVITIES Form Drop-Off-
-<script>
-window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
-</script>
-<!-- TRACKING BROWSER ACTIVITIES Form Drop-Off-->	
-
-<!-- TRACKING BROWSER ACTIVITIES Page Left-
-<script>
-const timeStart = new Date().getTime();
-window.addEventListener('pagehide', () => {
-const timeEnd = new Date().getTime();
-const timeDiff = (timeEnd - timeStart) / 1000; // calculate difference in seconds
-const trackingData = {
-timeOnPage: timeDiff,
-};
-window.analytics.track('Page Left', trackingData);
-});
-</script>
-<!-- TRACKING BROWSER ACTIVITIES Page Left-->
 
 	
-<!-- SEGMENT TRACKLINK-->	
-<p><a id="free-trial-link" href="">TrackLink Test</a></p>
-
-<script>
-var link = document.getElementById('free-trial-link');
-analytics.trackLink(link, 'Clicked Free-Trial Link', {
-  plan: 'Enterprise'
-});
-</script>	
-<!-- SEGMENT TRACKLINK-->
-
 	
 <h1>What is your favorite place to travel?</h1> 
 <p>I am building a directory of the sweetest travel destinations.</p>  

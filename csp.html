@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'nonce-YourNonceValue'">
+    <title>Sample Page with Segment Tracking</title>
+    <script nonce="YourNonceValue">
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.nonce="YourNonceValue";e.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics._writeKey="G5BwWiwo7E5XCw85h43neqDn59j6KCTp";analytics.load("G5BwWiwo7E5XCw85h43neqDn59j6KCTp");analytics.page()}}();
+    </script>
+</head>
+<body>
+    <h1>Welcome to My Sample Page</h1>
+    <p>This page is set up with Segment tracking and a nonce tag for CSP.</p>
+</body>
+</html>

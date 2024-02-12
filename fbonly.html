@@ -4,52 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Facebook Tracking via Segment</title>
-<style>
-  .button {
-    transition: transform 0.1s;
-  }
-  .button:active {
-    transform: scale(0.98);
-  }
-  .coffee-cup {
-    width: 100px;
-    height: 100px;
-    background-color: #fff;
-    border: 2px solid #000;
-    position: relative;
-    overflow: hidden;
-  }
-  .coffee {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: #76423B;
-    transition: height 0.5s;
-  }
-</style>
 <!-- Segment Snippet -->
 <script>
-  !function(){/* Your existing Segment script */}();
+  !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="iLDZuXejgG2pX5eFrUnTbR5be7kmRV2Q";;analytics.SNIPPET_VERSION="5.2.0";
+  analytics.load("iLDZuXejgG2pX5eFrUnTbR5be7kmRV2Q");
+  analytics.page();
+  }}();
 </script>
 </head>
 <body>
 
-<div class="coffee-cup">
-  <div class="coffee" id="coffee" style="height: 0%;"></div>
-</div>
-
-<button class="button" onclick="trackFillCoffee()">Fill Coffee</button>
-<button class="button" onclick="trackEmptyCoffee()">Empty Coffee</button>
+<button onclick="trackFillCoffee()">Fill Coffee</button>
+<button onclick="trackEmptyCoffee()">Empty Coffee</button>
 
 <script>
 function trackFillCoffee() {
   analytics.track('Fill Coffee');
-  document.getElementById('coffee').style.height = '100%';
 }
 
 function trackEmptyCoffee() {
   analytics.track('Empty Coffee');
-  document.getElementById('coffee').style.height = '0%';
 }
 </script>
 

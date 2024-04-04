@@ -7,6 +7,47 @@
   !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="UmiDfSXDNeoTmmktJO7XgkRKLpFRItah";;analytics.SNIPPET_VERSION="5.2.0";
   analytics.load("UmiDfSXDNeoTmmktJO7XgkRKLpFRItah");
   analytics.page();
+analytics.track('Product Viewed', {
+  currency: 'USD',
+  products: [
+    {
+      band_width: 1.6,
+      center_gem: {
+        carat_weight: 1.75,
+        clarity: 'VS1',
+        color: 'F',
+        country_of_origin: null,
+        crystal: 'Lab-Grown Diamond',
+        cut: 'Ex',
+        gcode: null,
+        gem_price: 2350,
+        grade: null,
+        non_sku: 'Yes',
+        shape: 'Oval',
+        supplier_vendor: null
+      },
+      delivery_days: 18,
+      description: 'Oval diamond center and fishtail pavé diamond band engagement ring set in 18K white gold',
+      design_complexity: 'base',
+      gcode: null,
+      jewellery_sku: null,
+      metal_type1: '18K White Gold',
+      metal_type2: null,
+      metal_weight1: null,
+      metal_weight2: null,
+      name: 'D*** G*** W*** O***',
+      price: 3645,
+      product_type: 'Engagement Ring',
+      quantity: 1,
+      signature_gem: '0.80mm 0.003ct Round Ruby, Medium Red, Eye-Clean',
+      sku: 'nt-1333',
+      suffix: '',
+      total_exc_tax_amount: null
+    }
+  ],
+  user_id: null,
+  value: 3645
+});																							     
   }}();
 </script>
 

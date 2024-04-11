@@ -16,7 +16,7 @@
           strategy: "batching",
           config: {
             size: 10,
-            timeout: 30000
+            timeout: 5000
           }
         }
       }
@@ -24,11 +24,7 @@
   });
   }}();
   analytics.page("Home Page");
-  //analytics.track("Batching One");
-  //analytics.track("Batching Two");
-  //analytics.track("Batching Three");
-  //analytics.track("Batching Four");
-  //analytics.track("Batching Five");
+
 </script>	
 <!-- SEGMENT-->
 
@@ -77,6 +73,12 @@
             window.location.href = "";
         });
       }
+	analytics.track("Product Viewed");
+  analytics.track("Batching One");
+  analytics.track("Batching Two");
+  analytics.track("Batching Three");
+  analytics.track("Batching Four");
+  analytics.track("Batching Five");
 </script>
 	
 

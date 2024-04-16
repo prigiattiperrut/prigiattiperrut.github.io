@@ -1,46 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Redirecting...</title>
-    <script type="text/javascript">
-        // Parses the query string and returns an object of parameters
-        function getQueryStringParams(query) {
-            var params = {};
-            var parser = document.createElement('a');
-            parser.href = query;
-            var query = parser.search.substring(1);
-            var vars = query.split('&');
-            for (var i = 0; i < vars.length; i++) {
-                var pair = vars[i].split('=');
-                params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
-            }
-            return params;
-        }
-
-        // Appends parameters to the redirect URL
-        function appendParamsToRedirectUrl(redirectUrl, params) {
-            var queryString = Object.keys(params).map(function(key) {
-                return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
-            }).join('&');
-            return redirectUrl + (redirectUrl.indexOf('?') > -1 ? '&' : '?') + queryString;
-        }
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <h1>Redirect Page</h1>
+    <p>You will be redirected back to the original page in 5 seconds.</p>
+    <script>
         window.onload = function() {
-            // The URL to which you want to redirect
-            var redirectUrl = "https://prigiattiperrut.github.io/redirected.html";
+            // Display the query string in the console or process as needed
+            console.log("Captured Query String:", window.location.search);
 
-            // Extract query string parameters from the current URL
-            var params = getQueryStringParams(window.location.href);
-
-            // Append the parameters to the redirect URL
-            redirectUrl = appendParamsToRedirectUrl(redirectUrl, params);
-
-            // Redirect to the new URL with parameters
-            window.location.href = redirectUrl;
-        };
+            // Example: Extract and display UTM parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            document.getElementById('params').innerHTML = `
+                <p>UID: ${urlParams.get('ajs_uid')}</p>
+                <p>Event: ${urlParams.get('ajs_event')}</p>
+                <p>AID: ${urlParams.get('ajs_aid')}</p>
+                <p>Email Campaign: ${urlParams.get('ajs_prop_emailCampaign')}</p>
+                <p>Name: ${urlParams.get('ajs_trait_name')}</p>
+            `;
+        }
     </script>
 </head>
 <body>
-    <p>Redirecting...</p>
+    <h1>Parameters Captured</h1>
+    <div id="params"></div>
 </body>
 </html>

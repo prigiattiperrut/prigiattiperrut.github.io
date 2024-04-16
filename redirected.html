@@ -2,11 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="5;url=redirect.html">
     <title>Redirect Page</title>
+    <script>
+        // Function to get UTM parameters from the URL
+        function getUTMParameters() {
+            var params = {};
+            window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+                params[key] = value;
+            });
+            return params;
+        }
+
+        // Function to build URL with UTM parameters
+        function buildURLWithUTMParameters(baseUrl, params) {
+            var utmParams = [];
+            for (var key in params) {
+                if (params.hasOwnProperty(key)) {
+                    utmParams.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
+                }
+            }
+            return baseUrl + (utmParams.length ? '?' + utmParams.join('&') : '');
+        }
+
+        // Redirect back to the original page with UTM parameters
+        function redirectToOriginalPageWithUTM() {
+            var originalPageUrl = 'redirect.html'; // URL of the original page
+            var utmParams = getUTMParameters();
+            var redirectUrl = buildURLWithUTMParameters(originalPageUrl, utmParams);
+            setTimeout(function() {
+                window.location.href = redirectUrl;
+            }, 5000); // Redirect after 5 seconds
+        }
+
+        // Call the redirect function on page load
+        window.onload = redirectToOriginalPageWithUTM;
+    </script>
 </head>
 <body>
     <h1>Redirect Page</h1>
-    <p>You will be redirected back to the original page in 5 seconds.</p>
+    <p>You will be redirected back to the original page with UTM parameters in 5 seconds.</p>
 </body>
 </html>

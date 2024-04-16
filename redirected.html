@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Redirect Page</title>
-    <script>
-        // Function to get UTM parameters from the URL
-        function getUTMParameters() {
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+        // Function to get query string parameters
+        function getQueryStringParams() {
             var params = {};
             window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
                 params[key] = value;
@@ -13,33 +12,30 @@
             return params;
         }
 
-        // Function to build URL with UTM parameters
-        function buildURLWithUTMParameters(baseUrl, params) {
-            var utmParams = [];
-            for (var key in params) {
-                if (params.hasOwnProperty(key)) {
-                    utmParams.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
-                }
-            }
-            return baseUrl + (utmParams.length ? '?' + utmParams.join('&') : '');
+        // Function to append query string parameters to the redirect URL
+        function appendParamsToRedirectUrl(redirectUrl, params) {
+            var queryString = Object.keys(params).map(function(key) {
+                return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+            }).join('&');
+            return redirectUrl + (redirectUrl.indexOf('?') !== -1 ? '&' : '?') + queryString;
         }
 
-        // Redirect back to the original page with UTM parameters
-        function redirectToOriginalPageWithUTM() {
-            var originalPageUrl = 'redirect.html'; // URL of the original page
-            var utmParams = getUTMParameters();
-            var redirectUrl = buildURLWithUTMParameters(originalPageUrl, utmParams);
-            setTimeout(function() {
-                window.location.href = redirectUrl;
-            }, 5000); // Redirect after 5 seconds
-        }
+        window.onload = function() {
+            // Define your redirect URL
+            var redirectUrl = "redirect.html";
 
-        // Call the redirect function on page load
-        window.onload = redirectToOriginalPageWithUTM;
+            // Get the query string parameters
+            var params = getQueryStringParams();
+
+            // Append the parameters to the redirect URL
+            redirectUrl = appendParamsToRedirectUrl(redirectUrl, params);
+
+            // Redirect to the new URL
+            window.location.href = redirectUrl;
+        };
     </script>
 </head>
 <body>
-    <h1>Redirect Page</h1>
-    <p>You will be redirected back to the original page with UTM parameters in 5 seconds.</p>
+    <p>Redirecting...</p>
 </body>
 </html>

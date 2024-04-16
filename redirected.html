@@ -2,28 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <h1>Redirect Page</h1>
     <p>You will be redirected back to the original page in 5 seconds.</p>
-    <script>
-        window.onload = function() {
-            // Display the query string in the console or process as needed
-            console.log("Captured Query String:", window.location.search);
-
-            // Example: Extract and display UTM parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            document.getElementById('params').innerHTML = `
-                <p>UID: ${urlParams.get('ajs_uid')}</p>
-                <p>Event: ${urlParams.get('ajs_event')}</p>
-                <p>AID: ${urlParams.get('ajs_aid')}</p>
-                <p>Email Campaign: ${urlParams.get('ajs_prop_emailCampaign')}</p>
-                <p>Name: ${urlParams.get('ajs_trait_name')}</p>
-            `;
+    <script type="text/javascript">
+        function redirectToOriginal() {
+            // Redirects back to redirect.html with the same parameters
+            const params = window.location.search;
+            const url = "https://prigiattiperrut.github.io/redirect.html" + params;
+            window.location.href = url;
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Redirect back after 5 seconds
+            setTimeout(redirectToOriginal, 5000);
+        });
     </script>
 </head>
 <body>
-    <h1>Parameters Captured</h1>
-    <div id="params"></div>
+    <h1>You have been redirected</h1>
+    <p>URL Parameters:</p>
+    <script>
+        document.write("<pre>" + decodeURIComponent(window.location.search.substr(1)) + "</pre>");
+    </script>
 </body>
 </html>

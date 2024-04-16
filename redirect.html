@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="5;url=#">
     <h1>Welcome to the Original Page</h1>
     <p>You will be redirected to another page in 5 seconds and then brought back here.</p>
 <script>
@@ -13,6 +12,7 @@
 </script>
     <script type="text/javascript">
         function getRedirectURL() {
+            // Builds the URL for redirected.html with all current parameters
             const urlParams = new URLSearchParams(window.location.search);
             const url = "https://prigiattiperrut.github.io/redirected.html?" + urlParams.toString();
             return url;
@@ -27,11 +27,17 @@
         }
 
         document.addEventListener("DOMContentLoaded", function() {
+            // Set to redirect after 5 seconds
             const redirectTimeout = setTimeout(redirectToPage, 5000);
         });
     </script>
 </head>
 <body>
+    <h1>Redirecting...</h1>
+    <button onclick="cancelRedirect()">Cancel Redirect</button>
+</body>
+</html>
+
     <h1>Redirecting...</h1>
     <button onclick="cancelRedirect()">Cancel Redirect</button>
 </body>

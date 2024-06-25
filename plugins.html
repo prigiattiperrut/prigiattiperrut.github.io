@@ -16,7 +16,29 @@
   }}();
 </script>
 
-   <script>
+    <script>
+      // Utility functions to get and set cookies
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+
+      function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+
       // Plugin to capture UTM parameters
       const captureUTMParameters = {
         name: 'Capture UTM Parameters',
@@ -27,17 +49,36 @@
         
         getUTMParameters: () => {
           const params = new URLSearchParams(window.location.search);
-          return {
+          const utmParams = {
             source: params.get('utm_source'),
             medium: params.get('utm_medium'),
             campaign: params.get('utm_campaign'),
             content: params.get('utm_content'),
             term: params.get('utm_term')
           };
+          
+          // Store UTM parameters in cookies
+          for (const key in utmParams) {
+            if (utmParams[key]) {
+              setCookie(`utm_${key}`, utmParams[key], 30); // Store for 30 days
+            }
+          }
+          
+          return utmParams;
+        },
+
+        getUTMFromCookies: () => {
+          return {
+            source: getCookie('utm_source'),
+            medium: getCookie('utm_medium'),
+            campaign: getCookie('utm_campaign'),
+            content: getCookie('utm_content'),
+            term: getCookie('utm_term')
+          };
         },
         
         updateContextWithUTM: (ctx) => {
-          const utmParams = captureUTMParameters.getUTMParameters();
+          const utmParams = captureUTMParameters.getUTMFromCookies();
           ctx.updateEvent('context.campaign', utmParams);
           return ctx;
         },
@@ -47,11 +88,11 @@
         page: (ctx) => captureUTMParameters.updateContextWithUTM(ctx),
         alias: (ctx) => captureUTMParameters.updateContextWithUTM(ctx),
         group: (ctx) => captureUTMParameters.updateContextWithUTM(ctx),
-        screen: (ctx) => captureUTMParameters.updateContextWithUTM(ctx),
       };
 
       // Register the plugin
       window.analytics.ready(() => {
+        captureUTMParameters.getUTMParameters(); // Capture UTM parameters on page load
         window.analytics.register(captureUTMParameters);
       });
     </script>

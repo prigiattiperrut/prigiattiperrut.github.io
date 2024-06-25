@@ -16,9 +16,8 @@
   }}();
 </script>
 
-    <script type="module">
-      import { Plugin } from '@segment/analytics-next';
-
+   <script>
+      // Plugin to capture UTM parameters
       const captureUTMParameters = {
         name: 'Capture UTM Parameters',
         type: 'enrichment',
@@ -52,7 +51,10 @@
       };
 
       // Register the plugin
-      window.analytics.register(captureUTMParameters);
+      window.analytics.ready(() => {
+        window.analytics.register(captureUTMParameters);
+      });
     </script>
+    
 </body>
 </html>

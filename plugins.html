@@ -124,7 +124,6 @@
             };
             analytics.SNIPPET_VERSION = "4.1.0";
             analytics.load("G5BwWiwo7E5XCw85h43neqDn59j6KCTp");
-            analytics.page();
           }
         }
 
@@ -137,15 +136,12 @@
           const campaign = prepareCampaignObject(storedUTMParams);
           console.log('Campaign object prepared:', campaign);
 
-          // Update analytics context with UTM parameters
-          analytics.addSourceMiddleware(function(event) {
-            event.context = event.context || {};
-            event.context.campaign = campaign;
-            return event;
+          // Fire the page event with the campaign context
+          analytics.page({}, {
+            context: {
+              campaign: campaign
+            }
           });
-
-          // Test page event
-          analytics.page();
 
           // Set up additional event listeners if needed
           analytics.on('track', function(event, properties, options) {

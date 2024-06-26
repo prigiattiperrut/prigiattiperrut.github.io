@@ -10,46 +10,6 @@
     <p>This page demonstrates how to use a Segment plugin to capture UTM parameters and attach them to events.</p>
 
     <script>
-      !function(){
-        var i="analytics",analytics=window[i]=window[i]||[];
-        if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");
-        else{
-          analytics.invoked=!0;
-          analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];
-          analytics.factory=function(e){return function(){
-            if(window[i].initialized)return window[i][e].apply(window[i],arguments);
-            var n=Array.prototype.slice.call(arguments);
-            if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){
-              var c=document.querySelector("link[rel='canonical']");
-              n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})
-            }
-            n.unshift(e);
-            analytics.push(n);
-            return analytics
-          }};
-          for(var n=0;n<analytics.methods.length;n++){
-            var key=analytics.methods[n];
-            analytics[key]=analytics.factory(key)
-          }
-          analytics.load=function(key,n){
-            var t=document.createElement("script");
-            t.type="text/javascript";
-            t.async=!0;
-            t.setAttribute("data-global-segment-analytics-key",i);
-            t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
-            var r=document.getElementsByTagName("script")[0];
-            r.parentNode.insertBefore(t,r);
-            analytics._loadOptions=n
-          };
-          analytics._writeKey="G5BwWiwo7E5XCw85h43neqDn59j6KCTp";
-          analytics.SNIPPET_VERSION="5.2.0";
-          analytics.load("G5BwWiwo7E5XCw85h43neqDn59j6KCTp");
-          analytics.page();
-        }
-      }();
-    </script>
-
-    <script>
       // Utility functions to get and set cookies
       function setCookie(name, value, days) {
         var expires = "";
@@ -77,84 +37,128 @@
         return null;
       }
 
-      // Plugin to capture UTM parameters
-      const captureUTMParameters = {
-        name: 'Capture UTM Parameters',
-        type: 'enrichment',
-        version: '1.0.0',
-        isLoaded: () => true,
-        load: () => Promise.resolve(),
-        
-        getUTMParameters: () => {
-          const params = new URLSearchParams(window.location.search);
-          const utmParams = {
-            source: params.get('utm_source'),
-            medium: params.get('utm_medium'),
-            campaign: params.get('utm_campaign'),
-            content: params.get('utm_content'),
-            term: params.get('utm_term')
-          };
-          
-          // Store UTM parameters in cookies
-          for (const key in utmParams) {
-            if (utmParams[key]) {
-              setCookie(`utm_${key}`, utmParams[key], 30); // Store for 30 days
-            }
+      function deleteCookie(name) {
+        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax";
+        console.log(`Deleted cookie: ${name}`);
+      }
+
+      function getQueryParam(name) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get(name);
+      }
+
+      // Capture UTM parameters from URL
+      function captureUTMParameters() {
+        const utmParams = {
+          source: getQueryParam('utm_source'),
+          medium: getQueryParam('utm_medium'),
+          campaign: getQueryParam('utm_campaign'),
+          content: getQueryParam('utm_content'),
+          term: getQueryParam('utm_term')
+        };
+        console.log('UTM parameters captured from URL:', utmParams);
+
+        // Store UTM parameters in cookies
+        for (const key in utmParams) {
+          if (utmParams[key]) {
+            setCookie(`utm_${key}`, utmParams[key], 30); // Store for 30 days
           }
-          
-          console.log('UTM parameters captured from URL:', utmParams);
-          return utmParams;
-        },
+        }
 
-        getUTMFromCookies: () => {
-          const utmParams = {
-            source: getCookie('utm_source'),
-            medium: getCookie('utm_medium'),
-            campaign: getCookie('utm_campaign'),
-            content: getCookie('utm_content'),
-            term: getCookie('utm_term')
-          };
-          console.log('UTM parameters retrieved from cookies:', utmParams);
-          return utmParams;
-        },
-        
-        updateContextWithUTM: (ctx) => {
-          const utmParams = captureUTMParameters.getUTMFromCookies();
-          const campaign = {
-            name: utmParams.campaign,
-            source: utmParams.source,
-            medium: utmParams.medium,
-            content: utmParams.content,
-            term: utmParams.term
-          };
-          console.log('Updating context with UTM campaign:', campaign);
-          ctx.updateEvent('context.campaign', campaign);
-          return ctx;
-        },
-        
-        track: (ctx) => captureUTMParameters.updateContextWithUTM(ctx),
-        identify: (ctx) => captureUTMParameters.updateContextWithUTM(ctx),
-        page: (ctx) => captureUTMParameters.updateContextWithUTM(ctx),
-        alias: (ctx) => captureUTMParameters.updateContextWithUTM(ctx),
-        group: (ctx) => captureUTMParameters.updateContextWithUTM(ctx),
-        screen: (ctx) => captureUTMParameters.updateContextWithUTM(ctx),
-      };
+        return utmParams;
+      }
 
-      // Register the plugin
-      window.analytics.ready(() => {
-        console.log('Analytics.js is ready');
-        captureUTMParameters.getUTMParameters(); // Capture UTM parameters on page load
-        window.analytics.register(captureUTMParameters);
-        window.analytics.on('track', function(event, properties, options) {
-          console.log('Track event:', event, properties, options);
+      // Retrieve UTM parameters from cookies
+      function getUTMFromCookies() {
+        const utmParams = {
+          source: getCookie('utm_source'),
+          medium: getCookie('utm_medium'),
+          campaign: getCookie('utm_campaign'),
+          content: getCookie('utm_content'),
+          term: getCookie('utm_term')
+        };
+        console.log('UTM parameters retrieved from cookies:', utmParams);
+        return utmParams;
+      }
+
+      function prepareCampaignObject(utmParams) {
+        return {
+          source: utmParams.source || null,
+          medium: utmParams.medium || null,
+          name: utmParams.campaign || null,
+          content: utmParams.content || null,
+          term: utmParams.term || null
+        };
+      }
+
+      // Initialize the analytics plugin
+      (function() {
+        var analytics = window.analytics = window.analytics || [];
+
+        if (!analytics.initialize) {
+          if (analytics.invoked) {
+            console.error("Segment snippet included twice.");
+          } else {
+            analytics.invoked = true;
+            analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "screen", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware", "register"];
+            analytics.factory = function(method) {
+              return function() {
+                var args = Array.prototype.slice.call(arguments);
+                args.unshift(method);
+                analytics.push(args);
+                return analytics;
+              };
+            };
+            for (var i = 0; i < analytics.methods.length; i++) {
+              var key = analytics.methods[i];
+              analytics[key] = analytics.factory(key);
+            }
+            analytics.load = function(key, options) {
+              var script = document.createElement("script");
+              script.type = "text/javascript";
+              script.async = true;
+              script.src = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
+              var first = document.getElementsByTagName("script")[0];
+              first.parentNode.insertBefore(script, first);
+              analytics._loadOptions = options;
+            };
+            analytics.SNIPPET_VERSION = "4.1.0";
+            analytics.load("G5BwWiwo7E5XCw85h43neqDn59j6KCTp");
+            analytics.page();
+          }
+        }
+
+        // Capture UTM parameters and set up the plugin
+        analytics.ready(function() {
+          console.log('Analytics.js is ready');
+          const utmParams = captureUTMParameters(); // Capture UTM parameters on page load
+          const storedUTMParams = getUTMFromCookies(); // Retrieve stored UTM parameters from cookies
+
+          const campaign = prepareCampaignObject(storedUTMParams);
+          console.log('Campaign object prepared:', campaign);
+
+          // Update analytics context with UTM parameters
+          analytics.addSourceMiddleware(function(event) {
+            event.context = event.context || {};
+            event.context.campaign = campaign;
+            return event;
+          });
+
+          // Test page event
+          analytics.page();
+
+          // Set up additional event listeners if needed
+          analytics.on('track', function(event, properties, options) {
+            console.log('Track event:', event, properties, options);
+          });
+          analytics.on('identify', function(event, properties, options) {
+            console.log('Identify event:', event, properties, options);
+          });
+          analytics.on('page', function(event, properties, options) {
+            console.log('Page event:', event, properties, options);
+          });
         });
-        window.analytics.on('identify', function(event, properties, options) {
-          console.log('Identify event:', event, properties, options);
-        });
-        window.analytics.on('page', function(event, properties, options) {
-          console.log('Page event:', event, properties, options);
-        });
-      });
+      })();
     </script>
 </body>
 </html>

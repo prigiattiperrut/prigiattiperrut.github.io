@@ -6,7 +6,7 @@
     <title>Segment UTM Capture Plugin</title>
 </head>
 <body>
-    <h1>Segment UTM Capture Plugin Example 2 </h1>
+    <h1>Segment UTM Capture Plugin Example</h1>
     <p>This page demonstrates how to use a Segment plugin to capture UTM parameters and attach them to events.</p>
 
     <script>
@@ -142,8 +142,18 @@
 
       // Register the plugin
       window.analytics.ready(() => {
+        console.log('Analytics.js is ready');
         captureUTMParameters.getUTMParameters(); // Capture UTM parameters on page load
         window.analytics.register(captureUTMParameters);
+        window.analytics.on('track', function(event, properties, options) {
+          console.log('Track event:', event, properties, options);
+        });
+        window.analytics.on('identify', function(event, properties, options) {
+          console.log('Identify event:', event, properties, options);
+        });
+        window.analytics.on('page', function(event, properties, options) {
+          console.log('Page event:', event, properties, options);
+        });
       });
     </script>
 </body>

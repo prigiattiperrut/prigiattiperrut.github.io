@@ -17,7 +17,7 @@
     // Step 1: Persist new campaign data (if available) into analytics.js storage 
     // Step 2: Enrich subsequent events with campaign data (via the event.context object)  
 
-    window.analytics.addSourceMiddleware((payload, next) => {
+analytics.addSourceMiddleware((payload, next) => {
         const existingCampaign = analytics.storage.get('campaign');
         if (existingCampaign) {
             payload.obj.context.campaign = JSON.parse(existingCampaign);

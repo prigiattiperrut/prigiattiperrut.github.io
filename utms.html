@@ -12,6 +12,7 @@
   </script>                                                                                                                                                                                                  
               
         <script>
+  analytics.ready(function() {  
     // Adding the source middleware
                     analytics.addSourceMiddleware((payload, next) => {
                         const existingCampaign = analytics.storage.get('campaign');
@@ -30,8 +31,8 @@
                         }
                         next(payload);
                     });
-                }
         }();
+    });
     </script>
 </head>
 <body>

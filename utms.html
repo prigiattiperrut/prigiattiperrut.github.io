@@ -14,28 +14,28 @@
 
 <script>
     // Step 1: Persist new campaign data (if available) into analytics.js storage 
-// Step 2: Enrich subsequent events with campaign data (via the event.context object)  
+    // Step 2: Enrich subsequent events with campaign data (via the event.context object)  
 
-window.analytics.addSourceMiddleware((payload, next) => {
-  const existingCampaign = analytics.storage.get('campaign')
-  if (existingCampaign) {
-    payload.obj.context.campaign = JSON.parse(existingCampaign)
-  } else {
-    if (payload.type === 'page' &&
-        payload.obj.context.campaign &&
-        JSON.stringify(payload.obj.context.campaign) !== '{}'
-      ) {
-        analytics.storage.set(
-          'campaign',
-          JSON.stringify(payload.obj.context.campaign)
-        )
-      }
-    }
-  }
+    window.analytics.addSourceMiddleware((payload, next) => {
+        const existingCampaign = analytics.storage.get('campaign');
+        if (existingCampaign) {
+            payload.obj.context.campaign = JSON.parse(existingCampaign);
+        } else {
+            if (payload.type === 'page' &&
+                payload.obj.context.campaign &&
+                JSON.stringify(payload.obj.context.campaign) !== '{}'
+            ) {
+                analytics.storage.set(
+                    'campaign',
+                    JSON.stringify(payload.obj.context.campaign)
+                );
+            }
+        }
 
-  next(payload)
-})
+        next(payload);
+    });
 </script>
+
     
 </head>
 <body>

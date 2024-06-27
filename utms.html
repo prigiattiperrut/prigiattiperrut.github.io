@@ -13,6 +13,7 @@
 
 
 <script>
+    analytics.ready(function() {
     // Step 1: Persist new campaign data (if available) into analytics.js storage 
     // Step 2: Enrich subsequent events with campaign data (via the event.context object)  
 
@@ -34,6 +35,7 @@
 
         next(payload);
     });
+        });
 </script>
 
     

@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+
+    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
+
+
+<!-- Google tag (gtag.js) - Google Ads: TAG_ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-755341511"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config','AW-755341511');
+  </script>
+
+    <script>
+window.gtag('event', 'purchase', {
+    'value': 1.0,  // Adjust the value based on the actual purchase amount
+    'currency': 'USD',  // Adjust the currency code if needed
+    'transaction_id': '123',  // Replace with the actual transaction ID
+    'items': [
+      {
+        'id': 'P12345',  // Replace with the actual item ID
+        'price': 12.50,  // Replace with the actual item price
+        'quantity': 1  // Replace with the actual item quantity
+      },
+      {
+        'id': 'P12346',
+        'price': 12.51,
+        'quantity': 2
+      }
+      // Add more items as needed
+    ] })
+    </script>
+
+
+
+</head> 
+
+<body>	
+
+	
+<h1>What is your favorite place to travel?</h1> 
+<p>I am building a directory of the sweetest travel destinations.</p>  
+<form name="travel" onsubmit="identify(event)">
+     What is your favorite travel destination?
+    <input name="destination" required="" size="81" type="text"/> 
+    <br><br><br> 
+    Any recommendations (cool things to do, places to visit or restaurants to eat)? 
+    <br><br> 
+    <textarea cols="81" name="details" required="" rows="10">
+    </textarea> 
+    <br><br> 
+    Name: <input name="fullname" required="" size="75" type="text"/> 
+    <br><br> 
+    Email: <input name="email" required="" size="75" type="email"/> 
+    <br><br>
+    <input name="submit" type="submit" value="submit"/>
+</form> 
+
+    
+<script type="text/javascript">
+      function identify(e){
+        e.preventDefault();
+        var form = e.target;
+        var email = form["email"].value;
+        var fullname = form["fullname"].value;
+        var destination = form["destination"].value;
+        var details = form["details"].value;
+        var user = {
+            email: email, 
+            name: fullname, 
+            destination: destination, 
+            details: details
+        };
+        analytics.identify('1234next', {
+            email: email, 
+            name: fullname
+        });
+        analytics.track('destination submitted', user, function() {
+            window.location.href = "";
+        });
+      }
+</script>
+    
+    
+</body> 
+</html>

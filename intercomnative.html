@@ -6,7 +6,7 @@
     <title>Intercom Integration Example</title>
     <script>
         window.intercomSettings = {
-            app_id: "rtrxe81v"
+            app_id: "rtrxe81v",
         };
     </script>
     <script>(function() {
@@ -33,80 +33,53 @@
         }
     })();</script>
     <script>
-        const apiKey = 'YOUR_API_KEY';
-        const userEmail = 'USER_EMAIL';
-        const userId = 'USER_ID';
-        const companyId = 'COMPANY_ID';
-        const companyName = 'COMPANY_NAME';
-
-        async function createOrUpdateUser() {
-            try {
-                const userResponse = await fetch('https://api.intercom.io/contacts', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${apiKey}`,
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        role: 'user',
-                        email: userEmail,
-                        user_id: userId
-                    })
-                });
-                const user = await userResponse.json();
-                console.log('User created/updated successfully:', user);
-            } catch (error) {
-                console.error('Error creating/updating user:', error);
-            }
+        function generateRandomEmail() {
+            const domains = ["example.com", "test.com", "sample.com"];
+            const randomDomain = domains[Math.floor(Math.random() * domains.length)];
+            return `user${Math.floor(Math.random() * 10000)}@${randomDomain}`;
         }
 
-        async function createOrUpdateCompany() {
-            try {
-                const companyResponse = await fetch('https://api.intercom.io/companies', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${apiKey}`,
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        company_id: companyId,
-                        name: companyName
-                    })
-                });
-                const company = await companyResponse.json();
-                console.log('Company created/updated successfully:', company);
+        function generateRandomUserId() {
+            return `user_${Math.floor(Math.random() * 100000)}`;
+        }
 
-                // Associate user with company
-                const userResponse = await fetch(`https://api.intercom.io/contacts`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${apiKey}`,
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    }
-                });
-                const users = await userResponse.json();
-                const user = users.data.find(u => u.user_id === userId);
+        function generateRandomCompanyId() {
+            return `company_${Math.floor(Math.random() * 100000)}`;
+        }
 
-                if (user) {
-                    await fetch(`https://api.intercom.io/contacts/${user.id}`, {
-                        method: 'PUT',
-                        headers: {
-                            'Authorization': `Bearer ${apiKey}`,
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            companies: [{ company_id: companyId }]
-                        })
-                    });
-                    console.log('User associated with company successfully.');
+        function generateRandomCompanyName() {
+            const companyNames = ["TechCorp", "Innovatech", "Future Enterprises", "Creative Solutions"];
+            return companyNames[Math.floor(Math.random() * companyNames.length)];
+        }
+
+        function createOrUpdateUser() {
+            const email = generateRandomEmail();
+            const userId = generateRandomUserId();
+            
+            window.Intercom('update', {
+                email: email,
+                user_id: userId,
+            });
+
+            console.log('User created/updated successfully:', { email, user_id: userId });
+        }
+
+        function createOrUpdateCompany() {
+            const email = generateRandomEmail();
+            const userId = generateRandomUserId();
+            const companyId = generateRandomCompanyId();
+            const companyName = generateRandomCompanyName();
+
+            window.Intercom('update', {
+                email: email,
+                user_id: userId,
+                company: {
+                    id: companyId,
+                    name: companyName
                 }
-            } catch (error) {
-                console.error('Error creating/updating company:', error);
-            }
+            });
+
+            console.log('Company created/updated successfully:', { email, user_id: userId, company_id: companyId, company_name: companyName });
         }
     </script>
 </head>

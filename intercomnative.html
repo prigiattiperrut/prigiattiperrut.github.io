@@ -65,23 +65,33 @@
         }
 
         function createOrUpdateCompany() {
-            setTimeout(() => {
-                const email = generateRandomEmail();
-                const userId = generateRandomUserId();
-                const companyId = generateRandomCompanyId();
-                const companyName = generateRandomCompanyName();
+            const email = generateRandomEmail();
+            const userId = generateRandomUserId();
+            const companyId = generateRandomCompanyId();
+            const companyName = generateRandomCompanyName();
 
-                window.Intercom('update', {
-                    email: email,
-                    user_id: userId,
-                    company: {
-                        id: companyId,
-                        name: companyName
-                    }
-                });
+            window.Intercom('update', {
+                email: email,
+                user_id: userId,
+                company: {
+                    id: companyId,
+                    name: companyName
+                }
+            });
 
-                console.log('Company created/updated successfully:', { email, user_id: userId, company_id: companyId, company_name: companyName });
-            }, 5000); // 5 seconds delay
+            console.log('First company update:', { email, user_id: userId, company_id: companyId, company_name: companyName });
+
+            // Second request
+            window.Intercom('update', {
+                email: email,
+                user_id: userId,
+                company: {
+                    id: companyId,
+                    name: companyName
+                }
+            });
+
+            console.log('Second company update:', { email, user_id: userId, company_id: companyId, company_name: companyName });
         }
     </script>
 </head>

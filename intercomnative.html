@@ -3,65 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intercom Integration</title>
+    <title>Intercom Integration Example</title>
     <script>
         window.intercomSettings = {
-            app_id: "rtrxe81v",
-            name: "John Doe", // Full name
-            email: "john.doe@example.com", // Email address
-            user_id: "123", // User ID
-            created_at: 1234567890, // Signup date as a Unix timestamp
-            company: {
-                id: "55", // Company ID
-                name: "Example Company"
-            }
+            app_id: "rtrxe81v"
         };
+    </script>
+    <script>(function() {
+        var w = window;
+        var ic = w.Intercom;
+        if (typeof ic === "function") {
+            ic('reattach_activator');
+            ic('update', w.intercomSettings);
+        } else {
+            var d = document;
+            var i = function() { i.c(arguments); };
+            i.q = [];
+            i.c = function(args) { i.q.push(args); };
+            w.Intercom = i;
+            var l = function() {
+                var s = d.createElement('script');
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = 'https://widget.intercom.io/widget/YOUR_APP_ID';
+                var x = d.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(s, x);
+            };
+            if (w.attachEvent) { w.attachEvent('onload', l); } else { w.addEventListener('load', l, false); }
+        }
+    })();</script>
+    <script>
+        const apiKey = 'YOUR_API_KEY';
+        const userEmail = 'USER_EMAIL';
+        const userId = 'USER_ID';
+        const companyId = 'COMPANY_ID';
+        const companyName = 'COMPANY_NAME';
 
-        (function() {
-            var w = window;
-            var ic = w.Intercom;
-            if (typeof ic === "function") {
-                ic('reattach_activator');
-                ic('update', window.intercomSettings);
-            } else {
-                var d = document;
-                var i = function() { i.c(arguments) };
-                i.q = [];
-                i.c = function(args) { i.q.push(args) };
-                w.Intercom = i;
-                function l() {
-                    var s = d.createElement('script');
-                    s.type = 'text/javascript';
-                    s.async = true;
-                    s.src = 'https://widget.intercom.io/widget/YOUR_APP_ID';
-                    var x = d.getElementsByTagName('script')[0];
-                    x.parentNode.insertBefore(s, x);
-                }
-                if (w.attachEvent) {
-                    w.attachEvent('onload', l);
-                } else {
-                    w.addEventListener('load', l, false);
-                }
+        async function createOrUpdateUser() {
+            try {
+                const userResponse = await fetch('https://api.intercom.io/contacts', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        role: 'user',
+                        email: userEmail,
+                        user_id: userId
+                    })
+                });
+                const user = await userResponse.json();
+                console.log('User created/updated successfully:', user);
+            } catch (error) {
+                console.error('Error creating/updating user:', error);
             }
-        })();
-
-        function createContactAndCompany() {
-            window.Intercom('boot', window.intercomSettings);
-            window.Intercom('update', {
-                user_id: '123',
-                email: 'john.doe@example.com',
-                name: 'John Doe',
-                company: {
-                    id: '55',
-                    name: 'Example Company'
-                }
-            });
         }
 
-        window.onload = createContactAndCompany;
+        async function createOrUpdateCompany() {
+            try {
+                const companyResponse = await fetch('https://api.intercom.io/companies', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        company_id: companyId,
+                        name: companyName
+                    })
+                });
+                const company = await companyResponse.json();
+                console.log('Company created/updated successfully:', company);
+
+                // Associate user with company
+                const userResponse = await fetch(`https://api.intercom.io/contacts`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                });
+                const users = await userResponse.json();
+                const user = users.data.find(u => u.user_id === userId);
+
+                if (user) {
+                    await fetch(`https://api.intercom.io/contacts/${user.id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `Bearer ${apiKey}`,
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            companies: [{ company_id: companyId }]
+                        })
+                    });
+                    console.log('User associated with company successfully.');
+                }
+            } catch (error) {
+                console.error('Error creating/updating company:', error);
+            }
+        }
     </script>
 </head>
 <body>
     <h1>Intercom Integration Example</h1>
+    <button onclick="createOrUpdateUser()">Create/Update User</button>
+    <button onclick="createOrUpdateCompany()">Create/Update Company</button>
 </body>
 </html>

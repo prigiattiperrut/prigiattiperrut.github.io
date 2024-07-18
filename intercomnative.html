@@ -70,29 +70,21 @@
             const companyId = generateRandomCompanyId();
             const companyName = generateRandomCompanyName();
 
-            // First request
-            window.Intercom('update', {
-                email: email,
-                user_id: userId,
-                company: {
-                    id: companyId,
-                    name: companyName
-                }
-            });
+            function updateCompany() {
+                window.Intercom('update', {
+                    email: email,
+                    user_id: userId,
+                    company: {
+                        id: companyId,
+                        name: companyName
+                    }
+                });
 
-            console.log('First company update:', { email, user_id: userId, company_id: companyId, company_name: companyName });
+                console.log('Company update request sent:', { email, user_id: userId, company_id: companyId, company_name: companyName });
+            }
 
-            // Second request
-            window.Intercom('update', {
-                email: email,
-                user_id: userId,
-                company: {
-                    id: companyId,
-                    name: companyName
-                }
-            });
-
-            console.log('Second company update:', { email, user_id: userId, company_id: companyId, company_name: companyName });
+            updateCompany(); // First request
+            setTimeout(updateCompany, 2000); // Second request after 2 seconds
         }
     </script>
 </head>

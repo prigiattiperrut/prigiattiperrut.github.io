@@ -11,29 +11,29 @@
   }}();
 </script>
    <script>
-        // Register the Cookie Compatibility plugin with anonymous ID transformation
+        class AppendAnonymousIdPlugin {
+            constructor() {
+                this.name = 'Append AnonymousId Plugin';
+                this.type = 'before';
+                this.version = '1';
+            }
+
+            isLoaded() {
+                return true;
+            }
+
+            async load(ctx, analytics) {
+                const originalAnonymousId = analytics.user().anonymousId();
+                if (originalAnonymousId) {
+                    const transformedAnonymousId = originalAnonymousId + "_added_plugin";
+                    analytics.setAnonymousId(transformedAnonymousId);
+                }
+            }
+        }
+
+        // Register the Append AnonymousId Plugin
         window.analytics.ready(() => {
-            window.analytics.register({
-                name: 'Cookie Compatibility',
-                version: '0.1.0',
-                type: 'utility',
-                load: (_ctx, ajs) => {
-                    const user = ajs.user();
-                    const cookieJar = user.cookies;
-                    const cookieSetter = cookieJar.set.bind(cookieJar);
-
-                    // Append "added_plugin" to anonymous ID cookie
-                    const originalAnonymousId = user.anonymousId();
-                    if (originalAnonymousId) {
-                        const transformedAnonymousId = originalAnonymousId + "_added_plugin";
-                        cookieJar.set('ajs_anonymous_id', transformedAnonymousId);
-                    }
-
-                    // Ensure existing IDs are set
-                    user.id(user.id());
-                },
-                isLoaded: () => true
-            });
+            window.analytics.register(new AppendAnonymousIdPlugin());
         });
 
         // Example track event

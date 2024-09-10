@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segment Integration Example</title>
+  <script>
+    const SEGMENT_WRITE_KEY = "G5BwWiwo7E5XCw85h43neqDn59j6KCTp";
+    const DISABLE_DESTINATIONS_BY_DEFAULT = true;
+
+    let previousOneTrustGroupIds = [];
+
+    const ONE_TRUST_SEGMENT_MAPPING = {
+      C0002: ["A/B Testing", "Feature Flagging", "Live Chat"],
+      C0003: ["Analytics", "Raw Data"],
+      C0004: ["Email", "Email Marketing", "CRM"]
+    };
+
+    function getConsentGroups() {
+      if (!window.OnetrustActiveGroups) {
+        console.log("No OneTrust groups have been consented to");
+        return [];
+      }
+      const oneTrustActiveGroupArray = window.OnetrustActiveGroups.split(",").filter(e => e.startsWith("C"));
+      previousOneTrustGroupIds = oneTrustActiveGroupArray;
+      localStorage.setItem('onetrust_active_groups', JSON.stringify(oneTrustActiveGroupArray));
+      return oneTrustActiveGroupArray;
+    }
+
+    async function getConsentedIntegrations(enabledIntegrations, oneTrustGroupIds) {
+      const segmentCategories = oneTrustGroupIds.map(oneTrustGroupId => ONE_TRUST_SEGMENT_MAPPING[oneTrustGroupId])
+        .filter(segmentCategory => segmentCategory)
+        .flat(1);
+
+      const consentedIntegrations = enabledIntegrations.filter(enabledIntegration => {
+        return segmentCategories.includes(enabledIntegration.category);
+      });
+      return consentedIntegrations;
+    }
+
+    function shouldLoadAjs(oneTrustActiveGroups) {
+      return oneTrustActiveGroups.includes("C0002") || oneTrustActiveGroups.includes("C0003") || oneTrustActiveGroups.includes("C0004");
+    }
+
+    async function fetchDestinationForWriteKey(writeKey) {
+      if (!writeKey) {
+        return [];
+      }
+      const res = await window.fetch(`https://cdn.segment.com/v1/projects/${writeKey}/integrations`);
+      if (!res.ok) {
+        throw new Error(`Failed to fetch integrations for write key ${writeKey}: HTTP ${res.status} ${res.statusText}`);
+      }
+
+      const destinations = await res.json();
+      for (const destination of destinations) {
+        destination.id = destination.creationName;
+        delete destination.creationName;
+      }
+      return destinations;
+    }
+
+    async function loadAnalytics() {
+      const enabledIntegrations = await fetchDestinationForWriteKey(SEGMENT_WRITE_KEY);
+      const oneTrustGroupIds = getConsentGroups();
+      const consentedIntegrations = await getConsentedIntegrations(enabledIntegrations, oneTrustGroupIds);
+
+      const destinationPreferences = DISABLE_DESTINATIONS_BY_DEFAULT
+        ? { "All": false, "Segment.io": true }
+        : {};
+
+      consentedIntegrations.forEach(consentedIntegration => {
+        destinationPreferences[consentedIntegration.id] = true;
+      });
+
+      const consentedIntegrationArray = [];
+      for (const value in consentedIntegrations) {
+        consentedIntegrationArray.push(consentedIntegrations[value].name);
+      }
+
+      enabledIntegrations.forEach(integration => {
+        if (!consentedIntegrationArray.includes(integration.name)) {
+          destinationPreferences[integration.name] = false;
+        }
+      });
+
+      const loadAjs = shouldLoadAjs(oneTrustGroupIds);
+
+      if (getConsentGroupChange()) {
+        console.log("fire");
+      }
+
+      if (loadAjs) {
+        window.destinationPreferences = destinationPreferences;
+        window.analytics.load(SEGMENT_WRITE_KEY, {
+          "integrations": destinationPreferences
+        });
+      } else {
+        console.log

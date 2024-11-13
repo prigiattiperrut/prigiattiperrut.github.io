@@ -9,10 +9,10 @@
   window.intercomSettings = {
     api_base: "https://api-iam.intercom.io",
     app_id: "rtrxe81v",
-    user_id: "1234", // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
-   name: "Priscila G", // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
-    email: "priscila@gmail.com", // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
-    custom_launcher_selector:'#my_custom_link'
+    //user_id: "1234", // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
+   //name: "Priscila G", // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
+    //email: "priscila@gmail.com", // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
+    custom_launcher_selector:'.uala-chat-support',
    //created_at: user.createdAt, // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
   };
 </script>
@@ -26,6 +26,12 @@
 <body>
   <h1>Intercom Integration Test Page</h1>
   <p>This is a sample page for testing Native Intercom integration</p>
+
+  <button class="uala-chat-support">Contact Chat (before intercom init)</button>
+
+<button class="uala-chat-support">Contact Chat 2 (before intercom init)</button>
+
+<button id="add-new-button" style="background-color: orange; font-weight: 900;">Add another Chat Button</button>
 
   
 

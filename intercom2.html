@@ -12,29 +12,47 @@
     analytics.page();
     }}();
   </script>
+  <style>
+    .uala-chat-support {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    .uala-chat-support:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
   <h1>Intercom Integration Test Page</h1>
   <p>This is a sample page for testing Intercom integration via Segment.</p>
 
-  <!-- Chat Button with SVG -->
+  <!-- Chat Button with Visible Styles -->
   <div class="uala-chat-support css-1jspyti">
-    <span class="Icon css-1xl7c5n" type="chat" color="blue">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 17">
-        <path fill-rule="evenodd" d="M4.40387975,8.70912015 C3.66955841,8.70912015 3.07145009,8.11872282 3.07145009,7.39262525 C3.07145009,6.66652767 3.66955841,6.07613034 4.40387975,6.07613034 C5.1382011,6.07613034 5.73528526,6.66652767 5.73528526,7.39262525 C5.73528526,8.11872282 5.1382011,8.70912015 4.40387975,8.70912015 Z M8.50051208,8.70912015 C7.76619073,8.70912015 7.16910657,8.11872282 7.16910657,7.39262525 C7.16910657,6.66652767 7.76619073,6.07613034 8.50051208,6.07613034 C9.23483342,6.07613034 9.83191759,6.66652767 9.83191759,7.39262525 C9.83191759,8.11872282 9.23483342,8.70912015 8.50051208,8.70912015 Z M12.5971444,8.70912015 C11.8628231,8.70912015 11.2657389,8.11872282 11.2657389,7.39262525 C11.2657389,6.66652767 11.8628231,6.07613034 12.5971444,6.07613034 C13.3314658,6.07613034 13.9285499,6.66652767 13.9285499,7.39262525 C13.9285499,8.11872282 13.3314658,8.70912015 12.5971444,8.70912015 Z"></path>
-      </svg>
-    </span>
+    Contact Chat (before intercom init)
+  </div>
+  <div class="uala-chat-support css-1jspyti">
+    Contact Chat 2 (before intercom init)
   </div>
 
   <!-- Add Button Dynamically -->
-  <button id="add-new-button" style="background-color: orange; font-weight: 900;">Add another Chat Button</button>
+  <button id="add-new-button" style="background-color: orange; font-weight: 900; padding: 10px; margin-top: 20px;">
+    Add another Chat Button
+  </button>
 
   <script>
     // Dynamically add a new chat button (simulate SPA behavior)
     document.getElementById('add-new-button').addEventListener('click', () => {
       const newButton = document.createElement('div');
       newButton.className = 'uala-chat-support';
-      newButton.innerHTML = '<span class="Icon">Dynamic Chat</span>';
+      newButton.style.cssText = 'display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; font-size: 16px; border: none; border-radius: 4px; cursor: pointer; margin: 10px;';
+      newButton.textContent = 'Dynamic Chat Button';
       document.body.appendChild(newButton);
     });
 

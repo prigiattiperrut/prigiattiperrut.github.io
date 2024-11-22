@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Intercom Integration Test Page</title>
+  <title>Intercom Integration via Segment</title>
 
   <!-- Segment Snippet -->
   <script>
@@ -38,12 +38,10 @@
       document.body.appendChild(newButton);
     });
 
-    // Add click listener to chat buttons (simulate Intercom trigger)
+    // Add click listener to verify button interactions
     document.body.addEventListener('click', (event) => {
       if (event.target.closest('.uala-chat-support')) {
         console.log('Chat button clicked!');
-        // Simulate Intercom('show') or other trigger here
-        Intercom('show');
       }
     });
   </script>

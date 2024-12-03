@@ -1,74 +1,52 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-
-    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Tag Tester</title>
 	
-<!-- SEGMENT Optimizely-->
-<script src="https://cdn.optimizely.com/js/15303960539.js"></script>
-<!-- SEGMENT Optimizely-->
-	
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7CNRX4XR6V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7CNRX4XR6V',{
-  'content_group': '/news/sports'
-});
-  //gtag('set', 'content_group', 'womens');
-</script>
-
-
-</head> 
-
-<body>	
-
-	
-<h1>What is your favorite place to travel?</h1> 
-<p>I am building a directory of the sweetest travel destinations.</p>  
-<form name="travel" onsubmit="identify(event)">
-     What is your favorite travel destination?
-    <input name="destination" required="" size="81" type="text"/> 
-    <br><br><br> 
-    Any recommendations (cool things to do, places to visit or restaurants to eat)? 
-    <br><br> 
-    <textarea cols="81" name="details" required="" rows="10">
-    </textarea> 
-    <br><br> 
-    Name: <input name="fullname" required="" size="75" type="text"/> 
-    <br><br> 
-    Email: <input name="email" required="" size="75" type="email"/> 
-    <br><br>
-    <input name="submit" type="submit" value="submit"/>
-</form> 
-
-    
-<script type="text/javascript">
-      function identify(e){
-        e.preventDefault();
-        var form = e.target;
-        var email = form["email"].value;
-        var fullname = form["fullname"].value;
-        var destination = form["destination"].value;
-        var details = form["details"].value;
-        var user = {
-            email: email, 
-            name: fullname, 
-            destination: destination, 
-            details: details
-        };
-        analytics.identify('1234next', {
-            email: email, 
-            name: fullname
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CNRX4XR6V"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-7CNRX4XR6V', {
+            'content_group': '/news/sports'
         });
-        analytics.track('destination submitted', user, function() {
-            window.location.href = "";
-        });
-      }
-</script>
-    
-    
-</body> 
+    </script>
+</head>
+
+<body>
+    <h1>Google Tag Tester</h1>
+    <p>Use the buttons below to test Google Tag Manager events and configurations.</p>
+
+    <!-- New Buttons -->
+    <button onclick="loginUser()">Login User</button>
+    <button onclick="triggerTestEvent1()">Trigger Test Event 1</button>
+    <button onclick="logoutUser()">Logout User</button>
+    <button onclick="triggerTestEvent2()">Trigger Test Event 2</button>
+
+    <script type="text/javascript">
+        function loginUser() {
+            gtag('config', 'G-7CNRX4XR6V', {
+                'user_id': 'UserID123'
+            });
+        }
+
+        function triggerTestEvent1() {
+            gtag('event', 'Test Event');
+        }
+
+        function logoutUser() {
+            gtag('config', 'G-7CNRX4XR6V', {
+                'user_id': 'null'
+            });
+        }
+
+        function triggerTestEvent2() {
+            gtag('event', 'Test Event 2');
+        }
+    </script>
+</body>
 </html>

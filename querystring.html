@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Segment Querystring API</title>
+
+    <!-- Segment Analytics.js snippet -->
+    <script>
+      !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="G5BwWiwo7E5XCw85h43neqDn59j6KCTp";;analytics.SNIPPET_VERSION="5.2.0";
+      analytics.load("G5BwWiwo7E5XCw85h43neqDn59j6KCTp");
+      //analytics.page();
+      }}();
+    </script>
+</head>
+<body>
+    <h1>Testing Segment Querystring API</h1>
+  
+    <p><a href="https://segment.com/docs/connections/sources/catalog/libraries/website/javascript/querystring/" target="_blank">Segment Querystring API Documentation</a>.</p>
+
+    <script>
+        // Get the current URL
+        let currentUrl = new URL(document.URL);
+
+        // Check if "ajs_uid" exists in the URL search parameters
+        if (currentUrl.searchParams.has("ajs_uid")) {
+            // Remove "ajs_uid" from the URL search parameters
+            currentUrl.searchParams.delete("ajs_uid");
+
+            // Make the analytics.page call with the modified URL
+            analytics.page("Test Page Name", {
+                "url": currentUrl.toString() // Pass the updated URL
+            });
+        } else {
+            // If "ajs_uid" does not exist, make the analytics.page call without modification
+            analytics.page("Test Page Name");
+        }
+    </script>
+</body>
+</html>

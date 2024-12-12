@@ -11,22 +11,6 @@
     }}();
   </script>
   <script>
-    // Mock analytics.js library setup
-    window.analytics = {
-      middlewares: [],
-      addSourceMiddleware: function (middleware) {
-        this.middlewares.push(middleware);
-      },
-      // Mock event tracking to test middleware
-      trackEvent: function (payload) {
-        console.log("Before middleware:", JSON.stringify(payload, null, 2));
-        this.middlewares.forEach((middleware) => {
-          middleware({ payload, next: () => {} });
-        });
-        console.log("After middleware:", JSON.stringify(payload, null, 2));
-      }
-    };
-
     // Middleware to drop context field "sorce"
     window.analytics.addSourceMiddleware(({ payload, next }) => {
       if (payload.obj.context?.campaign?.sorce) {
@@ -56,7 +40,7 @@
 
     // Test middleware on button click
     document.getElementById("test-button").addEventListener("click", function () {
-      window.analytics.trackEvent(mockPayload);
+      window.analytics.track(mockPayload);
     });
   </script>
 </body>

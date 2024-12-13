@@ -15,8 +15,9 @@
   }}();
 </script>
 <!-- SEGMENT-->
-	
- <script>
+
+<!-- CONSENT MANAGER>
+<script>
   window.consentManagerConfig = function(exports) {
     var React = exports.React
     var inEU = exports.inEU
@@ -40,15 +41,7 @@
     var cancelDialogTitle = 'Are you sure you want to cancel?'
     var cancelDialogContent =
       'Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy.'
-   var closeBehavior = 'accept'
-   	     //creating our custome category object
-   var  customCategories={
-            "Do Not Sell": { 
-                integrations: ["Google Analytics"],
-                purpose: "To give the right to opt out of the sale of personal data." 
-           } 
-       }
-    
+
     return {
       container: '#target-container',
       writeKey: 'YQqSGMxSyxsoREV2vtNprDKWLKxKQcuT',
@@ -58,9 +51,7 @@
       preferencesDialogTitle: preferencesDialogTitle,
       preferencesDialogContent: preferencesDialogContent,
       cancelDialogTitle: cancelDialogTitle,
-      cancelDialogContent: cancelDialogContent,
-      closeBehavior: closeBehavior,
-      customCategories: customCategories
+      cancelDialogContent: cancelDialogContent
     }
   }
 </script>
@@ -69,6 +60,8 @@
   src="https://unpkg.com/@segment/consent-manager@5.3.0/standalone/consent-manager.js"
   defer
 ></script>
+<!-- CONSENT MANAGER>
+
 	
 </head> 
 <body> 

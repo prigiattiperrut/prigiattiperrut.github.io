@@ -38,10 +38,11 @@
 
   <script>
     document.getElementById("confirmButton").addEventListener("click", function () {
-      alert("Thank you for your consent!");
-      // Add tracking code here, e.g., sending data to Amplitude
-      console.log("User consented to data collection.");
-    });
+      // Tracking the button click event with Segment's analytics.track()
+      analytics.track("Consent Button Clicked", {
+        buttonText: "Yes, Confirmed",
+        timestamp: new Date().toISOString()
+      });
   </script>
 </body>
 </html>

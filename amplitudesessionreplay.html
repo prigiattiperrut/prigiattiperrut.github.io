@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Segment + Amplitude Session Replay</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Segment + Amplitude Session Replay Demo</title>
 
   <!-- ✅ Segment Snippet -->
   <script>
@@ -13,54 +14,51 @@
 </script>
   <!-- ✅ End Segment Snippet -->
 
-  <!-- ✅ Amplitude Session Replay -->
-  <script type="module">
-    import * as sessionReplay from "https://cdn.jsdelivr.net/npm/@amplitude/session-replay-browser/+esm";
+  <!-- Add Amplitude Session Replay -->
+    <script type="module">
+      import * as sessionReplay from "https://cdn.jsdelivr.net/npm/@amplitude/session-replay-browser@latest/+esm";
 
-    const AMPLITUDE_API_KEY = '42c16158d0bd7f3be2f8d11f78c9275b';
+      function getStoredSessionId() {
+        return document.cookie.replace(/(?:(?:^|.*;\s*)amp_session_id\s*\=\s*([^;]*).*$)|^.*$/, "$1") || 0;
+      }
 
-    function getStoredSessionId() {
-      return Cookies.get("amp_session_id") || 0;
-    }
-
-    window.analytics.ready(async function () {
-      const user = window.analytics.user();
-      const storedSessionId = getStoredSessionId();
-
-      await sessionReplay.init(AMPLITUDE_API_KEY, {
-        sessionId: storedSessionId,
-        deviceId: user.anonymousId()
-      }).promise;
-
-      // Middleware 1: Update session ID if changed
-      analytics.addSourceMiddleware(({ payload, next }) => {
+      window.analytics.ready(async () => {
+        const user = window.analytics.user();
         const storedSessionId = getStoredSessionId();
-        const nextSessionId = payload.obj.integrations?.['Actions Amplitude']?.session_id || 0;
 
-        if (storedSessionId < nextSessionId) {
-          Cookies.set("amp_session_id", nextSessionId);
-          sessionReplay.setSessionId(nextSessionId);
-        }
+        await sessionReplay.init("42c16158d0bd7f3be2f8d11f78c9275b", {
+          sessionId: storedSessionId,
+          deviceId: user.anonymousId(),
+        }).promise;
 
-        next(payload);
+        // Middleware to update session ID when it changes
+        analytics.addSourceMiddleware(({ payload, next }) => {
+          const storedSessionId = getStoredSessionId();
+          const nextSessionId = payload.obj?.integrations?.['Actions Amplitude']?.session_id || 0;
+
+          if (storedSessionId < nextSessionId) {
+            document.cookie = `amp_session_id=${nextSessionId}; path=/`;
+            sessionReplay.setSessionId(nextSessionId);
+          }
+          next(payload);
+        });
+
+        // Middleware to attach session replay properties
+        analytics.addSourceMiddleware(({ payload, next }) => {
+          const sessionReplayProperties = sessionReplay.getSessionReplayProperties();
+          if (payload.type() === "track") {
+            payload.obj.properties = {
+              ...payload.obj.properties,
+              ...sessionReplayProperties,
+            };
+          }
+          next(payload);
+        });
       });
-
-      // Middleware 2: Attach replay properties to every track() call
-      analytics.addSourceMiddleware(({ payload, next }) => {
-        const sessionReplayProperties = sessionReplay.getSessionReplayProperties();
-        if (payload.type() === "track") {
-          payload.obj.properties = {
-            ...payload.obj.properties,
-            ...sessionReplayProperties,
-          };
-        }
-        next(payload);
-      });
-    });
-  </script>
-</head>
-<body>
-  <h1>Segment + Amplitude Session Replay Demo</h1>
-  <button onclick="analytics.track('Button Clicked')">Click me!</button>
-</body>
+    </script>
+  </head>
+  <body>
+    <h1>Welcome to Segment + Amplitude Session Replay Integration</h1>
+    <p>This page demonstrates how to configure Session Replay using Segment’s Amplitude (Actions) destination.</p>
+  </body>
 </html>

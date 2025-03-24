@@ -1,66 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Segment + Amplitude Session Replay Demo</title>
-
-    <!-- Segment Snippet -->
+<!-- Load Segment Snippet -->
 <script>
   !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="G5BwWiwo7E5XCw85h43neqDn59j6KCTp";;analytics.SNIPPET_VERSION="5.2.0";
   analytics.load("G5BwWiwo7E5XCw85h43neqDn59j6KCTp");
   analytics.page();
   }}();
 </script>
-    <!-- Segment Snippet -->
 
-  <!-- Amplitude Session Replay Setup -->
-  <script type="module">
-    import * as sessionReplay from "https://cdn.jsdelivr.net/npm/@amplitude/session-replay-browser";
-    import { AnalyticsBrowser } from "https://cdn.jsdelivr.net/npm/@segment/analytics-next";
+<!-- Then add Amplitude Session Replay -->
+<script src="https://cdn.jsdelivr.net/npm/@amplitude/session-replay-browser"></script>
+<script>
+  analytics.ready(function () {
+    const amplitude = window.analytics?.destinations?.find(dest => dest.name === 'Amplitude (Actions)');
+    if (amplitude && amplitude.replay) {
+      amplitude.replay.start({ sampleRate: 1 });
+    }
 
-    const AMPLITUDE_API_KEY = 'YOUR_AMPLITUDE_API_KEY';
-    const segmentAnalytics = AnalyticsBrowser.load({ writeKey: 'YOUR_SEGMENT_WRITE_KEY' });
-
-    const getStoredSessionId = () => {
-      return document.cookie.replace(/(?:(?:^|.*;\s*)amp_session_id\s*\=\s*([^;]*).*$)|^.*$/, "$1") || 0;
-    };
-
-    segmentAnalytics.ready(async () => {
-      const user = await segmentAnalytics.user();
-      const storedSessionId = getStoredSessionId();
-
-      await sessionReplay.init(AMPLITUDE_API_KEY, {
-        sessionId: storedSessionId,
-        deviceId: user.anonymousId()
-      }).promise;
-
-      segmentAnalytics.addSourceMiddleware(({ payload, next }) => {
-        const storedSessionId = getStoredSessionId();
-        const nextSessionId = payload.obj.integrations?.['Actions Amplitude']?.session_id || 0;
-        if (storedSessionId < nextSessionId) {
-          document.cookie = `amp_session_id=${nextSessionId}`;
-          sessionReplay.setSessionId(nextSessionId);
-        }
-        next(payload);
-      });
-
-      segmentAnalytics.addSourceMiddleware(({ payload, next }) => {
-        const sessionReplayProperties = sessionReplay.getSessionReplayProperties();
-        if (payload.type() === "track") {
-          payload.obj.properties = {
-            ...payload.obj.properties,
-            ...sessionReplayProperties,
-          };
-        }
-        next(payload);
-      });
+    // Optional: Add middleware here to include session replay properties
+    analytics.addSourceMiddleware(({ payload, next }) => {
+      if (payload.type() === 'track') {
+        const sessionProps = window.amplitude?.getSessionReplayProperties?.() || {};
+        payload.obj.properties = {
+          ...payload.obj.properties,
+          ...sessionProps,
+        };
+      }
+      next(payload);
     });
-  </script>
-</head>
-<body>
-  <h1>Welcome to Segment + Amplitude Session Replay Integration</h1>
-  <p>This page demonstrates how to configure Session Replay using Segment’s Amplitude (Actions) destination.</p>
-</body>
-</html>
-
+  });
+</script>

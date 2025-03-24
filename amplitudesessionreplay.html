@@ -13,47 +13,55 @@
   }}();
 </script>
   <!-- ✅ End Segment Snippet -->
-
-  <!-- Add Amplitude Session Replay -->
-    <script type="module">
-      import * as sessionReplay from "https://cdn.jsdelivr.net/npm/@amplitude/session-replay-browser@latest/+esm";
-
+<!-- Add Amplitude Session Replay -->
+    <script>
       function getStoredSessionId() {
-        return document.cookie.replace(/(?:(?:^|.*;\s*)amp_session_id\s*\=\s*([^;]*).*$)|^.*$/, "$1") || 0;
+        return document.cookie.replace(/(?:(?:^|.*;\s*)amp_session_id\s*=\s*([^;]*).*$)|^.*$/, "$1") || 0;
       }
 
-      window.analytics.ready(async () => {
-        const user = window.analytics.user();
-        const storedSessionId = getStoredSessionId();
+      window.analytics.ready(function () {
+        const checkAmplitudeReady = setInterval(() => {
+          const amplitudeDest = window.analytics?._integrations?.['Actions Amplitude'];
+          if (amplitudeDest && amplitudeDest.replay) {
+            clearInterval(checkAmplitudeReady);
 
-        await sessionReplay.init("42c16158d0bd7f3be2f8d11f78c9275b", {
-          sessionId: storedSessionId,
-          deviceId: user.anonymousId(),
-        }).promise;
+            amplitudeDest.replay.start({
+              sampleRate: 1
+            });
 
-        // Middleware to update session ID when it changes
-        analytics.addSourceMiddleware(({ payload, next }) => {
-          const storedSessionId = getStoredSessionId();
-          const nextSessionId = payload.obj?.integrations?.['Actions Amplitude']?.session_id || 0;
+            const user = window.analytics.user();
+            const storedSessionId = getStoredSessionId();
 
-          if (storedSessionId < nextSessionId) {
-            document.cookie = `amp_session_id=${nextSessionId}; path=/`;
-            sessionReplay.setSessionId(nextSessionId);
+            amplitudeDest.replay.init("42c16158d0bd7f3be2f8d11f78c9275b", {
+              sessionId: storedSessionId,
+              deviceId: user.anonymousId(),
+            }).promise.then(() => {
+              // Middleware to update session ID when it changes
+              analytics.addSourceMiddleware(({ payload, next }) => {
+                const storedSessionId = getStoredSessionId();
+                const nextSessionId = payload.obj?.integrations?.['Actions Amplitude']?.session_id || 0;
+
+                if (storedSessionId < nextSessionId) {
+                  document.cookie = `amp_session_id=${nextSessionId}; path=/`;
+                  amplitudeDest.replay.setSessionId(nextSessionId);
+                }
+                next(payload);
+              });
+
+              // Middleware to attach session replay properties
+              analytics.addSourceMiddleware(({ payload, next }) => {
+                const sessionReplayProperties = amplitudeDest.replay.getSessionReplayProperties();
+                if (payload.type() === "track") {
+                  payload.obj.properties = {
+                    ...payload.obj.properties,
+                    ...sessionReplayProperties,
+                  };
+                }
+                next(payload);
+              });
+            });
           }
-          next(payload);
-        });
-
-        // Middleware to attach session replay properties
-        analytics.addSourceMiddleware(({ payload, next }) => {
-          const sessionReplayProperties = sessionReplay.getSessionReplayProperties();
-          if (payload.type() === "track") {
-            payload.obj.properties = {
-              ...payload.obj.properties,
-              ...sessionReplayProperties,
-            };
-          }
-          next(payload);
-        });
+        }, 250);
       });
     </script>
   </head>

@@ -14,19 +14,10 @@
       });
  
    analytics.load("G5BwWiwo7E5XCw85h43neqDn59j6KCTp");
-  analytics.page("Message ID Replace");
+  analytics.page("MessageID Replace");
   }}();
 </script>
 
-  <!-- Custom Middleware to Inject messageId -->
-  <script>
-  analytics.ready(function () {
-      analytics.addSourceMiddleware(({ payload, next }) => {
-        payload.obj.messageId = "11111111_0";
-        next(payload);
-      });
-    });
-  </script>
 </head>
 <body>
   <h1>Segment Middleware Demo</h1>

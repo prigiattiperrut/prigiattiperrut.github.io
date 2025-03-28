@@ -36,17 +36,28 @@
               sessionId: storedSessionId,
               deviceId: user.anonymousId(),
             }).promise.then(() => {
-              // Middleware to update session ID when it changes
-              analytics.addSourceMiddleware(({ payload, next }) => {
-                const storedSessionId = getStoredSessionId();
-                const nextSessionId = payload.obj?.integrations?.['Actions Amplitude']?.session_id || 0;
 
-                if (storedSessionId < nextSessionId) {
-                  document.cookie = `amp_session_id=${nextSessionId}; path=/`;
-                  amplitudeDest.replay.setSessionId(nextSessionId);
-                }
-                next(payload);
-              });
+    // Middleware to update session ID when it changes
+analytics.addSourceMiddleware(({ payload, next }) => {
+  const storedSessionId = getStoredSessionId();
+
+  setTimeout(() => {
+    const amplitudeActionsRaw = payload.obj?.integrations?.['Actions Amplitude'];
+
+    if ('session_id' in (amplitudeActionsRaw || {})) {
+      const nextSessionId = amplitudeActionsRaw.session_id;
+
+      if (storedSessionId < nextSessionId) {
+        document.cookie = `amp_session_id=${nextSessionId}; path=/`;
+        amplitudeDest.replay.setSessionId(nextSessionId);
+      }
+    }
+  }, 0);
+
+  next(payload);
+});
+
+
 
               // Middleware to attach session replay properties
               analytics.addSourceMiddleware(({ payload, next }) => {

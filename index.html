@@ -1,154 +1,101 @@
-<!DOCTYPE html> 
-<html> 
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Segment + OneTrust Wrapper Test Page</title>
 
-<!-- SEGMENT Optimizely-->
-<script src="https://cdn.optimizely.com/js/15303960539.js"></script>
-<!-- SEGMENT Optimizely-->
-	
-    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 	
+  <!-- OneTrust Consent -->
+  <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+          type="text/javascript" charset="UTF-8"
+          data-domain-script="018de61b-d900-7628-93b8-0b99b2d81145"></script>
+  <script>function OptanonWrapper() { }</script>
 
-	
-<!-- SEGMENT SNIPPET-->
+  <!-- Segment Analytics with OneTrust Consent Wrapper -->
+  <script src="https://cdn.jsdelivr.net/npm/@segment/analytics-consent-wrapper-onetrust@latest/dist/umd/analytics-onetrust.umd.js"></script>
+
+ <!-- Segment Analytics Snipett -->
 <script>
-  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window.analytics.initialized)return window.analytics[e].apply(window.analytics,arguments);var i=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");i.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}i.unshift(e);analytics.push(i);return analytics}};for(var i=0;i<analytics.methods.length;i++){var key=analytics.methods[i];analytics[key]=analytics.factory(key)}analytics.load=function(key,i){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=i};analytics._writeKey="30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4";;analytics.SNIPPET_VERSION="5.2.0";
-  analytics.load("30t6DSp4jMg8gMmr20XP3EEuuXzPKtS4");
-  analytics.page();
+  !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="3p3M607bDQKfzNCu3nu7sNdVciS7uIl6";;analytics.SNIPPET_VERSION="5.2.0";
+  //analytics.load("3p3M607bDQKfzNCu3nu7sNdVciS7uIl6");
+  withOneTrust(analytics, { consentModel: () => 'opt-in' }).load("3p3M607bDQKfzNCu3nu7sNdVciS7uIl6");
+  analytics.page();																								     
   }}();
 </script>
-<!-- SEGMENT SNIPPET-->
-	
- <style>
-    /* CSS using the ID selector for the button */
-    #my-button {
-      background-color: blue;
+
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 450px;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      background-color: #007bff;
       color: white;
-      padding: 10px;
+      padding: 12px 20px;
       border: none;
-      cursor: pointer;
+      border-radius: 5px;
       font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
     }
   </style>
-</head> 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
 <body>
+  <div class="container">
+    <h2>Segment + OneTrust Test Page</h2>
+    <p>This page is used to test loading <strong>analytics.js</strong> with the <strong>Segment + OneTrust wrapper</strong>.</p>
+    <p>📄 <a href="https://segment.com/docs/privacy/consent-management/onetrust-wrapper/" target="_blank">
+      View Documentation</a></p>
 
-  <!-- HTML button element -->
-  <button id="my-button">Click Me</button>
-	
-<!-- TRACKING BROWSER ACTIVITIES Form Drop-Off-
-<script>
-window.onbeforeunload = function (e) {analytics.track('Form Drop-Off')};
-</script>
-<!-- TRACKING BROWSER ACTIVITIES Form Drop-Off-->	
+    <button id="trackButton">Click Here</button>
+  </div>
 
-<!-- TRACKING BROWSER ACTIVITIES Page Left-
-<script>
-const timeStart = new Date().getTime();
-window.addEventListener('pagehide', () => {
-const timeEnd = new Date().getTime();
-const timeDiff = (timeEnd - timeStart) / 1000; // calculate difference in seconds
-const trackingData = {
-timeOnPage: timeDiff,
-};
-window.analytics.track('Page Left', trackingData);
-});
-</script>
-<!-- TRACKING BROWSER ACTIVITIES Page Left-->
-
-	
-<!-- SEGMENT TRACKLINK-->	
-<p><a id="free-trial-link" href="">TrackLink Test</a></p>
-
-<script>
-var link = document.getElementById('free-trial-link');
-analytics.trackLink(link, 'Clicked Free-Trial Link', {
-  plan: 'Enterprise'
-});
-</script>	
-<!-- SEGMENT TRACKLINK-->
-
-	
-<h1>What is your favorite place to travel?</h1> 
-<p>I am building a directory of the sweetest travel destinations.</p>  
-<form name="travel" onsubmit="identify(event)">
-     What is your favorite travel destination?
-    <input name="destination" required="" size="81" type="text"/> 
-    <br><br><br> 
-    Any recommendations (cool things to do, places to visit or restaurants to eat)? 
-    <br><br> 
-    <textarea cols="81" name="details" required="" rows="10">
-    </textarea> 
-    <br><br> 
-    Name: <input name="fullname" required="" size="75" type="text"/> 
-    <br><br> 
-    Email: <input name="email" required="" size="75" type="email"/> 
-    <br><br>
-    <input name="submit" type="submit" value="submit"/>
-	 <input type="hidden" id="custId" name="custId" value="3487"> 
-</form> 
-<script type="text/javascript">
-      function identify(e){
-        e.preventDefault();
-        var form = e.target;
-        var email = form["email"].value;
-        var fullname = form["fullname"].value;
-        var destination = form["destination"].value;
-        var details = form["details"].value;
-        var user = {
-            email: email, 
-            name: fullname, 
-            destination: destination, 
-            details: details
-        };
-        analytics.identify('1234', {
-            email: email, 
-            name: fullname
-        });
-	      	//analytics.on('identify', function(userid, traits, options) {
-		 //console.log(userid, traits, options)
-//});
-        analytics.track('destination submitted', user, function() {
-            window.location.href = "";
-        });
-
-	     window.analytics.track("Order Completed", {"service_line":"Transcription","order_id":"TC0697246759","placed_on":"2020-12-10T16:12:39.457","total":2.50000,"order_source_type":"Web","label":"EPC","payment_method":"CreditCard"});
-	      
-	      	analytics.on('track', function(event, properties, options) {
-		console.log(event, properties, options)
-});
-
-	      	   analytics.page('2nd Page', user, function() {
-            window.location.href = "";
-        });
-
-
-	      	//analytics.on('page', function(properties, options) {
-		 //console.log(properties, options)
-//});
-      }
-
-	</script>
-<br>
-<button id="myBtn">My Button</button>
-<br>
-<p>Click the button below to disable the button above.</p>
-<br>
-<button onclick="myFunction()">Try it</button>
-<br>
-<script>
-function myFunction() {
-  document.getElementById("myBtn").disabled = true;
-}
-</script>
-<br>	
-<div class="pv-payment-item-small-text text-right flip"><input type="checkbox" id="pv-savecc-cb" name="set-name" class="pv-switch-input"><label for="pv-savecc-cb" class="pv-switch-label"></label></div>
-</script>
-<br>
-
-	
-
-	
-</body> 
+  <script>
+    document.getElementById("trackButton").addEventListener("click", function () {
+      analytics.track("Button Clicked");
+    });
+  </script>
+</body>
 </html>

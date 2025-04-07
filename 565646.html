@@ -19,20 +19,24 @@
     async function runIdentityTest() {
       console.log('Calling analytics.user():', analytics.user());
 
-      const user = analytics.user();
-      const ajsUserTraits = user.traits();
-      const oldUserId = user.id();
-
       const traits = {
         email: 'newuser@example.com',
         name: 'New User',
         mid: '12345'
       };
 
-      const isTraitUpdated = JSON.stringify(ajsUserTraits) !== JSON.stringify(traits);
+      // Check traits stored in localStorage
+      const storedTraitsRaw = localStorage.getItem('ajs_user_traits');
+      const storedTraits = storedTraitsRaw ? JSON.parse(storedTraitsRaw) : null;
+      console.log('Stored traits from localStorage:', storedTraits);
 
-      if (!isTraitUpdated) {
-        console.log('Traits not updated, calling identify with new ID...');
+      const traitsMatch = storedTraits && JSON.stringify(storedTraits) === JSON.stringify(traits);
+
+      if (traitsMatch) {
+        console.log('Traits already up to date, skipping identify');
+        return;
+      } else {
+        console.log('Traits are different, calling identify with new traits and ID...');
         analytics.identify(traits.mid, traits);
 
         setTimeout(() => {
@@ -40,9 +44,11 @@
           const newAnonymousId = analytics.user().anonymousId();
           console.log('New user ID:', newUserId);
           console.log('Anonymous ID after identify:', newAnonymousId);
+
+          const updatedTraitsRaw = localStorage.getItem('ajs_user_traits');
+          const updatedTraits = updatedTraitsRaw ? JSON.parse(updatedTraitsRaw) : null;
+          console.log('Updated traits in localStorage:', updatedTraits);
         }, 200);
-      } else {
-        console.log('Traits already up to date, skipping identify');
       }
     }
   </script>

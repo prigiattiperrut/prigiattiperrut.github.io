@@ -13,15 +13,27 @@
 </head>
 <body>
   <h1>Segment Identity Test</h1>
+
+  <label for="traitName">Trait Name:</label>
+  <input type="text" id="traitName" placeholder="e.g. email">
+  <label for="traitValue">Trait Value:</label>
+  <input type="text" id="traitValue" placeholder="e.g. user@example.com">
   <button onclick="runIdentityTest()">Run Identity Test</button>
 
   <script>
     async function runIdentityTest() {
       console.log('Calling analytics.user():', analytics.user());
 
+      const traitName = document.getElementById('traitName').value;
+      const traitValue = document.getElementById('traitValue').value;
+
+      if (!traitName || !traitValue) {
+        console.log('Please provide both trait name and value.');
+        return;
+      }
+
       const traits = {
-        email: 'newuser@example.com',
-        name: 'New User',
+        [traitName]: traitValue,
         mid: '12345'
       };
 

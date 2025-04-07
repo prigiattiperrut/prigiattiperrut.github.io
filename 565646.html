@@ -18,6 +18,9 @@
   <input type="text" id="traitName" placeholder="e.g. email">
   <label for="traitValue">Trait Value:</label>
   <input type="text" id="traitValue" placeholder="e.g. user@example.com">
+  <br><br>
+  <label for="midValue">MID (used as userId):</label>
+  <input type="text" id="midValue" placeholder="e.g. 12345">
   <button onclick="runIdentityTest()">Run Identity Test</button>
 
   <script>
@@ -26,15 +29,16 @@
 
       const traitName = document.getElementById('traitName').value;
       const traitValue = document.getElementById('traitValue').value;
+      const mid = document.getElementById('midValue').value;
 
-      if (!traitName || !traitValue) {
-        console.log('Please provide both trait name and value.');
+      if (!traitName || !traitValue || !mid) {
+        console.log('Please provide trait name, value, and MID.');
         return;
       }
 
       const traits = {
         [traitName]: traitValue,
-        mid: '12345'
+        mid: mid
       };
 
       // Check traits stored in localStorage
@@ -49,7 +53,7 @@
         return;
       } else {
         console.log('Traits are different, calling identify with new traits and ID...');
-        analytics.identify(traits.mid, traits);
+        analytics.identify(mid, traits);
 
         setTimeout(() => {
           const newUserId = analytics.user().id();

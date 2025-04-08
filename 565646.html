@@ -23,7 +23,17 @@
   <input type="text" id="midValue" placeholder="e.g. 12345">
   <button onclick="runIdentityTest()">Run Identity Test</button>
 
+  <p><strong>Current MID in localStorage:</strong> <span id="currentMid">Loading...</span></p>
+
   <script>
+    // Display MID value from localStorage
+    window.onload = function () {
+      const storedTraitsRaw = localStorage.getItem('ajs_user_traits');
+      const storedTraits = storedTraitsRaw ? JSON.parse(storedTraitsRaw) : null;
+      const mid = storedTraits?.mid || 'MID not found';
+      document.getElementById('currentMid').innerText = mid;
+    };
+
     async function runIdentityTest() {
       console.log('Calling analytics.user():', analytics.user());
 
@@ -64,6 +74,7 @@
           const updatedTraitsRaw = localStorage.getItem('ajs_user_traits');
           const updatedTraits = updatedTraitsRaw ? JSON.parse(updatedTraitsRaw) : null;
           console.log('Updated traits in localStorage:', updatedTraits);
+          document.getElementById('currentMid').innerText = updatedTraits?.mid || 'MID not found';
         }, 200);
       }
     }

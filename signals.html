@@ -1,153 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Segment Analytics + Signals using ESM via jsDelivr CDN -->
-  <script type="module">
-    import { AnalyticsBrowser } from 'https://cdn.jsdelivr.net/npm/@segment/analytics-next/+esm'
-    import { SignalsPlugin } from 'https://cdn.jsdelivr.net/npm/@segment/analytics-signals/+esm'
-
-    const analytics = new AnalyticsBrowser()
-    const signalsPlugin = new SignalsPlugin()
-    analytics.register(signalsPlugin)
-
-    analytics.load({
-      writeKey: 'hH7JFGzQDUy4HTAtZd0PR5EL5rIYcTL2'
-    })
-
-    analytics.page("Home Page")
-  </script>
-  <meta charset="UTF-8">
-  <title>Auto-Instrumentation Test Page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google Font for clean Segment-style typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Segment Auto-Instrumentation Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9fafb;
-      color: #333;
-    }
-
-    .container {
-      max-width: 720px;
-      margin: 3rem auto;
-      background-color: #ffffff;
+      font-family: sans-serif;
+      background: #f9fafb;
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      max-width: 600px;
+      margin: auto;
     }
 
     h1 {
-      font-size: 1.8rem;
       color: #1b1f23;
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-size: 1.3rem;
-      margin-top: 2rem;
-    }
-
-    a {
-      color: #5c6ac4;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
     }
 
     label {
+      font-weight: bold;
       display: block;
       margin-top: 1rem;
-      font-weight: 600;
     }
 
-    input[type="text"],
-    select {
+    input, select {
       width: 100%;
       padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      margin-top: 0.5rem;
+      margin-top: 0.25rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
     }
 
-    input[type="submit"],
     button {
+      margin-top: 1.5rem;
       background-color: #5c6ac4;
       color: white;
-      padding: 0.6rem 1.2rem;
       border: none;
+      padding: 0.6rem 1.2rem;
       border-radius: 6px;
-      margin-top: 1.5rem;
       cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.2s ease;
     }
 
-    input[type="submit"]:hover,
     button:hover {
       background-color: #4b5ab8;
-    }
-
-    .footer-link {
-      margin-top: 2rem;
-      font-size: 0.95rem;
-      text-align: center;
     }
   </style>
 </head>
 <body>
+  <h1>Auto-Instrumentation Test</h1>
 
-  <div class="container">
-    <h1>Auto-Instrumentation Test Page</h1>
+  <form id="test-form">
+    <label for="name">What is your name?</label>
+    <input type="text" id="name" name="name" />
 
-    <p>
-      Learn more about Auto-Instrumentation in the
-      <a href="https://segment.com/docs/connections/auto-instrumentation/" target="_blank">
-        official Segment docs
-      </a>.
-    </p>
+    <label for="coffee">Do you drink coffee in the morning?</label>
+    <select id="coffee" name="coffee">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+      <option value="sometimes">Sometimes</option>
+    </select>
 
-    <h2>Quick Daily Check-In</h2>
-    <form id="dailyForm">
-      <label for="name">What is your name?</label>
-      <input type="text" id="name" name="name" placeholder="e.g., Alex">
+    <button type="submit">Submit</button>
+  </form>
 
-      <label for="coffee">Do you drink coffee in the morning?</label>
-      <select id="coffee" name="coffee">
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-        <option value="sometimes">Sometimes</option>
-      </select>
-
-      <label for="mood">How are you feeling today?</label>
-      <input type="text" id="mood" name="mood" placeholder="e.g., Focused, Tired, Excited">
-
-      <input type="submit" value="Submit">
-    </form>
-
-    <button onclick="showMessage()">Click Me!</button>
-
-    <div class="footer-link">
-      Curious about other tools? Explore the <a href="https://segment.com/catalog/" target="_blank">Segment Catalog</a>.
-    </div>
-  </div>
+  <button onclick="alert('Thanks for testing Signals!')">Click Me!</button>
 
   <script>
-    function showMessage() {
-      alert("Thanks for testing auto-instrumentation!");
-    }
+    // Replace this with your actual write key
+    const WRITE_KEY = 'hH7JFGzQDUy4HTAtZd0PR5EL5rIYcTL2';
 
-    document.getElementById("dailyForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      alert("Form submitted! (Not really, just a test.)");
-    });
+    // Inject legacy Analytics.js
+    const segmentScript = document.createElement('script');
+    segmentScript.text = `
+      !function(){var analytics=window.analytics=window.analytics||[];
+      if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");
+      else {
+        analytics.invoked=!0;
+        analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];
+        analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};
+        for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}
+        analytics.load=function(t){var e=document.createElement("script");
+        e.type="text/javascript";e.async=!0;
+        e.src="https://cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
+        var n=document.getElementsByTagName("script")[0];
+        n.parentNode.insertBefore(e,n)};
+        analytics.SNIPPET_VERSION="4.15.3";
+        analytics.load("${WRITE_KEY}");
+        analytics.page();
+      }}();
+    `;
+    document.head.appendChild(segmentScript);
+
+    // Load Signals plugin after analytics.js is ready
+    const signalsScript = document.createElement('script');
+    signalsScript.src = 'https://cdn.jsdelivr.net/npm/@segment/analytics-signals@latest/dist/umd/analytics-signals.global.js';
+    signalsScript.async = true;
+    signalsScript.onload = function () {
+      function tryRegister() {
+        if (window.analytics && window.SignalsPlugin) {
+          try {
+            const pluginOptions = { namespace: 'signals.segment.build/v1' };
+            const signalsPlugin = new window.SignalsPlugin(pluginOptions);
+
+            if (typeof signalsPlugin.debug === 'function') {
+              signalsPlugin.debug(true);
+            }
+
+            window.analytics.register(signalsPlugin);
+            console.log('✅ SignalsPlugin registered!');
+          } catch (e) {
+            console.error('Error registering SignalsPlugin:', e);
+          }
+        } else {
+          setTimeout(tryRegister, 100);
+        }
+      }
+      tryRegister();
+    };
+    document.head.appendChild(signalsScript);
   </script>
-
-  
-
 </body>
 </html>

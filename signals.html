@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto-Instrumentation Test Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h1>Auto-Instrumentation Test Page</h1>
+
+  <p>
+    Learn more about Auto-Instrumentation on the official Segment documentation:
+    <a href="https://segment.com/docs/connections/auto-instrumentation/" target="_blank">
+      Auto-Instrumentation Guide
+    </a>
+  </p>
+
+  <!-- Segment Snippet -->
+<script>
+  !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="hH7JFGzQDUy4HTAtZd0PR5EL5rIYcTL2";;analytics.SNIPPET_VERSION="5.2.0";
+  analytics.load("hH7JFGzQDUy4HTAtZd0PR5EL5rIYcTL2");
+  analytics.page("Home Page");
+  }}();
+</script>
+  <!-- Segment Snippet -->
+  <!-- Replace with your actual Segment writeKey script -->
+  <script>
+    // analytics.js/ts
+    import { AnalyticsBrowser } from '@segment/analytics-next'
+    import { SignalsPlugin } from '@segment/analytics-signals'
+
+    const analytics = new AnalyticsBrowser()
+    const signalsPlugin = new SignalsPlugin()
+    analytics.register(signalsPlugin)
+
+    analytics.load({
+      writeKey: 'hH7JFGzQDUy4HTAtZd0PR5EL5rIYcTL2'
+    })
+  </script>
+
+  <hr>
+
+  <h2>Daily Life Form</h2>
+  <form id="dailyForm">
+    <label for="name">What is your name?</label><br>
+    <input type="text" id="name" name="name"><br><br>
+
+    <label for="coffee">Do you drink coffee in the morning?</label><br>
+    <select id="coffee" name="coffee">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+      <option value="sometimes">Sometimes</option>
+    </select><br><br>
+
+    <label for="mood">How are you feeling today?</label><br>
+    <input type="text" id="mood" name="mood"><br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <br>
+  <button onclick="showMessage()">Click Me!</button>
+
+  <script>
+    function showMessage() {
+      alert("Thanks for testing auto-instrumentation!");
+    }
+
+    document.getElementById("dailyForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Form submitted! (Not really, just a test.)");
+    });
+  </script>
+</body>
+</html>

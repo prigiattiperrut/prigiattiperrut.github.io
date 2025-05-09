@@ -50,30 +50,31 @@
   <h1>Auto-Instrumentation Test Page</h1>
 
   <form id="test-form">
-    <label for="name">What is your name?</label>
-    <input type="text" id="name" name="name" />
+    <label for="user_name">Your Name</label>
+    <input type="text" id="user_name" name="user_name" />
 
-    <label for="coffee">Do you drink coffee in the morning?</label>
-    <select id="coffee" name="coffee">
+    <label for="morning_coffee">Do you drink coffee in the morning?</label>
+    <select id="morning_coffee" name="morning_coffee">
       <option value="yes">Yes</option>
       <option value="no">No</option>
       <option value="sometimes">Sometimes</option>
     </select>
+
+    <label for="mood_today">How are you feeling today?</label>
+    <input type="text" id="mood_today" name="mood_today" />
 
     <button type="submit">Submit</button>
   </form>
 
   <button onclick="alert('Thanks for testing Signals!')">Click Me!</button>
 
+  <!-- Segment Signals Plugin + Analytics.js Next -->
   <script type="module">
     import { AnalyticsBrowser } from 'https://cdn.jsdelivr.net/npm/@segment/analytics-next/+esm'
     import { SignalsPlugin } from 'https://cdn.jsdelivr.net/npm/@segment/analytics-signals/+esm'
 
     const analytics = new AnalyticsBrowser()
-    const signalsPlugin = new SignalsPlugin({
-      // Optional: adjust or leave empty
-      namespace: 'signals.segment.build/v1'
-    })
+    const signalsPlugin = new SignalsPlugin()
 
     analytics.register(signalsPlugin)
 
@@ -81,7 +82,14 @@
       writeKey: 'hH7JFGzQDUy4HTAtZd0PR5EL5rIYcTL2'
     })
 
-    analytics.page("Home Page")
+    analytics.page("Home")
+  </script>
+
+  <script>
+    document.getElementById("test-form").addEventListener("submit", function (e) {
+      e.preventDefault()
+      alert("Form submitted! (Simulated)")
+    })
   </script>
 </body>
 </html>

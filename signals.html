@@ -2,73 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Segment Auto-Instrumentation Test</title>
+  <title>Signals Sandbox Bug Repro</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f9fafb;
-      padding: 2rem;
-      max-width: 600px;
-      margin: auto;
-    }
-
-    h1 {
-      color: #1b1f23;
-    }
-
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 1rem;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.25rem;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      margin-top: 1.5rem;
-      background-color: #5c6ac4;
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #4b5ab8;
-    }
-  </style>
 </head>
 <body>
-  <h1>Auto-Instrumentation Test Page</h1>
+  <h1>Signals Plugin Bug Test</h1>
 
-  <form id="test-form">
-    <label for="user_name">Your Name</label>
-    <input type="text" id="user_name" name="user_name" />
+  <form>
+    <label for="input_one">Enter something:</label>
+    <input type="text" id="input_one" name="input_one" />
 
-<label for="morning_coffee">Do you drink coffee in the morning?</label>
-<select id="morning_coffee" name="morning_coffee">
-  <option value="coffee_yes">Yes please</option>
-  <option value="coffee_no">No thanks</option>
-  <option value="coffee_sometimes">Sometimes</option>
-</select>
-
-    <label for="mood_today">How are you feeling today?</label>
-    <input type="text" id="mood_today" name="mood_today" />
-
-    <button type="submit">Submit</button>
+    <label for="mood_select">How are you feeling?</label>
+    <select id="mood_select" name="mood_select">
+      <option value="happy">Happy</option>
+      <option value="ok">OK</option>
+      <option value="tired">Tired</option>
+    </select>
   </form>
 
-  <button onclick="alert('Thanks for testing Signals!')">Click Me!</button>
-
-  <!-- Segment Signals Plugin + Analytics.js Next -->
   <script type="module">
     import { AnalyticsBrowser } from 'https://cdn.jsdelivr.net/npm/@segment/analytics-next/+esm'
     import { SignalsPlugin } from 'https://cdn.jsdelivr.net/npm/@segment/analytics-signals/+esm'
@@ -82,14 +33,7 @@
       writeKey: 'hH7JFGzQDUy4HTAtZd0PR5EL5rIYcTL2'
     })
 
-    analytics.page("Home")
-  </script>
-
-  <script>
-    document.getElementById("test-form").addEventListener("submit", function (e) {
-      e.preventDefault()
-      alert("Form submitted! (Simulated)")
-    })
+    analytics.page("Sandbox Error Test")
   </script>
 </body>
 </html>

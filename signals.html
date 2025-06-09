@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+   <script type="module">
+    import { AnalyticsBrowser } from 'https://cdn.jsdelivr.net/npm/@segment/analytics-next/+esm'
+    import { SignalsPlugin } from 'https://cdn.jsdelivr.net/npm/@segment/analytics-signals/+esm'
+
+    const analytics = new AnalyticsBrowser()
+    const signalsPlugin = new SignalsPlugin()
+
+    analytics.register(signalsPlugin)
+
+    analytics.load({
+      writeKey: 'hH7JFGzQDUy4HTAtZd0PR5EL5rIYcTL2'
+    })
+
+    analytics.page("Page Test")
+  </script>
   <meta charset="UTF-8" />
   <title>Signals Plugin Test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -117,20 +133,6 @@
     </div>
   </div>
 
-  <script type="module">
-    import { AnalyticsBrowser } from 'https://cdn.jsdelivr.net/npm/@segment/analytics-next/+esm'
-    import { SignalsPlugin } from 'https://cdn.jsdelivr.net/npm/@segment/analytics-signals/+esm'
-
-    const analytics = new AnalyticsBrowser()
-    const signalsPlugin = new SignalsPlugin()
-
-    analytics.register(signalsPlugin)
-
-    analytics.load({
-      writeKey: 'hH7JFGzQDUy4HTAtZd0PR5EL5rIYcTL2'
-    })
-
-    analytics.page("Page Test")
-  </script>
+ 
 </body>
 </html>

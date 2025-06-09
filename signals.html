@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Signals Plugin Test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Segment-style font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -43,7 +42,8 @@
     }
 
     input,
-    select {
+    select,
+    textarea {
       width: 100%;
       padding: 0.6rem;
       margin-top: 0.25rem;
@@ -52,11 +52,28 @@
       font-size: 1rem;
     }
 
+    button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.2rem;
+      background-color: var(--segment-purple);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
     .footer {
       text-align: center;
       margin-top: 2rem;
       font-size: 0.9rem;
       color: #666;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-top: 1rem;
     }
   </style>
 </head>
@@ -74,9 +91,29 @@
         <option value="ok">OK</option>
         <option value="tired">Tired</option>
       </select>
+
+      <label for="message">Leave a message:</label>
+      <textarea id="message" name="message" rows="4" placeholder="Write something..."></textarea>
+
+      <label>
+        <input type="checkbox" name="subscribe" />
+        Subscribe to updates
+      </label>
+
+      <fieldset style="margin-top: 1rem;">
+        <legend>Choose your role:</legend>
+        <label><input type="radio" name="role" value="dev" /> Developer</label><br/>
+        <label><input type="radio" name="role" value="pm" /> Product Manager</label><br/>
+        <label><input type="radio" name="role" value="designer" /> Designer</label>
+      </fieldset>
+
+      <button type="button" onclick="alert('Button clicked!')">Submit</button>
     </form>
 
+    <img src="https://placekitten.com/400/200" alt="Test kitten image" />
+
     <div class="footer">
+      <p>Want to learn more? <a href="https://segment.com/docs/">Visit our docs</a></p>
     </div>
   </div>
 

@@ -21,8 +21,6 @@
 </script>
 
    <script>
-    analytics.identify("123");
-
     analytics.ready(function () {
       // Middleware to override userId in identify events
       var brazeDestMiddleware = function({ payload, next, integration }) {

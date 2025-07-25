@@ -14,9 +14,6 @@
             console.log("Segment is ready");
 
 analytics.addDestinationMiddleware('Google Analytics 4 Web', ({ payload, next }) => {
-  const referrer = document.referrer || '';
-  console.log("Destination middleware triggered. Referrer:", referrer);
-
   const updatedPayload = {
     ...payload,
     obj: {
@@ -25,12 +22,7 @@ analytics.addDestinationMiddleware('Google Analytics 4 Web', ({ payload, next })
         ...payload.obj.context,
         page: {
           ...payload.obj.context?.page,
-          referrer: "newsbreak.com"
-        },
-        campaign: {
-          ...payload.obj.context?.campaign,
-          source: "newsbreak.com",
-          medium: "referral"
+          referrer: "http://test123.com"
         }
       }
     }
@@ -39,23 +31,7 @@ analytics.addDestinationMiddleware('Google Analytics 4 Web', ({ payload, next })
   next(updatedPayload);
 });
 
-
-            analytics.page({
-              title: 'Test Newsbreak Article',
-              article_id: 'abc123',
-              article_name: 'MV Test Newsbreak Article',
-              author: 'Jane Doe',
-              article_type: 'Affiliate',
-              publish_date: '2025-06-23T14:00:00Z',
-              campaign_source: 'test.com',
-              campaign_medium: 'test_referral',
-              page_referrer: 'newsbreak.com',
-              category: 'lifestyle',
-              path: '/lifestyle/mv-test-article',
-              tags: 'style,summer',
-              page_location: 'https://localhost:3000/lifestyle/mv-test-article',
-              sponsorship: 'normal'
-            });
+            analytics.page();
           });
   }}();
 </script>

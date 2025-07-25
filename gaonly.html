@@ -13,7 +13,7 @@
  analytics.ready(() => {
             console.log("Segment is ready");
 
-analytics.addDestinationMiddleware('Google Analytics 4 Web', ({ payload, next }) => {
+analytics.addDestinationMiddleware('Facebook Pixel', ({ payload, next }) => {
   const updatedPayload = {
     ...payload,
     obj: {

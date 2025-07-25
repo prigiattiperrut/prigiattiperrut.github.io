@@ -28,24 +28,23 @@
   <!-- Tracking Logic -->
   <script>
 
-      analytics.trackForm(document.querySelector('#gform_1'), 'Lead Form Completed', {
-        email: function () {
-          return document.querySelector('#input_1_1')?.value?.trim() || undefined;
-        },
-        name: function () {
-          return document.querySelector('#input_1_2')?.value?.trim() || undefined;
-        },
-        url: window.location.href,
-        _fbc: getCookie('_fbc'),
-        _fbp: getCookie('_fbp'),
-        _ga: getCookie('_ga'),
-        _rdt_uuid: getCookie('_rdt_uuid'),
-        fbclid: getUrlParam('fbclid'),
-        gclid: getUrlParam('gclid'),
-        rdt_cid: getUrlParam('rdt_cid'),
-        ttclid: getUrlParam('ttclid')
-      });
-
+    analytics.trackForm(document.querySelector('#gform_1'), 'Lead Form Completed', {
+      email: function () {
+        return document.querySelector('#input_1_1')?.value?.trim() || undefined;
+      },
+      name: function () {
+        return document.querySelector('#input_1_2')?.value?.trim() || undefined;
+      },
+      url: window.location.href,
+      _fbc: getCookie('_fbc'),
+      _fbp: getCookie('_fbp'),
+      _ga: getCookie('_ga'),
+      _rdt_uuid: getCookie('_rdt_uuid'),
+      fbclid: getUrlParam('fbclid'),
+      gclid: getUrlParam('gclid'),
+      rdt_cid: getUrlParam('rdt_cid'),
+      ttclid: getUrlParam('ttclid')
+    });
 
     // Modified Helper Functions
     function getCookie(name) {
@@ -55,7 +54,7 @@
 
     function getUrlParam(param) {
       const url = new URL(window.location.href);
-      return url.searchParams.get(param);
+      return url.searchParams.get(param) || 'getUrlParam worked, but parameter was not available';
     }
   </script>
 </body>

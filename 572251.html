@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lead Form Test</title>
+</head>
+<body>
+  <h1>Test Lead Form</h1>
+
+  <form id="gform_1">
+    <label for="input_1_1">Email:</label>
+    <input type="email" id="input_1_1" name="email" required><br><br>
+
+    <label for="input_1_2">Name:</label>
+    <input type="text" id="input_1_2" name="name" required><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Segment AJS Snippet -->
+  <script>
+    !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="G5BwWiwo7E5XCw85h43neqDn59j6KCTp";;analytics.SNIPPET_VERSION="5.2.0";
+    analytics.load("G5BwWiwo7E5XCw85h43neqDn59j6KCTp");
+    analytics.page();
+  }}();
+  </script>
+
+  <!-- Tracking Logic -->
+  <script>
+    analytics.ready(function () {
+      analytics.trackForm(document.querySelector('#gform_1'), 'Lead Form Completed', {
+        email: function () {
+          return document.querySelector('#input_1_1')?.value?.trim() || undefined;
+        },
+        name: function () {
+          return document.querySelector('#input_1_2')?.value?.trim() || undefined;
+        },
+        url: window.location.href,
+        _fbc: getCookie('_fbc'),
+        _fbp: getCookie('_fbp'),
+        _ga: getCookie('_ga'),
+        _rdt_uuid: getCookie('_rdt_uuid'),
+        fbclid: getUrlParam('fbclid'),
+        gclid: getUrlParam('gclid'),
+        rdt_cid: getUrlParam('rdt_cid'),
+        ttclid: getUrlParam('ttclid')
+      });
+    });
+
+    // Modified Helper Functions
+    function getCookie(name) {
+      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      return match ? match[2] : 'getCookie worked, but cookie was not available';
+    }
+
+    function getUrlParam(param) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(param);
+    }
+  </script>
+</body>
+</html>

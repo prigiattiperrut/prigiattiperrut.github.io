@@ -27,7 +27,7 @@
 
   <!-- Tracking Logic -->
   <script>
-    analytics.ready(function () {
+
       analytics.trackForm(document.querySelector('#gform_1'), 'Lead Form Completed', {
         email: function () {
           return document.querySelector('#input_1_1')?.value?.trim() || undefined;
@@ -45,7 +45,7 @@
         rdt_cid: getUrlParam('rdt_cid'),
         ttclid: getUrlParam('ttclid')
       });
-    });
+
 
     // Modified Helper Functions
     function getCookie(name) {

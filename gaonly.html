@@ -13,20 +13,32 @@
  analytics.ready(() => {
             console.log("Segment is ready");
 
-            analytics.addDestinationMiddleware('Google Analytics 4 Web', ({ payload, next }) => {
-              const referrer = document.referrer || '';
-              console.log("Destination middleware triggered. Referrer:", referrer);
+analytics.addDestinationMiddleware('Google Analytics 4 Web', ({ payload, next }) => {
+  const referrer = document.referrer || '';
+  console.log("Destination middleware triggered. Referrer:", referrer);
 
-              payload.obj.context = payload.obj.context || {};
-              payload.obj.context.page = payload.obj.context.page || {};
-              payload.obj.context.campaign = payload.obj.context.campaign || {};
+  const updatedPayload = {
+    ...payload,
+    obj: {
+      ...payload.obj,
+      context: {
+        ...payload.obj.context,
+        page: {
+          ...payload.obj.context?.page,
+          referrer: "newsbreak.com"
+        },
+        campaign: {
+          ...payload.obj.context?.campaign,
+          source: "newsbreak.com",
+          medium: "referral"
+        }
+      }
+    }
+  };
 
-              payload.obj.context.page.referrer = "newsbreak.com";
-              payload.obj.context.campaign.source = "newsbreak.com";
-              payload.obj.context.campaign.medium = "referral";
+  next(updatedPayload);
+});
 
-              next(payload);
-            });
 
             analytics.page({
               title: 'Test Newsbreak Article',

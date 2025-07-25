@@ -17,23 +17,15 @@
 
 <!-- SEGMENT-->
 	<script>
-	analytics.addDestinationMiddleware('Facebook Pixel', ({ payload, next }) => {
-  const updatedPayload = {
-    ...payload,
-    obj: {
-      ...payload.obj,
-      context: {
-        ...payload.obj.context,
-        page: {
-          ...payload.obj.context?.page,
-          referrer: "http://test123.com"
-        }
-      }
-    }
-  };
-
-  next(updatedPayload);
+analytics.addDestinationMiddleware('Facebook Pixel', ({ payload, next }) => {
+  if (!payload.obj.context) payload.obj.context = {};
+  if (!payload.obj.context.page) payload.obj.context.page = {};
+  
+  payload.obj.context.page.referrer = "http://test123.com";
+  
+  next(payload);
 });
+
 		</script>
 
 

@@ -21,7 +21,7 @@
 
         if (ajsUid && ajsUid.includes('%')) {
           console.warn(`[AJS Middleware] Event blocked due to invalid ajs_uid: ${ajsUid}`);
-          return; // 🚫 Block event (do not call next)
+          return; //Block event (do not call next)
         }
 
         next(payload); //Continue event flow if valid or not present

@@ -13,49 +13,29 @@
 </script>
 
   <script>
-    //Middleware Logic
+    //Source Middleware to block invalid ajs_uid values
     analytics.addSourceMiddleware(({ payload, next }) => {
       try {
         const url = new URL(window.location.href);
         const ajsUid = url.searchParams.get('ajs_uid');
-        const uidPattern = /^[A-Z]{10}$/;
 
-        if (ajsUid && !uidPattern.test(ajsUid)) {
-          console.warn(`[AJS Middleware] Invalid ajs_uid detected: ${ajsUid}`);
-          return; // Block event
+        if (ajsUid && ajsUid.includes('%')) {
+          console.warn(`[AJS Middleware] Event blocked due to invalid ajs_uid: ${ajsUid}`);
+          return; // 🚫 Block event (do not call next)
         }
 
-        if (ajsUid && uidPattern.test(ajsUid)) {
-          payload.obj.context = {
-            ...payload.obj.context,
-            ajs_uid: ajsUid,
-          };
-          console.log(`[AJS Middleware] Valid ajs_uid added: ${ajsUid}`);
-        }
-
-        next(payload);
+        next(payload); //Continue event flow if valid or not present
       } catch (err) {
         console.error("[AJS Middleware] Error processing ajs_uid:", err);
-        next(payload);
+        next(payload); // Allow events to continue in case of error
       }
     });
 
-    //Test Event
-    function sendTestEvent() {
-      analytics.track("Test Event", {
-        example_property: "middleware_test"
-      });
-      console.log("Track event triggered.");
-    }
   </script>
 </head>
 
 <body>
   <h1>Segment Analytics.js Middleware Test</h1>
-  <p>
-    Add <code>?ajs_uid=ABCDEFGHIJ</code> to the URL and open the console to see the middleware in action.
-  </p>
 
-  <button onclick="sendTestEvent()">Send Test Event</button>
 </body>
 </html>

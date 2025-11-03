@@ -3,76 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <title>Analytics.js useQueryString Test</title>
-    <script>
-      // Segment Analytics.js snippet with useQueryString option
-      !(function () {
-        var analytics = (window.analytics = window.analytics || []);
-        if (!analytics.initialize)
-          if (analytics.invoked)
-            window.console &&
-              console.error &&
-              console.error("Segment snippet included twice.");
-          else {
-            analytics.invoked = !0;
-            analytics.methods = [
-              "trackSubmit",
-              "trackClick",
-              "trackLink",
-              "trackForm",
-              "pageview",
-              "identify",
-              "reset",
-              "group",
-              "track",
-              "ready",
-              "alias",
-              "debug",
-              "page",
-              "once",
-              "off",
-              "on",
-              "addSourceMiddleware",
-              "addIntegrationMiddleware",
-              "setAnonymousId",
-              "addDestinationMiddleware",
-              "register"
-            ];
-            analytics.factory = function (t) {
-              return function () {
-                var e = Array.prototype.slice.call(arguments);
-                e.unshift(t);
-                analytics.push(e);
-                return analytics;
-              };
-            };
-            for (var t = 0; t < analytics.methods.length; t++) {
-              var e = analytics.methods[t];
-              analytics[e] = analytics.factory(e);
-            }
-            analytics.load = function (key, options) {
-              var script = document.createElement("script");
-              script.type = "text/javascript";
-              script.async = !0;
-              script.src = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
-              var first = document.getElementsByTagName("script")[0];
-              first.parentNode.insertBefore(script, first);
-              analytics._loadOptions = options;
-            };
-            analytics.SNIPPET_VERSION = "4.15.3";
-
-            // Load Segment with useQueryString option
-            analytics.load("G5BwWiwo7E5XCw85h43neqDn59j6KCTp", {
-              useQueryString: {
-                // Example validation patterns
-                aid: /([A-Z]{10})/, // anonymousId pattern
-                uid: /([A-Z]{6})/   // userId pattern
-              }
-            });
-
-            analytics.page("useQueryString Page");
-          }
-      })();
-    </script>
+<script>
+  !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="G5BwWiwo7E5XCw85h43neqDn59j6KCTp";;analytics.SNIPPET_VERSION="5.2.0";
+  analytics.load("G5BwWiwo7E5XCw85h43neqDn59j6KCTp", {
+  useQueryString: {
+    // set a pattern for anonymousId 
+    aid: /([A-Z]{10})/,
+    // set a pattern for userId
+    uid: /([A-Z]{6})/
+  }
+});
+  analytics.page("useQueryString Page");
+  }}();
+</script>
+    
   </head>
   <body>
     <h1>Analytics.js useQueryString Test</h1>

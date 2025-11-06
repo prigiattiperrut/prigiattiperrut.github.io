@@ -70,16 +70,15 @@
     s.async = true;
     s.src = "https://cdn.jsdelivr.net/npm/@segment/analytics-signals@latest/dist/umd/analytics-signals.umd.js";
     r.parentNode.insertBefore(s, r);
-    s.onload = function () {
-      var signalsPlugin = new SignalsPlugin();
-      analytics.register(signalsPlugin);
-      analytics.load(key, n);
-    };
+      s.onload = function () {
+    var signalsPlugin = new SignalsPlugin();
+    analytics.register(signalsPlugin);
+    analytics.load(key, n);
   };
 
   analytics.loadWithSignals(analytics._writeKey);
   analytics.page();
-})();
+}();
 </script>
 
 

@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TSE Trainee Helper | Twilio</title>
+
+    <!-- ChatKit web component (OpenAI-hosted) -->
+    <script type="module" src="https://platform.openai.com/chatkit/chatkit.js"></script>
+
+    <style>
+      :root{
+        --bg:#0b0d12;
+        --card:#111523;
+        --card2:#0f1320;
+        --text:#eef2ff;
+        --muted:#aab1c5;
+        --line:rgba(255,255,255,.10);
+        --shadow:0 16px 50px rgba(0,0,0,.45);
+        --twilio-red:#F22F46;
+        --twilio-red2:#ff4d62;
+        --pill:rgba(242,47,70,.14);
+        --link:#cbd5ff;
+      }
+
+      *{ box-sizing:border-box; }
+      html,body{ height:100%; }
+      body{
+        margin:0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+        color:var(--text);
+        background:
+          radial-gradient(900px 500px at 20% 0%, rgba(242,47,70,.18), transparent 60%),
+          radial-gradient(900px 500px at 90% 10%, rgba(255,77,98,.10), transparent 60%),
+          radial-gradient(900px 600px at 40% 110%, rgba(99,102,241,.12), transparent 60%),
+          var(--bg);
+      }
+
+      .wrap{
+        min-height:100%;
+        display:flex;
+        flex-direction:column;
+      }
+
+      header{
+        position:sticky;
+        top:0;
+        z-index:10;
+        backdrop-filter:saturate(140%) blur(10px);
+        background:rgba(11,13,18,.72);
+        border-bottom:1px solid var(--line);
+      }
+
+      .header-inner{
+        max-width:1100px;
+        margin:0 auto;
+        padding:14px 18px;
+        display:flex;
+        gap:14px;
+        align-items:center;
+        justify-content:space-between;
+      }
+
+      .brand{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        min-width:0;
+      }
+
+      .logo{
+        width:38px;height:38px;
+        border-radius:12px;
+        background:linear-gradient(135deg, var(--twilio-red), var(--twilio-red2));
+        box-shadow:0 10px 25px rgba(242,47,70,.25);
+        display:grid;
+        place-items:center;
+        flex:0 0 auto;
+      }
+
+      .logo svg{ width:22px;height:22px; opacity:.95; }
+
+      .title{
+        display:flex;
+        flex-direction:column;
+        line-height:1.1;
+        min-width:0;
+      }
+
+      .title strong{
+        font-size:14px;
+        letter-spacing:.2px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+
+      .title span{
+        font-size:12px;
+        color:var(--muted);
+        margin-top:3px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+
+      .badge{
+        font-size:12px;
+        color:var(--text);
+        background:var(--pill);
+        border:1px solid rgba(242,47,70,.22);
+        padding:6px 10px;
+        border-radius:999px;
+        display:flex;
+        gap:8px;
+        align-items:center;
+        white-space:nowrap;
+      }
+
+      .dot{
+        width:8px;height:8px;border-radius:99px;
+        background:var(--twilio-red);
+        box-shadow:0 0 0 4px rgba(242,47,70,.15);
+      }
+
+      main{
+        width:100%;
+        max-width:1100px;
+        margin:0 auto;
+        padding:18px;
+        flex:1 1 auto;
+        display:grid;
+        grid-template-columns: 320px 1fr;
+        gap:16px;
+      }
+
+      @media (max-width: 980px){
+        main{ grid-template-columns: 1fr; }
+      }
+
+      .panel{
+        background:linear-gradient(180deg, rgba(17,21,35,.85), rgba(15,19,32,.85));
+        border:1px solid var(--line);
+        border-radius:18px;
+        box-shadow:var(--shadow);
+      }
+
+      .left{
+        padding:16px;
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+      }
+
+      .h2{
+        font-size:14px;
+        margin:0;
+        letter-spacing:.2px;
+      }
+
+      .p{
+        margin:0;
+        color:var(--muted);
+        font-size:13px;
+        line-height:1.45;
+      }
+
+      .chips{
+        display:flex;
+        flex-wrap:wrap;
+        gap:8px;
+      }
+
+      .chip{
+        font-size:12px;
+        color:var(--text);
+        border:1px solid var(--line);
+        background:rgba(255,255,255,.04);
+        padding:7px 10px;
+        border-radius:999px;
+      }
+
+      .examples{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+      }
+
+      .ex{
+        border:1px solid var(--line);
+        background:rgba(255,255,255,.03);
+        padding:10px 12px;
+        border-radius:14px;
+        font-size:12.5px;
+        color:var(--text);
+      }
+
+      .ex b{ color:#fff; }
+
+      .note{
+        border-left:3px solid var(--twilio-red);
+        padding:10px 12px;
+        background:rgba(242,47,70,.08);
+        border-radius:12px;
+        color:var(--muted);
+        font-size:12.5px;
+        line-height:1.45;
+      }
+
+      .right{
+        padding:12px;
+        display:flex;
+        flex-direction:column;
+        min-height:560px;
+      }
+
+      .chat-head{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:10px 10px 12px 10px;
+        border-bottom:1px solid var(--line);
+      }
+
+      .chat-head .label{
+        display:flex;
+        flex-direction:column;
+        gap:4px;
+      }
+
+      .chat-head .label strong{
+        font-size:13px;
+        letter-spacing:.2px;
+      }
+
+      .chat-head .label span{
+        font-size:12px;
+        color:var(--muted);
+      }
+
+      .link{
+        font-size:12px;
+        color:var(--link);
+        text-decoration:none;
+        border:1px solid var(--line);
+        background:rgba(255,255,255,.03);
+        padding:8px 10px;
+        border-radius:12px;
+      }
+      .link:hover{ filter:brightness(1.08); }
+
+      .chat-body{
+        flex:1 1 auto;
+        padding:10px;
+        display:flex;
+        min-height:520px;
+      }
+
+      /* Make the web component fill the area nicely */
+      openai-chatkit{
+        width:100%;
+        height:100%;
+        min-height:520px;
+        display:block;
+        border-radius:14px;
+        overflow:hidden;
+        border:1px solid var(--line);
+        background:rgba(0,0,0,.18);
+      }
+
+      footer{
+        max-width:1100px;
+        margin:0 auto;
+        padding:10px 18px 18px 18px;
+        color:var(--muted);
+        font-size:12px;
+      }
+
+      code{
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 12px;
+        color:#d6dbff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="header-inner">
+          <div class="brand">
+            <div class="logo" aria-hidden="true">
+              <!-- simple chat icon -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7 8h10M7 12h7" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M20 12c0 3.866-3.582 7-8 7-1.06 0-2.07-.18-2.99-.51L4 20l1.09-3.27C4.4 15.6 4 14.35 4 13c0-3.866 3.582-7 8-7s8 3.134 8 6z"
+                      stroke="white" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="title">
+              <strong>TSE Trainee Helper</strong>
+              <span>Internal training assistant for Segment • Voice • PL&amp;A</span>
+            </div>
+          </div>
+          <div class="badge" title="Internal use only">
+            <span class="dot"></span>
+            Internal-only
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <!-- Left: guidance -->
+        <section class="panel left">
+          <h2 class="h2">How to use</h2>
+          <p class="p">
+            Ask questions during training and get clear explanations, step-by-step guidance, and pointers to docs.
+            If something needs internal confirmation, the helper will tell you what to check next.
+          </p>
+
+          <div class="chips" aria-label="Topics">
+            <span class="chip">Segment</span>
+            <span class="chip">Voice</span>
+            <span class="chip">PL&amp;A</span>
+            <span class="chip">Troubleshooting</span>
+            <span class="chip">Docs links</span>
+          </div>
+
+          <h2 class="h2" style="margin-top:6px;">Example questions</h2>
+          <div class="examples">
+            <div class="ex"><b>Segment:</b> “Why does Source Debugger show fewer events than Event Delivery?”</div>
+            <div class="ex"><b>Voice:</b> “What’s the difference between SIP errors vs call quality issues?”</div>
+            <div class="ex"><b>PL&amp;A:</b> “When should I use Studio vs Functions in a flow?”</div>
+          </div>
+
+          <div class="note">
+            Tip: If your question is vague, include <b>product</b>, <b>where</b> you saw it (UI/page), and any <b>exact error</b>.
+          </div>
+
+          <p class="p">
+            Workflow ID: <code>wf_694298a2302081909fb04401083ad930062aaf4cb5645378</code>
+          </p>
+        </section>
+
+        <!-- Right: ChatKit -->
+        <section class="panel right">
+          <div class="chat-head">
+            <div class="label">
+              <strong>Chat</strong>
+              <span>Ask your question below</span>
+            </div>
+            <a class="link" href="https://www.twilio.com/docs" target="_blank" rel="noreferrer noopener">
+              Twilio Docs
+            </a>
+          </div>
+
+          <div class="chat-body">
+            <!-- ChatKit component wired to your Agent Builder workflow -->
+            <openai-chatkit agent-builder-workflow="wf_694298a2302081909fb04401083ad930062aaf4cb5645378"></openai-chatkit>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        Internal tool for training support. If you’re blocked on a customer-impacting issue, follow your normal escalation process.
+      </footer>
+    </div>
+  </body>
+</html>
